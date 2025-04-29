@@ -80,5 +80,6 @@
 }
 
 .scroll-to-top.visible {
-  @apply opacity-100 visible;
+  opacity: 1;
+  visibility: visible;
 }

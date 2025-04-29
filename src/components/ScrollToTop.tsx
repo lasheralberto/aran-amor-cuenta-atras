@@ -1,6 +1,5 @@
 
 import { useEffect, useState } from 'react';
-import { cn } from '@/lib/utils';
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -28,10 +27,7 @@ const ScrollToTop = () => {
 
   return (
     <button
-      className={cn(
-        'scroll-to-top',
-        isVisible && 'visible'
-      )}
+      className={`scroll-to-top ${isVisible ? 'visible' : ''}`}
       onClick={scrollToTop}
       aria-label="Scroll to top"
     >
