@@ -8,15 +8,17 @@ import PartySection from "@/components/sections/PartySection";
 import RSVPSection from "@/components/sections/RSVPSection";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import Snowfall from "@/components/Snowfall";
 
 const Index = () => {
   useEffect(() => {
-    document.title = "Alberto & Mariona - 17 de enero 2025";
+    document.title = "Alberto & Mariona - 17 de enero 2026";
   }, []);
 
   return (
     <div className="min-h-screen">
       <NavBar />
+      <Snowfall />
       <main>
         <HeroSection />
         <ChurchSection />

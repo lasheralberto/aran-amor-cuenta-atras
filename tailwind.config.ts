@@ -60,6 +60,14 @@ export default {
 				  cream: '#F8F0E3',
 				  lightgold: '#F0E6C8',
 				  slate: '#4A4E69'
+				},
+				winter: {
+				  light: '#E8F1F9',
+				  medium: '#B3CEE5',
+				  accent: '#4D7EA8',
+				  dark: '#1E3A57',
+				  icy: '#D9EBF7',
+				  silver: '#C0D6DF'
 				}
 			},
 			fontFamily: {

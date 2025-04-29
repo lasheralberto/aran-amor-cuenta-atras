@@ -17,7 +17,7 @@ const CountdownTimer = () => {
   });
 
   useEffect(() => {
-    const weddingDate = new Date('January 17, 2025 12:00:00').getTime();
+    const weddingDate = new Date('January 17, 2026 12:00:00').getTime();
 
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -54,14 +54,14 @@ const CountdownTimer = () => {
 
   return (
     <div className="w-full max-w-3xl mx-auto">
-      <h3 className="text-center font-serif text-xl sm:text-2xl mb-6 text-wedding-slate">Cuenta atrás para nuestro gran día</h3>
+      <h3 className="text-center font-serif text-xl sm:text-2xl mb-6 text-winter-dark">Cuenta atrás para nuestro gran día</h3>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         {timeUnits.map((unit) => (
-          <div key={unit.label} className="bg-white/80 backdrop-blur-sm rounded-lg shadow-md p-4 flex flex-col items-center">
-            <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-wedding-burgundy">
+          <div key={unit.label} className="bg-white/80 backdrop-blur-sm rounded-lg shadow-md p-4 flex flex-col items-center border border-winter-medium/30">
+            <span className="text-3xl sm:text-4xl md:text-5xl font-bold text-winter-dark">
               {unit.value < 10 ? `0${unit.value}` : unit.value}
             </span>
-            <span className="text-sm sm:text-base font-medium text-wedding-slate mt-2">
+            <span className="text-sm sm:text-base font-medium text-winter-dark mt-2">
               {unit.label}
             </span>
           </div>

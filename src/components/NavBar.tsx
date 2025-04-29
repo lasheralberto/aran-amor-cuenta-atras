@@ -33,13 +33,13 @@ const NavBar = () => {
     >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex justify-between items-center">
-          <a href="#home" className="text-xl md:text-2xl font-cursive text-wedding-burgundy">
+          <a href="#home" className="text-xl md:text-2xl font-cursive text-winter-dark">
             Alberto & Mariona
           </a>
           
           {/* Mobile menu button */}
           <button 
-            className="md:hidden text-wedding-burgundy"
+            className="md:hidden text-winter-dark"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
@@ -57,7 +57,7 @@ const NavBar = () => {
               <a 
                 key={item.name}
                 href={item.href}
-                className="text-wedding-slate hover:text-wedding-burgundy font-medium transition-colors"
+                className="text-winter-dark hover:text-winter-accent font-medium transition-colors"
               >
                 {item.name}
               </a>
@@ -71,7 +71,7 @@ const NavBar = () => {
             <a
               key={item.name}
               href={item.href}
-              className="block py-2 text-wedding-slate hover:text-wedding-burgundy font-medium"
+              className="block py-2 text-winter-dark hover:text-winter-accent font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               {item.name}
