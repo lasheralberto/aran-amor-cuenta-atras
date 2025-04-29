@@ -9,6 +9,7 @@ import RSVPSection from "@/components/sections/RSVPSection";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import Snowfall from "@/components/Snowfall";
+import VideoFrame from "@/components/VideoFrame";
 
 const Index = () => {
   useEffect(() => {
@@ -19,7 +20,8 @@ const Index = () => {
     <div className="min-h-screen">
       <NavBar />
       <Snowfall />
-      <main>
+      <main className="relative">
+        <VideoFrame videoUrl="/videos/wedding-teaser.mp4" />
         <HeroSection />
         <ChurchSection />
         <ReceptionSection />
