@@ -5,7 +5,7 @@ interface HeroSectionProps {
   backgroundImage?: string;
 }
 
-const HeroSection = ({ backgroundImage = '/img/hero-bg.jpg' }: HeroSectionProps) => {
+const HeroSection = ({ backgroundImage = '/img/Alto_Aran.jpg' }: HeroSectionProps) => {
   return (
     <section id="home" className="min-h-screen pt-20 pb-10 flex flex-col justify-center relative">
       <div 
