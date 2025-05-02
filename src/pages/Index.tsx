@@ -24,7 +24,7 @@ const Index = () => {
       <NavBar />
       <Snowfall />
       <main className="relative">
-        <ImageFrame imageUrl="/img/couple-photo.jpg" />
+        <ImageFrame imageUrl="/img/Alto_Aran.jpg" />
         <HeroSection backgroundImage={backgroundImage} />
         <ChurchSection />
         <ReceptionSection />
