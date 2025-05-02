@@ -1,10 +1,17 @@
 
 import CountdownTimer from "@/components/CountdownTimer";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  backgroundImage?: string;
+}
+
+const HeroSection = ({ backgroundImage = '/img/hero-bg.jpg' }: HeroSectionProps) => {
   return (
     <section id="home" className="min-h-screen pt-20 pb-10 flex flex-col justify-center relative">
-      <div className="absolute inset-0 bg-[url('/img/hero-bg.jpg')] bg-cover bg-center opacity-20 z-0"></div>
+      <div 
+        className="absolute inset-0 bg-cover bg-center opacity-20 z-0"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      ></div>
       <div className="container mx-auto px-4 z-10">
         <div className="max-w-5xl mx-auto text-center animate-fade-in">
           <h2 className="font-cursive text-4xl md:text-5xl lg:text-6xl text-winter-dark mb-2">Alberto & Mariona</h2>

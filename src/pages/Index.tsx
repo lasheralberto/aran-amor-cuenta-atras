@@ -1,5 +1,5 @@
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "@/components/NavBar";
 import HeroSection from "@/components/sections/HeroSection";
 import ChurchSection from "@/components/sections/ChurchSection";
@@ -12,6 +12,9 @@ import Snowfall from "@/components/Snowfall";
 import ImageFrame from "@/components/ImageFrame";
 
 const Index = () => {
+  // You can change this value to use your own background image
+  const [backgroundImage, setBackgroundImage] = useState('/img/hero-bg.jpg');
+  
   useEffect(() => {
     document.title = "Alberto & Mariona - 17 de enero 2026";
   }, []);
@@ -22,7 +25,7 @@ const Index = () => {
       <Snowfall />
       <main className="relative">
         <ImageFrame imageUrl="/img/couple-photo.jpg" />
-        <HeroSection />
+        <HeroSection backgroundImage={backgroundImage} />
         <ChurchSection />
         <ReceptionSection />
         <PartySection />
