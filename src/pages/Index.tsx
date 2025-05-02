@@ -13,7 +13,7 @@ import ImageFrame from "@/components/ImageFrame";
 
 const Index = () => {
   // You can change this value to use your own background image
-  const [backgroundImage, setBackgroundImage] = useState('/img/hero-bg.jpg');
+  const [backgroundImage, setBackgroundImage] = useState('/img/Alto_Aran.jpg');
   
   useEffect(() => {
     document.title = "Alberto & Mariona - 17 de enero 2026";
