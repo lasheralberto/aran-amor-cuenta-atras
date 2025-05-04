@@ -167,7 +167,7 @@ const RSVPSection = () => {
               )}
 
 <div>
-                <label htmlFor="message" className="block text-wedding-slate font-medium mb-1">
+                <label htmlFor="messageSong" className="block text-wedding-slate font-medium mb-1">
                   Dinos tu canción de "ahora sí, empieza la fiesta"
                 </label>
                 <textarea
