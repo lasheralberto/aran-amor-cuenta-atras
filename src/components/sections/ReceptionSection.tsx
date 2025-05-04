@@ -57,7 +57,7 @@ const ReceptionSection = () => {
             </div>
           </div>
           
-          <div className="order-1 md:order-2 rounded-lg overflow-hidden shadow-lg">
+          <div className="order-1 md:order-2 rounded-lg overflow-hidden shadow-lg max-w-md mx-auto">
             <AspectRatio ratio={16/9} className="w-full">
               <img 
                 src="/img/reception.jpg" 
