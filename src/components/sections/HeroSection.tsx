@@ -9,7 +9,7 @@ const HeroSection = ({ backgroundImage = '/img/Alto_Aran.jpg' }: HeroSectionProp
   return (
     <section id="home" className="min-h-screen pt-20 pb-10 flex flex-col justify-center relative">
       <div 
-        className="absolute inset-0 bg-cover bg-center opacity-20 z-0"
+        className="absolute inset-0 bg-cover bg-center opacity-70 z-0"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       ></div>
       <div className="container mx-auto px-4 z-10">
