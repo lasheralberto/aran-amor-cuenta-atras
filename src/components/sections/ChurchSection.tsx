@@ -1,5 +1,6 @@
 
 import { Calendar, Clock, Church } from "lucide-react";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const ChurchSection = () => {
   return (
@@ -9,11 +10,13 @@ const ChurchSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="rounded-lg overflow-hidden shadow-lg">
-            <img 
-              src="/img/church.png" 
-              alt="Iglesia de Sant Miquèu de Vielha" 
-              className="w-full h-80 object-cover"
-            />
+            <AspectRatio ratio={9/16} className="w-full">
+              <img 
+                src="/img/church.png" 
+                alt="Iglesia de Sant Miquèu de Vielha" 
+                className="w-full h-full object-cover"
+              />
+            </AspectRatio>
           </div>
           
           <div className="space-y-6">

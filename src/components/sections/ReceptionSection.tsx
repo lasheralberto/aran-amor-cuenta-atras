@@ -1,5 +1,6 @@
 
 import { Calendar, Clock, Utensils } from "lucide-react";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const ReceptionSection = () => {
   return (
@@ -57,11 +58,13 @@ const ReceptionSection = () => {
           </div>
           
           <div className="order-1 md:order-2 rounded-lg overflow-hidden shadow-lg">
-            <img 
-              src="/img/reception.jpg" 
-              alt="Parador de Vielha" 
-              className="w-full h-80 object-cover"
-            />
+            <AspectRatio ratio={16/9} className="w-full">
+              <img 
+                src="/img/reception.jpg" 
+                alt="Parador de Vielha" 
+                className="w-full h-full object-cover"
+              />
+            </AspectRatio>
           </div>
         </div>
       </div>
