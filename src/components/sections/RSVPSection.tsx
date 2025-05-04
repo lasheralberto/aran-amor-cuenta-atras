@@ -172,7 +172,7 @@ const RSVPSection = () => {
                 </label>
                 <textarea
                   id="messageSong"
-                  value={message}
+                  value={messageSong}
                   onChange={(e) => setMessage(e.target.value)}
                   rows={4}
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy"
