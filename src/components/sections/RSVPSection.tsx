@@ -22,9 +22,8 @@ const RSVPSection = () => {
             Nombre: name,
             Email: email,
             Asistencia: attendance,
-            Comensales: parseInt(guests),
             Restricciones: dietaryRestrictions,
-            Canción: messageSong,
+            Cancion: messageSong,
             Mensaje: message,
           }
         }
