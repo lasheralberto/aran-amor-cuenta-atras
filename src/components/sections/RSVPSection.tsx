@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Check, Mail } from "lucide-react";
 
@@ -14,7 +13,7 @@ const RSVPSection = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     const payload = {
       records: [
         {
@@ -29,7 +28,7 @@ const RSVPSection = () => {
         }
       ]
     };
-  
+
     try {
       const response = await fetch("https://api.airtable.com/v0/appGU5yB2ZkikiTnf/tbluQQwjnh26iyhBw", {
         method: "POST",
@@ -39,13 +38,13 @@ const RSVPSection = () => {
         },
         body: JSON.stringify(payload)
       });
-  
+
       const result = await response.json();
-  
+
       if (response.ok) {
         console.log("Datos enviados a Airtable:", result);
         setIsSubmitted(true);
-  
+
         // Resetea el formulario
         setName("");
         setEmail("");
@@ -63,13 +62,11 @@ const RSVPSection = () => {
       alert("Error de red. Intenta de nuevo más tarde.");
     }
   };
-  
 
   return (
     <section id="rsvp" className="py-16 md:py-24 bg-wedding-burgundy/10">
       <div className="section-container">
         <h2 className="section-title">Confirmación de Asistencia</h2>
-        
         <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-6 md:p-8">
           {isSubmitted ? (
             <div className="text-center py-8">
@@ -102,7 +99,7 @@ const RSVPSection = () => {
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy"
                 />
               </div>
-              
+
               <div>
                 <label htmlFor="email" className="block text-wedding-slate font-medium mb-1">
                   Correo electrónico *
@@ -116,7 +113,7 @@ const RSVPSection = () => {
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-wedding-slate font-medium mb-1">
                   ¿Asistirás a nuestra boda? *
@@ -146,40 +143,37 @@ const RSVPSection = () => {
                   </label>
                 </div>
               </div>
-              
+
               {attendance === "yes" && (
-                <>
-                  
-                  <div>
-                    <label htmlFor="dietary" className="block text-wedding-slate font-medium mb-1">
-                      Restricciones alimentarias
-                    </label>
-                    <textarea
-                      id="dietary"
-                      value={dietaryRestrictions}
-                      onChange={(e) => setDietaryRestrictions(e.target.value)}
-                      rows={3}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy"
-                      placeholder="Alergias, intolerancias, u otras restricciones alimentarias"
-                    ></textarea>
-                  </div>
-                </>
+                <div>
+                  <label htmlFor="dietary" className="block text-wedding-slate font-medium mb-1">
+                    Restricciones alimentarias
+                  </label>
+                  <textarea
+                    id="dietary"
+                    value={dietaryRestrictions}
+                    onChange={(e) => setDietaryRestrictions(e.target.value)}
+                    rows={3}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy"
+                    placeholder="Alergias, intolerancias, u otras restricciones alimentarias"
+                  ></textarea>
+                </div>
               )}
 
-<div>
+              <div>
                 <label htmlFor="messageSong" className="block text-wedding-slate font-medium mb-1">
                   Dinos tu canción de "ahora sí, empieza la fiesta"
                 </label>
                 <textarea
                   id="messageSong"
                   value={messageSong}
-                  onChange={(e) => setMessage(e.target.value)}
+                  onChange={(e) => setMessageSong(e.target.value)}
                   rows={4}
                   className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy"
                   placeholder="Prohibida la de 'Despacito..'"
                 ></textarea>
               </div>
-              
+
               <div>
                 <label htmlFor="message" className="block text-wedding-slate font-medium mb-1">
                   Mensaje para los novios (opcional)
@@ -194,7 +188,6 @@ const RSVPSection = () => {
                 ></textarea>
               </div>
 
-              
               <div className="pt-2">
                 <button
                   type="submit"
@@ -204,7 +197,7 @@ const RSVPSection = () => {
                   Confirmar asistencia
                 </button>
               </div>
-              
+
               <p className="text-xs text-wedding-slate text-center mt-4">
                 * Campos requeridos
               </p>
