@@ -10,7 +10,7 @@ const ChurchSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="rounded-lg overflow-hidden shadow-lg">
             <img 
-              src="/img/church.jpg" 
+              src="/img/church.png" 
               alt="Iglesia de Sant Miquèu de Vielha" 
               className="w-full h-80 object-cover"
             />
