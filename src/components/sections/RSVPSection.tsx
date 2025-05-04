@@ -12,29 +12,59 @@ const RSVPSection = () => {
   const [messageSong, setMessageSong] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the data to a server
-    console.log({
-      name,
-      email,
-      attendance,
-      guests: parseInt(guests),
-      dietaryRestrictions,
-      message
-    });
-    
-    // For demo purposes, we'll just set isSubmitted to true
-    setIsSubmitted(true);
-    
-    // Reset form
-    setName("");
-    setEmail("");
-    setAttendance("yes");
-    setGuests("0");
-    setDietaryRestrictions("");
-    setMessage("");
+  
+    const payload = {
+      records: [
+        {
+          fields: {
+            Nombre: name,
+            Email: email,
+            Asistencia: attendance,
+            Comensales: parseInt(guests),
+            Restricciones: dietaryRestrictions,
+            Canción: messageSong,
+            Mensaje: message,
+          }
+        }
+      ]
+    };
+  
+    try {
+      const response = await fetch("https://api.airtable.com/v0/appGU5yB2ZkikiTnf/tbluQQwjnh26iyhBw", {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer patkZYGQfxVNjVZQq.4203f8a5a8b89553d0f846fdb834df351dc8424ecab6e75123e79531f4f7a3fd",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+  
+      const result = await response.json();
+  
+      if (response.ok) {
+        console.log("Datos enviados a Airtable:", result);
+        setIsSubmitted(true);
+  
+        // Resetea el formulario
+        setName("");
+        setEmail("");
+        setAttendance("yes");
+        setGuests("0");
+        setDietaryRestrictions("");
+        setMessage("");
+        setMessageSong("");
+      } else {
+        console.error("Error al enviar a Airtable:", result);
+        alert("Ocurrió un error al enviar los datos.");
+      }
+    } catch (error) {
+      console.error("Error de red:", error);
+      alert("Error de red. Intenta de nuevo más tarde.");
+    }
   };
+  
 
   return (
     <section id="rsvp" className="py-16 md:py-24 bg-wedding-burgundy/10">
