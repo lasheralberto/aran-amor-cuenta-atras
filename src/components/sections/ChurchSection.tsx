@@ -1,21 +1,26 @@
-
 import { Calendar, Clock, Church } from "lucide-react";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const ChurchSection = () => {
-  return <section id="church" className="py-16 md:py-24 bg-white">
-      <div className="section-container">
-        <h2 className="section-title">La Ceremonia</h2>
+  return (
+    <section id="church" className="py-16 md:py-24 bg-white">
+      <div className="container mx-auto px-4 max-w-6xl">
+        <h2 className="text-3xl md:text-4xl font-cursive text-center text-wedding-burgundy mb-12">
+          La Ceremonia
+        </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="rounded-lg overflow-hidden shadow-lg max-w-xs mx-auto">
-            <AspectRatio ratio={9 / 16} className="w-full">
-              <img 
-                src="/img/church.png" 
-                alt="Iglesia de Sant Miquèu de Vielha" 
-                className="w-full h-full object-cover" 
-              />
-            </AspectRatio>
+          {/* Contenedor de imagen con relación de aspecto 9:16 implementada directamente */}
+          <div className="flex justify-center">
+            <div className="rounded-lg overflow-hidden shadow-lg max-w-xs w-full">
+              {/* Div con relación de aspecto fija 9:16 */}
+              <div className="relative pb-[177.78%]"> {/* 16/9 = 1.7778 → 177.78% */}
+                <img 
+                  src="/api/placeholder/300/534" 
+                  alt="Iglesia de Sant Miquèu de Vielha" 
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
           
           <div className="space-y-6">
@@ -24,8 +29,10 @@ const ChurchSection = () => {
               Nos encantaría que nos acompañarais en este día tan especial. La ceremonia se celebrará en la histórica Iglesia de Sant Miquèu, uno de los monumentos más emblemáticos del Valle de Arán.
             </p>
             
-            <div className="divider">
-              <span>❄️</span>
+            <div className="flex items-center justify-center py-2">
+              <div className="w-12 h-0.5 bg-wedding-burgundy/30 mr-3"></div>
+              <span className="text-wedding-burgundy">❄️</span>
+              <div className="w-12 h-0.5 bg-wedding-burgundy/30 ml-3"></div>
             </div>
             
             <div className="space-y-4">
@@ -52,7 +59,12 @@ const ChurchSection = () => {
             </div>
             
             <div className="pt-4">
-              <a href="https://maps.app.goo.gl/1JmQsGcmd8J8nF7Y8" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-wedding-burgundy hover:text-wedding-gold font-medium transition-colors">
+              <a 
+                href="https://maps.app.goo.gl/1JmQsGcmd8J8nF7Y8" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="inline-flex items-center text-wedding-burgundy hover:text-wedding-gold font-medium transition-colors"
+              >
                 Ver ubicación
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -62,7 +74,8 @@ const ChurchSection = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
 
 export default ChurchSection;
