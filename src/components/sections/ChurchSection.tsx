@@ -26,7 +26,7 @@ const ChurchSection = () => {
           <div className="space-y-6">
             <h3 className="text-2xl font-bold text-wedding-burgundy">Iglesia de Sant Miquèu de Vielha</h3>
             <p className="text-wedding-slate">
-              Nos encantaría que nos acompañarais en este día tan especial. La ceremonia se celebrará en la histórica Iglesia de Sant Miquèu, uno de los monumentos más emblemáticos del Valle de Arán.
+              Nos encantaríaa que nos acompañarais en este día tan especial. La ceremonia se celebrará en la histórica Iglesia de Sant Miquèu, uno de los monumentos más emblemáticos del Valle de Arán.
             </p>
             
             <div className="flex items-center justify-center py-2">
