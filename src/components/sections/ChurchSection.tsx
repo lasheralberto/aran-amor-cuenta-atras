@@ -1,21 +1,14 @@
-
 import { Calendar, Clock, Church } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-
 const ChurchSection = () => {
-  return (
-    <section id="church" className="py-16 md:py-24 bg-white">
+  return <section id="church" className="py-16 md:py-24 bg-white">
       <div className="section-container">
         <h2 className="section-title">La Ceremonia</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="rounded-lg overflow-hidden shadow-lg">
-            <AspectRatio ratio={9/16} className="w-full">
-              <img 
-                src="/img/church.png" 
-                alt="Iglesia de Sant Miquèu de Vielha" 
-                className="w-full h-full object-cover"
-              />
+            <AspectRatio ratio={9 / 16} className="w-full">
+              <img src="/img/church.png" alt="Iglesia de Sant Miquèu de Vielha" className="w-full  object-contain" />
             </AspectRatio>
           </div>
           
@@ -53,12 +46,7 @@ const ChurchSection = () => {
             </div>
             
             <div className="pt-4">
-              <a 
-                href="https://maps.app.goo.gl/1JmQsGcmd8J8nF7Y8" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center text-wedding-burgundy hover:text-wedding-gold font-medium transition-colors"
-              >
+              <a href="https://maps.app.goo.gl/1JmQsGcmd8J8nF7Y8" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-wedding-burgundy hover:text-wedding-gold font-medium transition-colors">
                 Ver ubicación
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -68,8 +56,6 @@ const ChurchSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ChurchSection;
