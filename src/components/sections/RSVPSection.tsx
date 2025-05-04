@@ -9,6 +9,7 @@ const RSVPSection = () => {
   const [guests, setGuests] = useState("0");
   const [dietaryRestrictions, setDietaryRestrictions] = useState("");
   const [message, setMessage] = useState("");
+  const [messageSong, setMessageSong] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -119,23 +120,6 @@ const RSVPSection = () => {
               
               {attendance === "yes" && (
                 <>
-                  <div>
-                    <label htmlFor="guests" className="block text-wedding-slate font-medium mb-1">
-                      Número de acompañantes
-                    </label>
-                    <select
-                      id="guests"
-                      value={guests}
-                      onChange={(e) => setGuests(e.target.value)}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy"
-                    >
-                      <option value="0">0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                    </select>
-                  </div>
                   
                   <div>
                     <label htmlFor="dietary" className="block text-wedding-slate font-medium mb-1">
@@ -152,6 +136,20 @@ const RSVPSection = () => {
                   </div>
                 </>
               )}
+
+<div>
+                <label htmlFor="message" className="block text-wedding-slate font-medium mb-1">
+                  Dinos tu canción de "ahora sí, empieza la fiesta"
+                </label>
+                <textarea
+                  id="messageSong"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  rows={4}
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy"
+                  placeholder="Prohibida la de 'Despacito..'"
+                ></textarea>
+              </div>
               
               <div>
                 <label htmlFor="message" className="block text-wedding-slate font-medium mb-1">
@@ -166,6 +164,7 @@ const RSVPSection = () => {
                   placeholder="Si quieres dejarnos un mensaje..."
                 ></textarea>
               </div>
+
               
               <div className="pt-2">
                 <button
