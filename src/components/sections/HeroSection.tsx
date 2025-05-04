@@ -1,4 +1,3 @@
-
 import CountdownTimer from "@/components/CountdownTimer";
 
 interface HeroSectionProps {
@@ -7,38 +6,30 @@ interface HeroSectionProps {
 
 const HeroSection = ({ backgroundImage = '/img/Alto_Aran.jpg' }: HeroSectionProps) => {
   return (
-    <section id="home" className="min-h-screen pt-20 pb-10 flex flex-col justify-center relative">
-      <div 
-        className="absolute inset-0 bg-cover bg-center opacity-70 z-0"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      ></div>
-      <div className="container mx-auto px-4 z-10">
-        <div className="max-w-5xl mx-auto text-center animate-fade-in">
-          <h2 className="font-cursive text-4xl md:text-5xl lg:text-6xl text-winter-dark mb-2">Alberto & Mariona</h2>
-          <div className="h-0.5 w-24 bg-winter-accent mx-auto my-6"></div>
-          <h1 className="font-serif text-2xl md:text-3xl text-winter-dark mb-10">
-            ¡Nos casamos!
-          </h1>
-          <p className="text-xl md:text-2xl font-serif text-winter-dark mb-4">
-            17 de enero de 2026
-          </p>
-          <p className="text-lg md:text-xl font-serif text-winter-dark mb-12">
-            Val d'Aran, Vielha
-          </p>
-          
-          <div className="mt-10">
-            <CountdownTimer />
-          </div>
-          
-          <div className="mt-16 flex justify-center">
-            <a 
-              href="#rsvp" 
-              className="bg-winter-dark hover:bg-winter-dark/80 text-white py-3 px-8 rounded-md transition-colors duration-300 font-medium"
-            >
-              Confirmar Asistencia
-            </a>
-          </div>
-        </div>
+    <section
+      className="relative w-full h-screen bg-cover bg-center flex items-center justify-center"
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
+      {/* Overlay oscuro para mejorar legibilidad */}
+      <div className="absolute inset-0 bg-black/30 z-0" />
+
+      {/* Contenedor con opacidad para los textos */}
+      <div className="relative z-10 max-w-xl text-center bg-white/70 backdrop-blur-md rounded-xl shadow-lg p-8">
+        <h1 className="text-4xl md:text-5xl font-bold text-wedding-burgundy mb-4">
+          Alberto & Mariona
+        </h1>
+        <p className="text-xl md:text-2xl text-wedding-slate mb-2">¡Nos casamos!</p>
+        <p className="text-lg md:text-xl text-wedding-slate mb-2">17 de enero de 2026</p>
+        <p className="text-lg md:text-xl text-wedding-slate mb-6">Val d'Aran, Vielha</p>
+
+        <CountdownTimer />
+
+        <a
+          href="#rsvp"
+          className="inline-block mt-6 px-6 py-3 bg-wedding-burgundy text-white font-semibold rounded-full shadow hover:bg-wedding-burgundy/90 transition"
+        >
+          Confirmar Asistencia
+        </a>
       </div>
     </section>
   );
