@@ -16,17 +16,17 @@
     --popover: 0 0% 100%;
     --popover-foreground: 217 33% 17%;
 
-    --primary: 218 54% 20%;
+    --primary: 210 79% 30%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 90%;
-    --secondary-foreground: 217 33% 17%;
+    --secondary: 199 89% 48%;
+    --secondary-foreground: 0 0% 100%;
 
     --muted: 210 40% 90%;
     --muted-foreground: 215 20% 45%;
 
-    --accent: 210 40% 90%;
-    --accent-foreground: 217 33% 17%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -58,7 +58,7 @@
 }
 
 .section-title {
-  @apply text-2xl sm:text-3xl md:text-4xl font-bold text-winter-dark mb-6 sm:mb-8 md:mb-10 text-center;
+  @apply text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6 sm:mb-8 md:mb-10 text-center;
 }
 
 .divider {
@@ -66,11 +66,11 @@
 }
 
 .divider::before, .divider::after {
-  @apply content-[''] flex-1 border-t border-winter-accent;
+  @apply content-[''] flex-1 border-t border-white/30;
 }
 
 .divider span {
-  @apply px-2 sm:px-3 md:px-4 text-winter-accent;
+  @apply px-2 sm:px-3 md:px-4 text-white;
 }
 
 .scroll-to-top {

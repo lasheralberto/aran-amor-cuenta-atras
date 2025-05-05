@@ -6,13 +6,13 @@ const Footer = () => {
   const year = date.getFullYear();
   
   return (
-    <footer className="bg-winter-dark/90 text-white py-12">
+    <footer className="bg-winter-dark text-white py-12">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0 text-center md:text-left">
-            <h2 className="font-cursive text-3xl mb-2">Alberto & Mariona</h2>
-            <p className="text-sm opacity-80">17 de enero de 2026</p>
-            <p className="text-sm opacity-80">Val d'Aran, Vielha</p>
+            <h2 className="font-cursive text-3xl mb-2 text-white">Alberto & Mariona</h2>
+            <p className="text-sm font-bold text-white/80">17 de enero de 2026</p>
+            <p className="text-sm font-bold text-white/80">Val d'Aran, Vielha</p>
           </div>
           
           <div className="flex flex-col space-y-2 items-center md:items-end">
@@ -33,7 +33,7 @@ const Footer = () => {
                 <Mail size={20} />
               </a>
             </div>
-            <p className="text-sm opacity-80">
+            <p className="text-sm font-bold text-white/80">
               © {year} Alberto & Mariona
             </p>
           </div>

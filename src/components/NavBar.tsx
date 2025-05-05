@@ -30,18 +30,18 @@ const NavBar = () => {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-white/90 shadow-md backdrop-blur-sm py-1 text-winter-dark" : "bg-transparent py-2 text-white"
+        isScrolled ? "bg-winter-dark/90 shadow-md backdrop-blur-sm py-1" : "bg-transparent py-2"
       )}
     >
       <div className="container mx-auto px-3 md:px-6">
         <div className="flex justify-between items-center">
-          <a href="#home" className="text-lg md:text-2xl font-cursive">
+          <a href="#home" className="text-lg md:text-2xl font-cursive text-white">
             Alberto & Mariona
           </a>
 
           {/* Mobile menu button */}
           <button
-            className="md:hidden"
+            className="md:hidden text-white"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
@@ -59,7 +59,7 @@ const NavBar = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="hover:text-winter-accent font-medium transition-colors"
+                className="text-white hover:text-winter-icy font-bold transition-colors"
               >
                 {item.name}
               </a>
@@ -69,12 +69,12 @@ const NavBar = () => {
 
         {/* Mobile menu */}
         <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} pt-2 pb-1`}>
-          <div className="bg-white/90 rounded-lg shadow-md p-2 backdrop-blur-sm">
+          <div className="bg-winter-dark/95 rounded-lg shadow-md p-2 backdrop-blur-sm">
             {menuItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="block py-1.5 px-2 hover:text-winter-accent text-winter-dark font-medium text-sm"
+                className="block py-1.5 px-2 hover:text-winter-icy text-white font-bold text-sm"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}

@@ -64,8 +64,8 @@ export default {
 				winter: {
 				  light: '#E8F1F9',
 				  medium: '#B3CEE5',
-				  accent: '#4D7EA8',
-				  dark: '#1E3A57',
+				  accent: '#1EAEDB',  // Updated to a brighter blue
+				  dark: '#0A4D8F',    // Updated to a deeper blue
 				  icy: '#D9EBF7',
 				  silver: '#C0D6DF'
 				}

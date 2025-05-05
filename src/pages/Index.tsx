@@ -22,9 +22,8 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <NavBar />
-      {/* <Snowfall /> */}
+      <Snowfall />
       <main className="relative">
-        {/* <ImageFrame imageUrl="/img/Alto_Aran.jpg" /> */}
         <HeroSection backgroundImage={backgroundImage} />
         <ChurchSection />
         <ReceptionSection />
