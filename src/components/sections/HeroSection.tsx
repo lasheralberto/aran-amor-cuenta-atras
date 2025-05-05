@@ -30,15 +30,40 @@ const FogText = ({ text, className, delay = 0, duration = 1.5 }) => {
   );
 };
 
-const HeroSection = ({
-  backgroundImage = '/img/Alto_Aran.jpg'
-}) => {
+// Componente para copos de nieve
+const Snowflake = ({ index }) => {
+  const size = Math.random() * 6 + 3;
+  const startX = `${Math.random() * 100}%`;
+  const startDelay = Math.random() * 10;
+  const duration = Math.random() * 10 + 15;
+  const opacity = Math.random() * 0.7 + 0.3;
+  
+  return (
+    <div
+      className="absolute rounded-full bg-white pointer-events-none"
+      style={{
+        width: `${size}px`,
+        height: `${size}px`,
+        left: startX,
+        top: "-5%",
+        opacity: opacity,
+        animationName: "snowfall",
+        animationDuration: `${duration}s`,
+        animationDelay: `${startDelay}s`,
+        animationIterationCount: "infinite",
+        animationTimingFunction: "linear"
+      }}
+    />
+  );
+};
+
+const HeroSection = () => {
   const isMobile = useIsMobile();
   const [loaded, setLoaded] = useState(false);
   const sectionRef = useRef(null);
   
   useEffect(() => {
-    // Inyectar keyframes para la animación de neblina mejorada
+    // Inyectar keyframes para las animaciones
     const style = document.createElement('style');
     style.textContent = `
       @keyframes fogReveal {
@@ -74,18 +99,21 @@ const HeroSection = ({
         }
       }
       
-      @keyframes floatingParticle {
-        0%, 100% {
+      @keyframes snowfall {
+        0% {
           transform: translateY(0) translateX(0) rotate(0deg);
         }
         25% {
-          transform: translateY(-15px) translateX(10px) rotate(5deg);
+          transform: translateY(25vh) translateX(15px) rotate(45deg);
         }
         50% {
-          transform: translateY(5px) translateX(-10px) rotate(-5deg);
+          transform: translateY(50vh) translateX(-15px) rotate(90deg);
         }
         75% {
-          transform: translateY(10px) translateX(5px) rotate(3deg);
+          transform: translateY(75vh) translateX(15px) rotate(180deg);
+        }
+        100% {
+          transform: translateY(105vh) translateX(0) rotate(360deg);
         }
       }
       
@@ -110,6 +138,18 @@ const HeroSection = ({
           transform: translateY(0);
         }
       }
+      
+      @keyframes mountainsParallax {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
     `;
     document.head.appendChild(style);
     
@@ -122,54 +162,36 @@ const HeroSection = ({
     };
   }, []);
   
-  // Generar partículas decorativas
-  const renderParticles = () => {
-    const particleCount = isMobile ? 20 : 40;
-    return Array.from({ length: particleCount }).map((_, i) => {
-      const size = Math.random() * 8 + 2;
-      return (
-        <div
-          key={i}
-          className="absolute bg-white rounded-full pointer-events-none opacity-0"
-          style={{
-            width: `${size}px`,
-            height: `${size}px`,
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationName: "floatingParticle, fadeSlideUp",
-            animationDuration: `${Math.random() * 15 + 10}s, 2s`,
-            animationDelay: `0s, ${Math.random() * 3}s`,
-            animationTimingFunction: "ease-in-out, ease-out",
-            animationIterationCount: "infinite, 1",
-            animationFillMode: "none, forwards"
-          }}
-        />
-      );
-    });
+  // Generar copos de nieve
+  const renderSnowflakes = () => {
+    const snowflakeCount = isMobile ? 30 : 70;
+    return Array.from({ length: snowflakeCount }).map((_, i) => (
+      <Snowflake key={i} index={i} />
+    ));
   };
   
-  // Generar puntos luminosos decorativos
-  const renderGlowSpots = () => {
-    const spotCount = isMobile ? 3 : 6;
-    return Array.from({ length: spotCount }).map((_, i) => {
-      const size = Math.random() * 200 + 100;
-      const hue = Math.random() * 30 + 340; // Tonos rojizos/rosados
+  // Generar puntos luminosos decorativos (estrellas)
+  const renderStars = () => {
+    const starCount = isMobile ? 15 : 40;
+    return Array.from({ length: starCount }).map((_, i) => {
+      const size = Math.random() * 3 + 1;
+      const opacity = Math.random() * 0.5 + 0.5;
+      const animDuration = Math.random() * 3 + 2;
       return (
         <div
           key={i}
-          className="absolute rounded-full pointer-events-none opacity-0"
+          className="absolute rounded-full bg-white pointer-events-none"
           style={{
             width: `${size}px`,
             height: `${size}px`,
-            background: `radial-gradient(circle, hsla(${hue}, 80%, 60%, 0.3) 0%, hsla(${hue}, 80%, 60%, 0) 70%)`,
             left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationName: "pulseGlow, fadeSlideUp",
-            animationDuration: `${Math.random() * 4 + 3}s, 3s`,
-            animationDelay: `0s, ${Math.random() * 2}s`,
-            animationTimingFunction: "ease-in-out, ease-out",
-            animationIterationCount: "infinite, 1",
-            animationFillMode: "none, forwards"
+            top: `${Math.random() * 60}%`,
+            opacity: opacity,
+            animationName: "pulseGlow",
+            animationDuration: `${animDuration}s`,
+            animationDelay: `${Math.random() * 3}s`,
+            animationTimingFunction: "ease-in-out",
+            animationIterationCount: "infinite"
           }}
         />
       );
@@ -179,24 +201,56 @@ const HeroSection = ({
   return (
     <section
       ref={sectionRef}
-      className="relative w-full h-screen bg-cover bg-center flex items-center justify-center overflow-hidden"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-      }}
+      className="relative w-full h-screen overflow-hidden flex items-center justify-center"
     >
-      {/* Capa base con desenfoque y gradiente */}
-      <div className="absolute inset-0 backdrop-blur-sm bg-gradient-to-b from-black/40 via-black/30 to-black/50 z-0" />
+      {/* Fondo invernal animado */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-900 via-blue-800 to-blue-700 z-0" />
       
-      {/* Efectos visuales ambientales */}
+      {/* Montañas nevadas al fondo */}
+      <div className="absolute bottom-0 w-full h-1/3 bg-white z-0" 
+           style={{
+             maskImage: "linear-gradient(to top, transparent, transparent 40%, white 100%)",
+             WebkitMaskImage: "linear-gradient(to top, transparent, transparent 40%, white 100%)"
+           }} />
+      <div className="absolute bottom-0 w-full z-0">
+        <svg width="100%" height="100%" viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <path 
+            fill="#ffffff" 
+            fillOpacity="0.8"
+            d="M0,224L48,208C96,192,192,160,288,165.3C384,171,480,213,576,229.3C672,245,768,235,864,202.7C960,171,1056,117,1152,122.7C1248,128,1344,192,1392,224L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            style={{
+              animation: "mountainsParallax 10s ease-in-out infinite"
+            }}
+          ></path>
+        </svg>
+      </div>
+      <div className="absolute bottom-0 w-full z-0">
+        <svg width="100%" height="100%" viewBox="0 0 1440 320" preserveAspectRatio="none">
+          <path 
+            fill="#ffffff" 
+            fillOpacity="0.6"
+            d="M0,288L48,272C96,256,192,224,288,218.7C384,213,480,235,576,250.7C672,267,768,277,864,261.3C960,245,1056,203,1152,197.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+            style={{
+              animation: "mountainsParallax 12s ease-in-out infinite"
+            }}
+          ></path>
+        </svg>
+      </div>
+      
+      {/* Estrellas en el cielo */}
       <div className="absolute inset-0 overflow-hidden z-0">
-        {renderGlowSpots()}
-        {renderParticles()}
+        {renderStars()}
+      </div>
+      
+      {/* Copos de nieve cayendo */}
+      <div className="absolute inset-0 overflow-hidden z-0">
+        {renderSnowflakes()}
       </div>
       
       {/* Contenedor principal con glassmorphism avanzado */}
       <div 
         className={`relative z-10 w-11/12 max-w-xs sm:max-w-sm md:max-w-xl p-6 sm:p-8 md:p-10 mx-3 
-                   bg-gradient-to-br from-white/50 to-white/30 backdrop-blur-md 
+                   bg-gradient-to-br from-white/60 to-white/40 backdrop-blur-md 
                    border border-white/30 rounded-3xl shadow-2xl 
                    transition-all duration-1000 ease-out
                    ${loaded ? 'opacity-100' : 'opacity-0'}`}
