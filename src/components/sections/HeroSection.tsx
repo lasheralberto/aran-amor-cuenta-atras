@@ -22,7 +22,7 @@ const FogText = ({ text, className, delay = 0, duration = 1.5 }) => {
               animationTimingFunction: "ease-out"
             }}
           >
-           {letter === " " ? "\u00A0" : letter.toString()}
+            {letter === " " ? "\u00A0" : letter.toString()}
           </span>
         ))}
       </div>
@@ -38,18 +38,34 @@ const HeroSection = ({
   const sectionRef = useRef(null);
   
   useEffect(() => {
-    // Inyectar keyframes para la animación de neblina
+    // Inyectar keyframes para la animación de neblina mejorada
     const style = document.createElement('style');
     style.textContent = `
       @keyframes fogReveal {
         0% { 
           opacity: 0;
-          filter: blur(15px);
-          transform: translateY(20px) scale(1.2);
+          filter: blur(20px);
+          transform: translateY(15px) scale(0.9);
         }
-        60% {
+        20% {
+          opacity: 0.2;
+          filter: blur(15px);
+          transform: translateY(12px) scale(0.95);
+        }
+        40% {
+          opacity: 0.6;
+          filter: blur(10px);
+          transform: translateY(8px) scale(0.98);
+        }
+        70% {
           opacity: 0.8;
           filter: blur(5px);
+          transform: translateY(3px) scale(1);
+        }
+        85% {
+          opacity: 0.9;
+          filter: blur(2px);
+          transform: translateY(1px) scale(1);
         }
         100% { 
           opacity: 1;
@@ -209,34 +225,34 @@ const HeroSection = ({
           <div className="h-px w-full bg-gradient-to-r from-transparent via-wedding-burgundy/50 to-transparent"></div>
         </div>
         
-        {/* Título principal con efecto de neblina */}
+        {/* Título principal con efecto de neblina mejorado */}
         <FogText
           text="Alberto & Mariona"
           className="text-3xl sm:text-4xl md:text-5xl font-bold text-wedding-burgundy mb-4 md:mb-5"
-          delay={0.8}
-          duration={2}
+          delay={0.4}
+          duration={2.5}
         />
         
-        {/* Subtítulos con efectos escalonados */}
+        {/* Subtítulos con efectos escalonados más fluidos */}
         <FogText
           text="¡Nos casamos!"
           className="text-lg sm:text-xl md:text-2xl text-wedding-slate font-medium mb-2 md:mb-3"
-          delay={1.2}
-          duration={1.8}
+          delay={0.8}
+          duration={2.2}
         />
         
         <FogText
           text="17 de enero de 2026"
           className="text-base sm:text-lg md:text-xl text-wedding-slate mb-1 md:mb-2"
-          delay={1.5}
-          duration={1.8}
+          delay={1.0}
+          duration={2.0}
         />
         
         <FogText
           text="Val d'Aran, Vielha"
           className="text-base sm:text-lg md:text-xl text-wedding-slate mb-5 md:mb-6"
-          delay={1.8}
-          duration={1.8}
+          delay={1.2}
+          duration={2.0}
         />
         
         {/* Separador inferior decorativo */}
