@@ -114,3 +114,8 @@
   z-index: 10;
   overflow: hidden;
 }
+
+/* Add specific section styling for winter theme */
+.winter-section {
+  @apply bg-winter-dark text-white;
+}

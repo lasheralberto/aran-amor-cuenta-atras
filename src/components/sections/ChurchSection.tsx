@@ -5,7 +5,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 const ChurchSection = () => {
   const isMobile = useIsMobile();
   
-  return <section id="church" className="py-10 md:py-16 lg:py-24 bg-winter-accent">
+  return <section id="church" className="py-10 md:py-16 lg:py-24 winter-section">
       <div className="container mx-auto px-4 max-w-6xl">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-cursive text-center text-white font-bold mb-6 md:mb-12">
           La Ceremonia

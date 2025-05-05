@@ -7,7 +7,7 @@ const ReceptionSection = () => {
   const isMobile = useIsMobile();
   
   return (
-    <section id="reception" className="py-10 md:py-16 lg:py-24 bg-winter-dark">
+    <section id="reception" className="py-10 md:py-16 lg:py-24 winter-section">
       <div className="section-container">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 md:mb-10 text-center">El Convite</h2>
         
