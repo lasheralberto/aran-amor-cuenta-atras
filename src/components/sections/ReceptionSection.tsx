@@ -1,17 +1,20 @@
 
 import { Calendar, Clock, Utensils } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const ReceptionSection = () => {
+  const isMobile = useIsMobile();
+  
   return (
-    <section id="reception" className="py-16 md:py-24">
+    <section id="reception" className="py-10 md:py-16 lg:py-24">
       <div className="section-container">
-        <h2 className="section-title">El Convite</h2>
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-winter-dark mb-6 md:mb-10 text-center">El Convite</h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="order-2 md:order-1 space-y-6">
-            <h3 className="text-2xl font-bold text-wedding-burgundy">Hotel Parador de Vielha</h3>
-            <p className="text-wedding-slate">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
+          <div className="order-2 md:order-1 space-y-4 md:space-y-6">
+            <h3 className="text-xl md:text-2xl font-bold text-wedding-burgundy">Hotel Parador de Vielha</h3>
+            <p className="text-sm md:text-base text-wedding-slate">
               Después de la ceremonia, nos reuniremos en el espectacular Parador de Vielha para celebrar con una comida especial. El hotel se encuentra rodeado por las majestuosas montañas del Pirineo, creando un ambiente único para nuestro día.
             </p>
             
@@ -19,45 +22,45 @@ const ReceptionSection = () => {
               <span>🍽️</span>
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-3 md:space-y-4">
               <div className="flex items-center space-x-3">
-                <div className="bg-wedding-burgundy/10 p-2 rounded-full">
-                  <Calendar className="h-5 w-5 text-wedding-burgundy" />
+                <div className="bg-wedding-burgundy/10 p-1.5 md:p-2 rounded-full">
+                  <Calendar className="h-4 w-4 md:h-5 md:w-5 text-wedding-burgundy" />
                 </div>
-                <span className="text-wedding-slate">17 de enero de 2025</span>
+                <span className="text-sm md:text-base text-wedding-slate">17 de enero de 2025</span>
               </div>
               
               <div className="flex items-center space-x-3">
-                <div className="bg-wedding-burgundy/10 p-2 rounded-full">
-                  <Clock className="h-5 w-5 text-wedding-burgundy" />
+                <div className="bg-wedding-burgundy/10 p-1.5 md:p-2 rounded-full">
+                  <Clock className="h-4 w-4 md:h-5 md:w-5 text-wedding-burgundy" />
                 </div>
-                <span className="text-wedding-slate">14:30h</span>
+                <span className="text-sm md:text-base text-wedding-slate">14:30h</span>
               </div>
               
               <div className="flex items-center space-x-3">
-                <div className="bg-wedding-burgundy/10 p-2 rounded-full">
-                  <Utensils className="h-5 w-5 text-wedding-burgundy" />
+                <div className="bg-wedding-burgundy/10 p-1.5 md:p-2 rounded-full">
+                  <Utensils className="h-4 w-4 md:h-5 md:w-5 text-wedding-burgundy" />
                 </div>
-                <span className="text-wedding-slate">Parador de Vielha, Ctra. del Túnel, s/n, 25530 Vielha</span>
+                <span className="text-sm md:text-base text-wedding-slate">Parador de Vielha, Ctra. del Túnel, s/n, 25530 Vielha</span>
               </div>
             </div>
             
-            <div className="pt-4">
+            <div className="pt-2 md:pt-4">
               <a 
                 href="https://maps.app.goo.gl/TxpbU7njCwb5oZLr8" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-wedding-burgundy hover:text-wedding-gold font-medium transition-colors"
+                className="inline-flex items-center text-wedding-burgundy hover:text-wedding-gold font-medium transition-colors text-sm md:text-base"
               >
                 Ver ubicación
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 md:h-4 md:w-4 ml-1 md:ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
             </div>
           </div>
           
-          <div className="order-1 md:order-2 rounded-lg overflow-hidden shadow-lg max-w-md mx-auto">
+          <div className="order-1 md:order-2 rounded-lg overflow-hidden shadow-lg mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md">
             <AspectRatio ratio={16/9} className="w-full">
               <img 
                 src="/img/reception.jpg" 

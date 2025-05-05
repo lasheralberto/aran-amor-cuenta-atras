@@ -1,5 +1,7 @@
+
 import { useState } from "react";
 import { Check, Mail } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const RSVPSection = () => {
   const [name, setName] = useState("");
@@ -10,6 +12,7 @@ const RSVPSection = () => {
   const [message, setMessage] = useState("");
   const [messageSong, setMessageSong] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const isMobile = useIsMobile();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,30 +67,30 @@ const RSVPSection = () => {
   };
 
   return (
-    <section id="rsvp" className="py-16 md:py-24 bg-wedding-burgundy/10">
+    <section id="rsvp" className="py-10 md:py-16 lg:py-24 bg-wedding-burgundy/10">
       <div className="section-container">
-        <h2 className="section-title">Confirmación de Asistencia</h2>
-        <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-6 md:p-8">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-winter-dark mb-6 md:mb-10 text-center">Confirmación de Asistencia</h2>
+        <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-4 sm:p-5 md:p-8">
           {isSubmitted ? (
-            <div className="text-center py-8">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-wedding-gold mb-6">
-                <Check className="h-8 w-8 text-white" />
+            <div className="text-center py-4 md:py-8">
+              <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-wedding-gold mb-4 md:mb-6">
+                <Check className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-wedding-burgundy mb-4">¡Gracias por confirmar!</h3>
-              <p className="text-wedding-slate mb-6">
+              <h3 className="text-xl md:text-2xl font-bold text-wedding-burgundy mb-3 md:mb-4">¡Gracias por confirmar!</h3>
+              <p className="text-sm md:text-base text-wedding-slate mb-4 md:mb-6">
                 Hemos recibido tu confirmación. ¡Estamos deseando celebrar este día tan especial contigo!
               </p>
               <button 
                 onClick={() => setIsSubmitted(false)}
-                className="text-wedding-burgundy hover:text-wedding-gold transition-colors font-medium"
+                className="text-sm md:text-base text-wedding-burgundy hover:text-wedding-gold transition-colors font-medium"
               >
                 Enviar otra respuesta
               </button>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               <div>
-                <label htmlFor="name" className="block text-wedding-slate font-medium mb-1">
+                <label htmlFor="name" className="block text-sm md:text-base text-wedding-slate font-medium mb-1">
                   Nombre completo *
                 </label>
                 <input
@@ -96,12 +99,12 @@ const RSVPSection = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy"
+                  className="w-full px-3 md:px-4 py-1.5 md:py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy text-sm md:text-base"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-wedding-slate font-medium mb-1">
+                <label htmlFor="email" className="block text-sm md:text-base text-wedding-slate font-medium mb-1">
                   Correo electrónico *
                 </label>
                 <input
@@ -110,34 +113,34 @@ const RSVPSection = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy"
+                  className="w-full px-3 md:px-4 py-1.5 md:py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy text-sm md:text-base"
                 />
               </div>
 
               <div>
-                <label className="block text-wedding-slate font-medium mb-1">
+                <label className="block text-sm md:text-base text-wedding-slate font-medium mb-1">
                   ¿Asistirás a nuestra boda? *
                 </label>
-                <div className="space-y-2">
-                  <label className="flex items-center">
+                <div className="space-y-1 md:space-y-2">
+                  <label className="flex items-center text-sm md:text-base">
                     <input
                       type="radio"
                       name="attendance"
                       value="yes"
                       checked={attendance === "yes"}
                       onChange={() => setAttendance("yes")}
-                      className="mr-2 h-4 w-4 text-wedding-burgundy"
+                      className="mr-2 h-3 w-3 md:h-4 md:w-4 text-wedding-burgundy"
                     />
                     Sí, asistiré
                   </label>
-                  <label className="flex items-center">
+                  <label className="flex items-center text-sm md:text-base">
                     <input
                       type="radio"
                       name="attendance"
                       value="no"
                       checked={attendance === "no"}
                       onChange={() => setAttendance("no")}
-                      className="mr-2 h-4 w-4 text-wedding-burgundy"
+                      className="mr-2 h-3 w-3 md:h-4 md:w-4 text-wedding-burgundy"
                     />
                     No podré asistir
                   </label>
@@ -146,59 +149,59 @@ const RSVPSection = () => {
 
               {attendance === "yes" && (
                 <div>
-                  <label htmlFor="dietary" className="block text-wedding-slate font-medium mb-1">
+                  <label htmlFor="dietary" className="block text-sm md:text-base text-wedding-slate font-medium mb-1">
                     Restricciones alimentarias
                   </label>
                   <textarea
                     id="dietary"
                     value={dietaryRestrictions}
                     onChange={(e) => setDietaryRestrictions(e.target.value)}
-                    rows={3}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy"
+                    rows={2}
+                    className="w-full px-3 md:px-4 py-1.5 md:py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy text-sm md:text-base"
                     placeholder="Alergias, intolerancias, u otras restricciones alimentarias"
                   ></textarea>
                 </div>
               )}
 
               <div>
-                <label htmlFor="messageSong" className="block text-wedding-slate font-medium mb-1">
+                <label htmlFor="messageSong" className="block text-sm md:text-base text-wedding-slate font-medium mb-1">
                   Dinos tu canción de "ahora sí, empieza la fiesta"
                 </label>
                 <textarea
                   id="messageSong"
                   value={messageSong}
                   onChange={(e) => setMessageSong(e.target.value)}
-                  rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy"
+                  rows={2}
+                  className="w-full px-3 md:px-4 py-1.5 md:py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy text-sm md:text-base"
                   placeholder="Prohibida la de 'Despacito..'"
                 ></textarea>
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-wedding-slate font-medium mb-1">
+                <label htmlFor="message" className="block text-sm md:text-base text-wedding-slate font-medium mb-1">
                   Mensaje para los novios (opcional)
                 </label>
                 <textarea
                   id="message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  rows={4}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy"
+                  rows={2}
+                  className="w-full px-3 md:px-4 py-1.5 md:py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-wedding-burgundy text-sm md:text-base"
                   placeholder="Si quieres dejarnos un mensaje..."
                 ></textarea>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-1 md:pt-2">
                 <button
                   type="submit"
-                  className="w-full bg-wedding-burgundy hover:bg-wedding-burgundy/80 text-white py-3 rounded-md transition-colors duration-300 font-medium flex items-center justify-center"
+                  className="w-full bg-wedding-burgundy hover:bg-wedding-burgundy/80 text-white py-2 md:py-3 rounded-md transition-colors duration-300 font-medium flex items-center justify-center text-sm md:text-base"
                 >
-                  <Mail className="h-5 w-5 mr-2" />
+                  <Mail className="h-4 w-4 md:h-5 md:w-5 mr-2" />
                   Confirmar asistencia
                 </button>
               </div>
 
-              <p className="text-xs text-wedding-slate text-center mt-4">
+              <p className="text-xs text-wedding-slate text-center mt-2 md:mt-4">
                 * Campos requeridos
               </p>
             </form>
