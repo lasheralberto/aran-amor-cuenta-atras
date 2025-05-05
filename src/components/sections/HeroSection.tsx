@@ -63,15 +63,9 @@ const HeroSection = () => {
   const sectionRef = useRef(null);
   
   useEffect(() => {
-    // Inyectar keyframes para las animaciones y estilos de sección invernal
+    // Inyectar keyframes para las animaciones
     const style = document.createElement('style');
     style.textContent = `
-      .winter-section {
-        background: linear-gradient(to bottom, #0f2447, #1a365d, #2a4365);
-        position: relative;
-        color: white;
-      }
-      
       @keyframes fogReveal {
         0% { 
           opacity: 0;
@@ -197,8 +191,10 @@ const HeroSection = () => {
       ref={sectionRef}
       className="relative w-full h-screen overflow-hidden flex items-center justify-center winter-section"
     >
-      {/* Fondo invernal animado */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-900 via-blue-800 to-blue-700 z-0" />
+      {/* Estrellas decorativas */}
+      <div className="absolute inset-0 z-0">
+        {renderStars()}
+      </div>
       
       {/* Copos de nieve cayendo */}
       <div className="absolute inset-0 overflow-hidden z-0">
