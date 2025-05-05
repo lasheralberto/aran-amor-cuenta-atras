@@ -144,18 +144,6 @@ const HeroSection = () => {
           transform: translateY(0);
         }
       }
-      
-      @keyframes mountainsParallax {
-        0% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-5px);
-        }
-        100% {
-          transform: translateY(0);
-        }
-      }
     `;
     document.head.appendChild(style);
     
@@ -211,42 +199,6 @@ const HeroSection = () => {
     >
       {/* Fondo invernal animado */}
       <div className="absolute inset-0 bg-gradient-to-b from-blue-900 via-blue-800 to-blue-700 z-0" />
-      
-      {/* Montañas nevadas al fondo */}
-      <div className="absolute bottom-0 w-full h-1/3 bg-white z-0" 
-           style={{
-             maskImage: "linear-gradient(to top, transparent, transparent 40%, white 100%)",
-             WebkitMaskImage: "linear-gradient(to top, transparent, transparent 40%, white 100%)"
-           }} />
-      <div className="absolute bottom-0 w-full z-0">
-        <svg width="100%" height="100%" viewBox="0 0 1440 320" preserveAspectRatio="none">
-          <path 
-            fill="#ffffff" 
-            fillOpacity="0.8"
-            d="M0,224L48,208C96,192,192,160,288,165.3C384,171,480,213,576,229.3C672,245,768,235,864,202.7C960,171,1056,117,1152,122.7C1248,128,1344,192,1392,224L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-            style={{
-              animation: "mountainsParallax 10s ease-in-out infinite"
-            }}
-          ></path>
-        </svg>
-      </div>
-      <div className="absolute bottom-0 w-full z-0">
-        <svg width="100%" height="100%" viewBox="0 0 1440 320" preserveAspectRatio="none">
-          <path 
-            fill="#ffffff" 
-            fillOpacity="0.6"
-            d="M0,288L48,272C96,256,192,224,288,218.7C384,213,480,235,576,250.7C672,267,768,277,864,261.3C960,245,1056,203,1152,197.3C1248,192,1344,224,1392,240L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-            style={{
-              animation: "mountainsParallax 12s ease-in-out infinite"
-            }}
-          ></path>
-        </svg>
-      </div>
-      
-      {/* Estrellas en el cielo */}
-      <div className="absolute inset-0 overflow-hidden z-0">
-        {renderStars()}
-      </div>
       
       {/* Copos de nieve cayendo */}
       <div className="absolute inset-0 overflow-hidden z-0">
