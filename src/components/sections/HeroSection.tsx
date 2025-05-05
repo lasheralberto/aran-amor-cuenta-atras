@@ -1,149 +1,288 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import CountdownTimer from "@/components/CountdownTimer";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { ChevronDown, Heart, Stars } from "lucide-react";
+import { ChevronDown, Heart } from "lucide-react";
 
-interface ParticleProps {
-  count: number;
-}
-
-const Particles = ({ count }: ParticleProps) => {
-  const [particles, setParticles] = useState([]);
-
-  useEffect(() => {
-    // Crear partículas aleatorias
-    const newParticles = [...Array(count)].map((_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 3 + 1,
-      velocity: Math.random() * 1 + 0.1,
-      opacity: Math.random() * 0.5 + 0.3,
-      delay: Math.random() * 5
-    }));
-    setParticles(newParticles);
-  }, [count]);
-
+// Componente para texto con animación de neblina
+const FogText = ({ text, className, delay = 0, duration = 1.5 }) => {
+  const letters = Array.from(text);
+  
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
-      {particles.map((particle) => (
-        <div
-          key={particle.id}
-          className="absolute rounded-full bg-white animate-float"
-          style={{
-            left: `${particle.x}%`,
-            top: `${particle.y}%`,
-            width: `${particle.size}px`,
-            height: `${particle.size}px`,
-            opacity: particle.opacity,
-            animation: `float 8s infinite ease-in-out`,
-            animationDelay: `${particle.delay}s`,
-            animationDuration: `${8 + particle.velocity * 5}s`
-          }}
-        />
-      ))}
+    <div className={`overflow-hidden ${className}`}>
+      <div className="flex justify-center flex-wrap">
+        {letters.map((letter, index) => (
+          <span
+            key={index}
+            className="inline-block transform transition-all duration-1000 opacity-0 blur-xl filter"
+            style={{
+              animationName: "fogReveal",
+              animationDuration: `${duration}s`,
+              animationDelay: `${delay + index * 0.05}s`,
+              animationFillMode: "forwards",
+              animationTimingFunction: "ease-out"
+            }}
+          >
+           {letter === " " ? "\u00A0" : letter.toString()}
+          </span>
+        ))}
+      </div>
     </div>
   );
 };
 
-interface HeroSectionProps {
-  backgroundImage?: string;
-}
-
 const HeroSection = ({
   backgroundImage = '/img/Alto_Aran.jpg'
-}: HeroSectionProps) => {
+}) => {
   const isMobile = useIsMobile();
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const sectionRef = useRef(null);
   
   useEffect(() => {
-    // Añadir animación de entrada al cargar
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-    }, 300);
+    // Inyectar keyframes para la animación de neblina
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fogReveal {
+        0% { 
+          opacity: 0;
+          filter: blur(15px);
+          transform: translateY(20px) scale(1.2);
+        }
+        60% {
+          opacity: 0.8;
+          filter: blur(5px);
+        }
+        100% { 
+          opacity: 1;
+          filter: blur(0);
+          transform: translateY(0) scale(1);
+        }
+      }
+      
+      @keyframes floatingParticle {
+        0%, 100% {
+          transform: translateY(0) translateX(0) rotate(0deg);
+        }
+        25% {
+          transform: translateY(-15px) translateX(10px) rotate(5deg);
+        }
+        50% {
+          transform: translateY(5px) translateX(-10px) rotate(-5deg);
+        }
+        75% {
+          transform: translateY(10px) translateX(5px) rotate(3deg);
+        }
+      }
+      
+      @keyframes pulseGlow {
+        0%, 100% {
+          filter: brightness(1) blur(8px);
+          opacity: 0.4;
+        }
+        50% {
+          filter: brightness(1.3) blur(12px);
+          opacity: 0.6;
+        }
+      }
+      
+      @keyframes fadeSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    `;
+    document.head.appendChild(style);
     
-    return () => clearTimeout(timer);
+    // Iniciar secuencia de animación
+    setTimeout(() => setLoaded(true), 300);
+    
+    // Cleanup
+    return () => {
+      document.head.removeChild(style);
+    };
   }, []);
+  
+  // Generar partículas decorativas
+  const renderParticles = () => {
+    const particleCount = isMobile ? 20 : 40;
+    return Array.from({ length: particleCount }).map((_, i) => {
+      const size = Math.random() * 8 + 2;
+      return (
+        <div
+          key={i}
+          className="absolute bg-white rounded-full pointer-events-none opacity-0"
+          style={{
+            width: `${size}px`,
+            height: `${size}px`,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationName: "floatingParticle, fadeSlideUp",
+            animationDuration: `${Math.random() * 15 + 10}s, 2s`,
+            animationDelay: `0s, ${Math.random() * 3}s`,
+            animationTimingFunction: "ease-in-out, ease-out",
+            animationIterationCount: "infinite, 1",
+            animationFillMode: "none, forwards"
+          }}
+        />
+      );
+    });
+  };
+  
+  // Generar puntos luminosos decorativos
+  const renderGlowSpots = () => {
+    const spotCount = isMobile ? 3 : 6;
+    return Array.from({ length: spotCount }).map((_, i) => {
+      const size = Math.random() * 200 + 100;
+      const hue = Math.random() * 30 + 340; // Tonos rojizos/rosados
+      return (
+        <div
+          key={i}
+          className="absolute rounded-full pointer-events-none opacity-0"
+          style={{
+            width: `${size}px`,
+            height: `${size}px`,
+            background: `radial-gradient(circle, hsla(${hue}, 80%, 60%, 0.3) 0%, hsla(${hue}, 80%, 60%, 0) 70%)`,
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            animationName: "pulseGlow, fadeSlideUp",
+            animationDuration: `${Math.random() * 4 + 3}s, 3s`,
+            animationDelay: `0s, ${Math.random() * 2}s`,
+            animationTimingFunction: "ease-in-out, ease-out",
+            animationIterationCount: "infinite, 1",
+            animationFillMode: "none, forwards"
+          }}
+        />
+      );
+    });
+  };
 
   return (
-    <section 
+    <section
+      ref={sectionRef}
       className="relative w-full h-screen bg-cover bg-center flex items-center justify-center overflow-hidden"
       style={{
         backgroundImage: `url(${backgroundImage})`,
-        backgroundAttachment: "fixed"
       }}
     >
-      {/* Overlay con gradiente elegante */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/50 z-0" />
+      {/* Capa base con desenfoque y gradiente */}
+      <div className="absolute inset-0 backdrop-blur-sm bg-gradient-to-b from-black/40 via-black/30 to-black/50 z-0" />
       
-      {/* Partículas flotantes */}
-      <Particles count={30} />
+      {/* Efectos visuales ambientales */}
+      <div className="absolute inset-0 overflow-hidden z-0">
+        {renderGlowSpots()}
+        {renderParticles()}
+      </div>
       
-      {/* Contenedor principal con animación de entrada */}
+      {/* Contenedor principal con glassmorphism avanzado */}
       <div 
-        className={`relative z-10 max-w-xs sm:max-w-sm md:max-w-xl text-center 
-                   bg-white/60 backdrop-blur-md shadow-xl p-4 sm:p-6 md:p-8 mx-3 
-                   rounded-3xl border border-white/20 transition-all duration-1000 
-                   ${isLoaded ? 'opacity-100 transform-none' : 'opacity-0 translate-y-8'}`}
+        className={`relative z-10 w-11/12 max-w-xs sm:max-w-sm md:max-w-xl p-6 sm:p-8 md:p-10 mx-3 
+                   bg-gradient-to-br from-white/50 to-white/30 backdrop-blur-md 
+                   border border-white/30 rounded-3xl shadow-2xl 
+                   transition-all duration-1000 ease-out
+                   ${loaded ? 'opacity-100' : 'opacity-0'}`}
+        style={{
+          boxShadow: "0 10px 40px rgba(0, 0, 0, 0.2), inset 0 -5px 10px rgba(255, 255, 255, 0.4)",
+        }}
       >
         {/* Decoración superior */}
-        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2">
+        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 opacity-0"
+             style={{
+               animation: loaded ? "fadeSlideUp 1s 0.3s forwards" : "none"
+             }}>
           <Heart 
-            className="text-wedding-burgundy animate-pulse" 
+            className="text-wedding-burgundy" 
             size={isMobile ? 32 : 40} 
             fill="#9D174D" 
             strokeWidth={1} 
           />
         </div>
         
-        {/* Contenido principal con animaciones escalonadas */}
-        <div className={`transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-wedding-burgundy mb-2 md:mb-4 tracking-tight">
-            Alberto & Mariona
-          </h1>
-          
-          <div className="flex items-center justify-center mb-1 md:mb-2">
-            <div className="h-px w-12 bg-wedding-burgundy/50"></div>
-            <Stars className="mx-2 text-wedding-burgundy" size={16} />
-            <div className="h-px w-12 bg-wedding-burgundy/50"></div>
-          </div>
-          
-          <p className="text-lg sm:text-xl md:text-2xl text-wedding-slate font-medium mb-1 md:mb-2">
-            ¡Nos casamos!
-          </p>
-          
-          <p className="text-base sm:text-lg md:text-xl text-wedding-slate mb-1 md:mb-2">
-            17 de enero de 2026
-          </p>
-          
-          <p className="text-base sm:text-lg md:text-xl text-wedding-slate mb-4 md:mb-6">
-            Val d'Aran, Vielha
-          </p>
+        {/* Separador superior decorativo */}
+        <div className="mb-6 opacity-0"
+             style={{
+               animation: loaded ? "fadeSlideUp 1s 0.5s forwards" : "none"
+             }}>
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-wedding-burgundy/50 to-transparent"></div>
+        </div>
+        
+        {/* Título principal con efecto de neblina */}
+        <FogText
+          text="Alberto & Mariona"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-wedding-burgundy mb-4 md:mb-5"
+          delay={0.8}
+          duration={2}
+        />
+        
+        {/* Subtítulos con efectos escalonados */}
+        <FogText
+          text="¡Nos casamos!"
+          className="text-lg sm:text-xl md:text-2xl text-wedding-slate font-medium mb-2 md:mb-3"
+          delay={1.2}
+          duration={1.8}
+        />
+        
+        <FogText
+          text="17 de enero de 2026"
+          className="text-base sm:text-lg md:text-xl text-wedding-slate mb-1 md:mb-2"
+          delay={1.5}
+          duration={1.8}
+        />
+        
+        <FogText
+          text="Val d'Aran, Vielha"
+          className="text-base sm:text-lg md:text-xl text-wedding-slate mb-5 md:mb-6"
+          delay={1.8}
+          duration={1.8}
+        />
+        
+        {/* Separador inferior decorativo */}
+        <div className="my-4 opacity-0"
+             style={{
+               animation: loaded ? "fadeSlideUp 1s 2s forwards" : "none"
+             }}>
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-wedding-burgundy/50 to-transparent"></div>
+        </div>
 
-          <div className={`transition-all duration-1000 delay-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
-            <CountdownTimer />
-          </div>
+        {/* Contador con animación de entrada */}
+        <div className="opacity-0"
+             style={{
+               animation: loaded ? "fadeSlideUp 1.2s 2.2s forwards" : "none"
+             }}>
+          <CountdownTimer />
+        </div>
 
+        {/* Botón con efectos avanzados */}
+        <div className="mt-6 opacity-0"
+             style={{
+               animation: loaded ? "fadeSlideUp 1s 2.5s forwards" : "none"
+             }}>
           <a 
             href="#rsvp" 
-            className={`inline-block mt-4 md:mt-6 px-6 sm:px-8 py-2 sm:py-3 
-                      bg-wedding-burgundy text-white text-sm sm:text-base font-semibold 
-                      rounded-full shadow-lg hover:bg-wedding-burgundy/90 hover:shadow-xl
-                      transform transition-all duration-300 hover:-translate-y-1
-                      focus:outline-none focus:ring-2 focus:ring-wedding-burgundy focus:ring-opacity-50
-                      ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+            className="inline-block px-8 py-3 sm:py-4 
+                      bg-gradient-to-br from-wedding-burgundy to-wedding-burgundy/90
+                      text-white text-base sm:text-lg font-medium tracking-wide
+                      rounded-full shadow-lg hover:shadow-xl
+                      transform transition-all duration-300 hover:-translate-y-1 hover:scale-105
+                      focus:outline-none focus:ring-2 focus:ring-wedding-burgundy focus:ring-opacity-50"
           >
             Confirmar Asistencia
           </a>
         </div>
       </div>
 
-      {/* Indicador de scroll */}
-      <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 
-                     transition-all duration-1000 delay-1000
-                     ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+      {/* Indicador de scroll con animación retrasada */}
+      <div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0" 
+        style={{
+          animation: loaded ? "fadeSlideUp 1s 3s forwards" : "none"
+        }}
+      >
         <div className="flex flex-col items-center">
-          <p className="text-white text-sm mb-2 tracking-wide">Desliza para ver más</p>
+          <p className="text-white text-sm mb-2 tracking-wide font-light">Desliza para ver más</p>
           <ChevronDown className="text-white animate-bounce" size={24} />
         </div>
       </div>
