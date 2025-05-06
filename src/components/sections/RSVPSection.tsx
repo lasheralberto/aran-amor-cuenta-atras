@@ -1,7 +1,8 @@
 
 import { useState } from "react";
-import { Check, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "../ui/button";
 
 const RSVPSection = () => {
   const [name, setName] = useState("");
@@ -192,13 +193,14 @@ const RSVPSection = () => {
               </div>
 
               <div className="pt-1 md:pt-2">
-                <button
+                <Button
                   type="submit"
-                  className="w-full bg-winter-accent hover:bg-winter-accent/80 text-white py-2 md:py-3 rounded-md transition-colors duration-300 font-bold flex items-center justify-center text-sm md:text-base"
+                  variant="outline"
+                  className="w-full border-winter-accent text-white hover:bg-winter-accent/20 transition-colors duration-300 font-bold"
                 >
                   <Mail className="h-4 w-4 md:h-5 md:w-5 mr-2" />
                   Confirmar asistencia
-                </button>
+                </Button>
               </div>
 
               <p className="text-xs text-white/70 text-center mt-2 md:mt-4 font-bold">
