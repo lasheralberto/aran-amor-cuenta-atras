@@ -20,8 +20,8 @@ const Snowfall = ({ count = 30 }: { count?: number }) => {
       x: randomBetween(0, 100), // Posición horizontal (%)
       size: randomBetween(10, 20), // Tamaño (px)
       opacity: randomBetween(0.5, 0.9), // Opacidad
-      speed: randomBetween(60, 150), // Velocidad (segundos)
-      delay: randomBetween(0, 20) // Retraso (segundos)
+      speed: randomBetween(30, 80), // Velocidad reducida (segundos) - antes era 60-150
+      delay: randomBetween(0, 10) // Retraso reducido (segundos) - antes era 0-20
     }));
 
     setSnowflakes(newSnowflakes);
