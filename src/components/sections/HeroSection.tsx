@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import CountdownTimer from "@/components/CountdownTimer";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -270,19 +269,19 @@ const HeroSection = () => {
           <CountdownTimer />
         </div>
 
-        {/* Botón con efectos avanzados */}
+        {/* Botón con efectos avanzados - UPDATED for minimalist design */}
         <div className="mt-4 md:mt-6 opacity-0"
              style={{
                animation: loaded ? "fadeSlideUp 1s 2.5s forwards" : "none"
              }}>
           <a 
             href="#rsvp" 
-            className="inline-block px-6 py-2 sm:px-8 sm:py-3
-                      bg-gradient-to-br from-winter-accent to-winter-accent/90
-                      text-white text-sm sm:text-base font-bold tracking-wide
-                      rounded-full shadow-lg hover:shadow-xl
-                      transform transition-all duration-300 hover:-translate-y-1 hover:scale-105
-                      focus:outline-none focus:ring-2 focus:ring-winter-accent focus:ring-opacity-50"
+            className="inline-block px-6 py-2 sm:px-8 sm:py-2.5
+                      text-white text-sm sm:text-base tracking-wide
+                      border border-white/30 backdrop-blur-sm bg-white/10
+                      transition-all duration-300
+                      hover:bg-white/20 hover:border-white/50
+                      focus:outline-none focus:ring-1 focus:ring-white/50"
           >
             Confirmar Asistencia
           </a>
