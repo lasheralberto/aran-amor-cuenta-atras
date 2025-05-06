@@ -295,10 +295,10 @@ const HeroSection = () => {
           animation: loaded ? "fadeSlideUp 1s 3s forwards" : "none"
         }}
       >
-        <div className="flex flex-col items-center">
+        {/* <div className="flex flex-col items-center">
           <p className="text-white text-xs md:text-sm mb-1 md:mb-2 tracking-wide font-light">Desliza para ver más</p>
           <ChevronDown className="text-white animate-bounce" size={isMobile ? 18 : 24} />
-        </div>
+        </div> */}
       </div>
     </section>
   );

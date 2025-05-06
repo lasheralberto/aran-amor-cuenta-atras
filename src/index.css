@@ -123,7 +123,8 @@
    Debe ser importada en tu archivo de estilos global */
 
    .winter-section {
-    background: linear-gradient(to bottom, #0f2447, #1a365d, #2a4365);
+    /* background: linear-gradient(to bottom, #0f2447, #1a365d, #2a4365); */
+    background:#0f2447;
     position: relative;
     color: white;
     overflow: hidden;
