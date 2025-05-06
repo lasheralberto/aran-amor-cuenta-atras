@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Mail } from "lucide-react";
+import { Check, Mail } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "../ui/button";
 
