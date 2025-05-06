@@ -55,10 +55,8 @@ const CountdownTimer = () => {
   ];
 
   return (
-    <div className="w-full mx-auto">
-      <h3 className="text-center font-serif text-base md:text-xl mb-2 md:mb-4 text-white font-bold">
-        Cuenta atrás para nuestro gran día
-      </h3>
+    <div className="w-full mx-auto text-center">
+      {/* Removed the countdown title */}
       <div className="flex flex-row justify-center space-x-2 md:space-x-4">
         {timeUnits.map((unit) => (
           <div 

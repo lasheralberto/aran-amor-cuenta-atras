@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import CountdownTimer from "@/components/CountdownTimer";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -201,11 +202,10 @@ const HeroSection = () => {
         {renderSnowflakes()}
       </div>
       
-      {/* Contenedor principal con glassmorphism avanzado */}
+      {/* Contenedor principal con centrado mejorado */}
       <div 
-        className={`relative z-10 w-11/12 max-w-xs sm:max-w-sm md:max-w-xl p-5 sm:p-6 md:p-8 mx-3 
-                   bg-transparent
-                   rounded-3xl
+        className={`relative z-10 w-11/12 max-w-xs sm:max-w-sm md:max-w-xl p-5 sm:p-6 md:p-8 mx-auto
+                   flex flex-col items-center justify-center
                    transition-all duration-1000 ease-out
                    ${loaded ? 'opacity-100' : 'opacity-0'}`}
       >
@@ -238,13 +238,7 @@ const HeroSection = () => {
           duration={2.5}
         />
         
-        {/* Subtítulos con efectos escalonados más fluidos */}
-        <FogText
-          text="¡Nos casamos!"
-          className="text-lg sm:text-xl md:text-2xl text-white font-bold mb-1 md:mb-2"
-          delay={0.8}
-          duration={2.2}
-        />
+        {/* Eliminado el texto "¡Nos casamos!" */}
         
         <FogText
           text="17 de enero de 2026"
@@ -269,7 +263,7 @@ const HeroSection = () => {
         </div>
 
         {/* Contador con animación de entrada */}
-        <div className="opacity-0"
+        <div className="opacity-0 w-full"
              style={{
                animation: loaded ? "fadeSlideUp 1.2s 2.2s forwards" : "none"
              }}>
