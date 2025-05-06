@@ -203,14 +203,11 @@ const HeroSection = () => {
       
       {/* Contenedor principal con glassmorphism avanzado */}
       <div 
-        className={`relative z-10 w-11/12 max-w-xs sm:max-w-sm md:max-w-xl p-6 sm:p-8 md:p-10 mx-3 
-                   bg-gradient-to-br from-white/60 to-white/40 backdrop-blur-md 
-                   border border-white/30 rounded-3xl shadow-2xl 
+        className={`relative z-10 w-11/12 max-w-xs sm:max-w-sm md:max-w-xl p-5 sm:p-6 md:p-8 mx-3 
+                   bg-transparent
+                   rounded-3xl
                    transition-all duration-1000 ease-out
                    ${loaded ? 'opacity-100' : 'opacity-0'}`}
-        style={{
-          boxShadow: "0 10px 40px rgba(0, 0, 0, 0.2), inset 0 -5px 10px rgba(255, 255, 255, 0.4)",
-        }}
       >
         {/* Decoración superior */}
         <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 opacity-0"
@@ -219,24 +216,24 @@ const HeroSection = () => {
              }}>
           <Heart 
             className="text-wedding-burgundy" 
-            size={isMobile ? 32 : 40} 
-            fill="#9D174D" 
+            size={isMobile ? 28 : 40} 
+            fill="#FFFFFF" 
             strokeWidth={1} 
           />
         </div>
         
         {/* Separador superior decorativo */}
-        <div className="mb-6 opacity-0"
+        <div className="mb-4 md:mb-6 opacity-0"
              style={{
                animation: loaded ? "fadeSlideUp 1s 0.5s forwards" : "none"
              }}>
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-wedding-burgundy/50 to-transparent"></div>
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-white/80 to-transparent"></div>
         </div>
         
         {/* Título principal con efecto de neblina mejorado */}
         <FogText
           text="Alberto & Mariona"
-          className="text-3xl sm:text-4xl md:text-5xl font-bold text-wedding-burgundy mb-4 md:mb-5"
+          className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-2 md:mb-4"
           delay={0.4}
           duration={2.5}
         />
@@ -244,31 +241,31 @@ const HeroSection = () => {
         {/* Subtítulos con efectos escalonados más fluidos */}
         <FogText
           text="¡Nos casamos!"
-          className="text-lg sm:text-xl md:text-2xl text-wedding-slate font-medium mb-2 md:mb-3"
+          className="text-lg sm:text-xl md:text-2xl text-white font-bold mb-1 md:mb-2"
           delay={0.8}
           duration={2.2}
         />
         
         <FogText
           text="17 de enero de 2026"
-          className="text-base sm:text-lg md:text-xl text-wedding-slate mb-1 md:mb-2"
+          className="text-base sm:text-lg md:text-xl text-white font-medium mb-1 md:mb-2"
           delay={1.0}
           duration={2.0}
         />
         
         <FogText
           text="Val d'Aran, Vielha"
-          className="text-base sm:text-lg md:text-xl text-wedding-slate mb-5 md:mb-6"
+          className="text-base sm:text-lg md:text-xl text-white font-medium mb-3 md:mb-5"
           delay={1.2}
           duration={2.0}
         />
         
         {/* Separador inferior decorativo */}
-        <div className="my-4 opacity-0"
+        <div className="my-3 md:my-4 opacity-0"
              style={{
                animation: loaded ? "fadeSlideUp 1s 2s forwards" : "none"
              }}>
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-wedding-burgundy/50 to-transparent"></div>
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-white/80 to-transparent"></div>
         </div>
 
         {/* Contador con animación de entrada */}
@@ -280,18 +277,18 @@ const HeroSection = () => {
         </div>
 
         {/* Botón con efectos avanzados */}
-        <div className="mt-6 opacity-0"
+        <div className="mt-4 md:mt-6 opacity-0"
              style={{
                animation: loaded ? "fadeSlideUp 1s 2.5s forwards" : "none"
              }}>
           <a 
             href="#rsvp" 
-            className="inline-block px-8 py-3 sm:py-4 
-                      bg-gradient-to-br from-wedding-burgundy to-wedding-burgundy/90
-                      text-white text-base sm:text-lg font-medium tracking-wide
+            className="inline-block px-6 py-2 sm:px-8 sm:py-3
+                      bg-gradient-to-br from-winter-accent to-winter-accent/90
+                      text-white text-sm sm:text-base font-bold tracking-wide
                       rounded-full shadow-lg hover:shadow-xl
                       transform transition-all duration-300 hover:-translate-y-1 hover:scale-105
-                      focus:outline-none focus:ring-2 focus:ring-wedding-burgundy focus:ring-opacity-50"
+                      focus:outline-none focus:ring-2 focus:ring-winter-accent focus:ring-opacity-50"
           >
             Confirmar Asistencia
           </a>
@@ -300,14 +297,14 @@ const HeroSection = () => {
 
       {/* Indicador de scroll con animación retrasada */}
       <div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 opacity-0" 
+        className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 opacity-0" 
         style={{
           animation: loaded ? "fadeSlideUp 1s 3s forwards" : "none"
         }}
       >
         <div className="flex flex-col items-center">
-          <p className="text-white text-sm mb-2 tracking-wide font-light">Desliza para ver más</p>
-          <ChevronDown className="text-white animate-bounce" size={24} />
+          <p className="text-white text-xs md:text-sm mb-1 md:mb-2 tracking-wide font-light">Desliza para ver más</p>
+          <ChevronDown className="text-white animate-bounce" size={isMobile ? 18 : 24} />
         </div>
       </div>
     </section>

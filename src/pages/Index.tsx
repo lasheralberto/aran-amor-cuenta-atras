@@ -9,12 +9,8 @@ import RSVPSection from "@/components/sections/RSVPSection";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import Snowfall from "@/components/Snowfall";
-import ImageFrame from "@/components/ImageFrame";
 
 const Index = () => {
-  // You can change this value to use your own background image
-  const [backgroundImage, setBackgroundImage] = useState('/img/Alto_Aran.jpg');
-  
   useEffect(() => {
     document.title = "Alberto & Mariona - 17 de enero 2026";
   }, []);
@@ -24,7 +20,7 @@ const Index = () => {
       <NavBar />
       <Snowfall />
       <main className="relative">
-        <HeroSection backgroundImage={backgroundImage} />
+        <HeroSection />
         <ChurchSection />
         <ReceptionSection />
         <PartySection />

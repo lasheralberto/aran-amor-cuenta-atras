@@ -50,20 +50,25 @@ const CountdownTimer = () => {
   const timeUnits = [
     { label: 'Días', value: timeLeft.days },
     { label: 'Horas', value: timeLeft.hours },
-    { label: 'Minutos', value: timeLeft.minutes },
-    { label: 'Segundos', value: timeLeft.seconds },
+    { label: 'Min', value: timeLeft.minutes },
+    { label: 'Seg', value: timeLeft.seconds },
   ];
 
   return (
     <div className="w-full mx-auto">
-      <h3 className="text-center font-serif text-base sm:text-lg md:text-xl mb-3 md:mb-6 text-winter-dark">Cuenta atrás para nuestro gran día</h3>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
+      <h3 className="text-center font-serif text-base md:text-xl mb-2 md:mb-4 text-white font-bold">
+        Cuenta atrás para nuestro gran día
+      </h3>
+      <div className="flex flex-row justify-center space-x-2 md:space-x-4">
         {timeUnits.map((unit) => (
-          <div key={unit.label} className="bg-white/80 backdrop-blur-sm rounded-lg shadow-md p-2 sm:p-3 md:p-4 flex flex-col items-center border border-winter-medium/30">
-            <span className="text-xl sm:text-2xl md:text-4xl font-bold text-winter-dark">
+          <div 
+            key={unit.label} 
+            className="flex flex-col items-center"
+          >
+            <span className="text-lg md:text-4xl font-bold text-white">
               {unit.value < 10 ? `0${unit.value}` : unit.value}
             </span>
-            <span className="text-xs sm:text-sm md:text-base font-medium text-winter-dark mt-1 sm:mt-2">
+            <span className="text-xs md:text-base font-medium text-white/80">
               {unit.label}
             </span>
           </div>
