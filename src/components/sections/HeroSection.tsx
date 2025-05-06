@@ -98,6 +98,22 @@ const HeroSection = () => {
           transform: translateY(0) scale(1);
         }
       }
+
+      @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      25% {
+        transform: scale(1.15);
+      }
+      50% {
+        transform: scale(0.95);
+      }
+      75% {
+        transform: scale(1.1);
+      }
+    }
+
       
       @keyframes snowfall {
         0% {
@@ -214,11 +230,15 @@ const HeroSection = () => {
                animation: loaded ? "fadeSlideUp 1s 0.3s forwards" : "none"
              }}>
           <Heart 
-            className="text-wedding-burgundy" 
-            size={isMobile ? 28 : 40} 
-            fill="#FFFFFF" 
-            strokeWidth={1} 
-          />
+          className="text-wedding-burgundy animate-heartbeat" 
+          size={isMobile ? 28 : 40} 
+          fill="#FFFFFF" 
+          strokeWidth={1} 
+          style={{
+            animation: loaded ? "heartbeat 1.5s infinite ease-in-out" : "none"
+          }}
+        />
+
         </div>
         
         {/* Separador superior decorativo */}
