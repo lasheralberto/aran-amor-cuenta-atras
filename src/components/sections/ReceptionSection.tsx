@@ -63,8 +63,8 @@ const ReceptionSection = () => {
           <div className="order-1 md:order-2 rounded-lg overflow-hidden shadow-lg mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md">
             <AspectRatio ratio={16/9} className="w-full">
               <img 
-                src="/img/paradorr.png" 
-                alt="Parador de Vielha" 
+                src="/lovable-uploads/b51ddb01-b11b-45fe-86b0-70c2b084cf9f.png" 
+                alt="Parador de Vielha en invierno" 
                 className="w-full h-full object-cover"
               />
             </AspectRatio>
