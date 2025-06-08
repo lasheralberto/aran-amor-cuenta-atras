@@ -18,10 +18,12 @@ const ImageReveal: React.FC<ImageRevealProps> = ({
 }) => {
   const [revealPercentage, setRevealPercentage] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [showHint, setShowHint] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
+    setShowHint(false);
     updateRevealPercentage(e);
   };
 
@@ -37,6 +39,7 @@ const ImageReveal: React.FC<ImageRevealProps> = ({
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsDragging(true);
+    setShowHint(false);
     updateRevealPercentage(e.touches[0]);
   };
 
@@ -74,6 +77,15 @@ const ImageReveal: React.FC<ImageRevealProps> = ({
       };
     }
   }, [isDragging]);
+
+  // Auto-hide hint after 3 seconds
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowHint(false);
+    }, 3000);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className={`relative overflow-hidden cursor-col-resize select-none ${className}`}>
@@ -121,13 +133,33 @@ const ImageReveal: React.FC<ImageRevealProps> = ({
           </div>
         </div>
         
-        {/* Instructions overlay */}
-        {revealPercentage === 0 && (
-          <div className="absolute bottom-4 left-4 right-4 bg-black/50 text-white text-xs p-2 rounded backdrop-blur-sm">
-            Arrastra para revelar la imagen original
+        {/* Animated hint */}
+        {showHint && revealPercentage === 0 && (
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-1/2 left-4 transform -translate-y-1/2 animate-pulse">
+              <div className="flex items-center space-x-2 text-white bg-black/50 px-3 py-2 rounded-full backdrop-blur-sm">
+                <span className="text-sm">👆</span>
+                <div className="animate-bounce text-xs">Desliza</div>
+              </div>
+            </div>
+            
+            {/* Sliding animation hint */}
+            <div className="absolute top-1/2 left-8 transform -translate-y-1/2">
+              <div className="w-16 h-0.5 bg-white/50 relative overflow-hidden">
+                <div className="absolute inset-0 bg-white/80 animate-[slide-hint_2s_ease-in-out_infinite]"></div>
+              </div>
+            </div>
           </div>
         )}
       </div>
+      
+      <style jsx>{`
+        @keyframes slide-hint {
+          0% { transform: translateX(-100%); }
+          50% { transform: translateX(200%); }
+          100% { transform: translateX(-100%); }
+        }
+      `}</style>
     </div>
   );
 };
