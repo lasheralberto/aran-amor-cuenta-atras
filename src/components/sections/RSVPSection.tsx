@@ -78,12 +78,12 @@ const RSVPSection = () => {
                 <Check className="h-6 w-6 md:h-8 md:w-8 text-white" />
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4">¡Gracias por confirmar!</h3>
-              <p className="text-sm md:text-base text-white font-bold mb-4 md:mb-6">
+              <p className="text-sm md:text-base text-white font-light mb-4 md:mb-6">
                 Hemos recibido tu confirmación. ¡Estamos deseando celebrar este día tan especial contigo!
               </p>
               <button 
                 onClick={() => setIsSubmitted(false)}
-                className="text-sm md:text-base text-winter-icy hover:text-white transition-colors font-bold"
+                className="text-sm md:text-base text-winter-icy hover:text-white transition-colors font-normal"
               >
                 Enviar otra respuesta
               </button>
@@ -91,7 +91,7 @@ const RSVPSection = () => {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm md:text-base text-white font-bold mb-1">
+                <label htmlFor="name" className="block text-sm md:text-base text-white font-normal mb-1">
                   Nombre completo *
                 </label>
                 <input
@@ -105,7 +105,7 @@ const RSVPSection = () => {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm md:text-base text-white font-bold mb-1">
+                <label htmlFor="email" className="block text-sm md:text-base text-white font-normal mb-1">
                   Correo electrónico *
                 </label>
                 <input
@@ -119,11 +119,11 @@ const RSVPSection = () => {
               </div>
 
               <div>
-                <label className="block text-sm md:text-base text-white font-bold mb-1">
+                <label className="block text-sm md:text-base text-white font-normal mb-1">
                   ¿Asistirás a nuestra boda? *
                 </label>
                 <div className="space-y-1 md:space-y-2">
-                  <label className="flex items-center text-sm md:text-base text-white font-bold">
+                  <label className="flex items-center text-sm md:text-base text-white font-normal">
                     <input
                       type="radio"
                       name="attendance"
@@ -134,7 +134,7 @@ const RSVPSection = () => {
                     />
                     Sí, asistiré
                   </label>
-                  <label className="flex items-center text-sm md:text-base text-white font-bold">
+                  <label className="flex items-center text-sm md:text-base text-white font-normal">
                     <input
                       type="radio"
                       name="attendance"
@@ -150,7 +150,7 @@ const RSVPSection = () => {
 
               {attendance === "yes" && (
                 <div>
-                  <label htmlFor="dietary" className="block text-sm md:text-base text-white font-bold mb-1">
+                  <label htmlFor="dietary" className="block text-sm md:text-base text-white font-normal mb-1">
                     Restricciones alimentarias
                   </label>
                   <textarea
@@ -165,7 +165,7 @@ const RSVPSection = () => {
               )}
 
               <div>
-                <label htmlFor="messageSong" className="block text-sm md:text-base text-white font-bold mb-1">
+                <label htmlFor="messageSong" className="block text-sm md:text-base text-white font-normal mb-1">
                   Dinos tu canción de "ahora sí, empieza la fiesta"
                 </label>
                 <textarea
@@ -179,7 +179,7 @@ const RSVPSection = () => {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm md:text-base text-white font-bold mb-1">
+                <label htmlFor="message" className="block text-sm md:text-base text-white font-normal mb-1">
                   Mensaje para los novios (opcional)
                 </label>
                 <textarea
@@ -196,14 +196,14 @@ const RSVPSection = () => {
                 <Button
                   type="submit"
                   variant="outline"
-                  className="w-full border-winter-accent text-white hover:bg-winter-accent/20 transition-colors duration-300 font-bold"
+                  className="w-full border-winter-accent text-white hover:bg-winter-accent/20 transition-colors duration-300 font-normal"
                 >
                   <Mail className="h-4 w-4 md:h-5 md:w-5 mr-2" />
                   Confirmar asistencia
                 </Button>
               </div>
 
-              <p className="text-xs text-white/70 text-center mt-2 md:mt-4 font-bold">
+              <p className="text-xs text-white/70 text-center mt-2 md:mt-4 font-normal">
                 * Campos requeridos
               </p>
             </form>
