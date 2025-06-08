@@ -5,7 +5,9 @@ import HeroSection from "@/components/sections/HeroSection";
 import ChurchSection from "@/components/sections/ChurchSection";
 import ReceptionSection from "@/components/sections/ReceptionSection";
 import PartySection from "@/components/sections/PartySection";
+import GiftListSection from "@/components/sections/GiftListSection";
 import RSVPSection from "@/components/sections/RSVPSection";
+import SeeYouSoonSection from "@/components/sections/SeeYouSoonSection";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import Snowfall from "@/components/Snowfall";
@@ -24,7 +26,9 @@ const Index = () => {
         <ChurchSection />
         <ReceptionSection />
         <PartySection />
+        <GiftListSection />
         <RSVPSection />
+        <SeeYouSoonSection />
       </main>
       <Footer />
       <ScrollToTop />
