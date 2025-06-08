@@ -1,3 +1,4 @@
+
 import { Calendar, Clock, Utensils } from "lucide-react";
 import ImageReveal from "../ImageReveal";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -8,7 +9,7 @@ const ReceptionSection = () => {
   return (
     <section id="reception" className="py-10 md:py-16 lg:py-24 winter-section">
       <div className="section-container">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 md:mb-10 text-center">El Convite</h2>
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-cursive text-center text-white font-bold mb-6 md:mb-10">El Convite</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
           <div className="order-2 md:order-1 space-y-4 md:space-y-6">

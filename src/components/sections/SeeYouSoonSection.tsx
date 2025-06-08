@@ -1,3 +1,4 @@
+
 import { Snowflake } from "lucide-react";
 import ImageReveal from "../ImageReveal";
 
@@ -5,7 +6,7 @@ const SeeYouSoonSection = () => {
   return (
     <section id="see-you-soon" className="py-10 md:py-16 lg:py-24 winter-section">
       <div className="container mx-auto px-4 max-w-6xl">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 md:mb-12 text-center">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-cursive text-center text-white font-bold mb-6 md:mb-12">
           ¡Os esperamos!
         </h2>
         

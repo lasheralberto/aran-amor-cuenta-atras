@@ -70,7 +70,7 @@ const RSVPSection = () => {
   return (
     <section id="rsvp" className="py-10 md:py-16 lg:py-24 winter-section">
       <div className="section-container">
-        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 md:mb-10 text-center">Confirmación de Asistencia</h2>
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-cursive text-center text-white font-bold mb-6 md:mb-10">Confirmación de Asistencia</h2>
         <div className="max-w-2xl mx-auto bg-winter-dark/50 rounded-lg shadow-lg p-4 sm:p-5 md:p-8 border border-white/10">
           {isSubmitted ? (
             <div className="text-center py-4 md:py-8">
