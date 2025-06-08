@@ -1,25 +1,28 @@
 
 import { Calendar, Clock, Church } from "lucide-react";
+import ImageReveal from "../ImageReveal";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const ChurchSection = () => {
   const isMobile = useIsMobile();
   
-  return <section id="church" className="py-10 md:py-16 lg:py-24 winter-section">
+  return (
+    <section id="church" className="py-10 md:py-16 lg:py-24 winter-section">
       <div className="container mx-auto px-4 max-w-6xl">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-cursive text-center text-white font-bold mb-6 md:mb-12">
           La Ceremonia
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
-          {/* Contenedor de imagen con relación de aspecto 9:16 implementada directamente */}
+          {/* Contenedor de imagen con ImageReveal */}
           <div className="flex justify-center">
-            <div className="rounded-lg overflow-hidden shadow-lg w-48 sm:w-56 md:max-w-xs">
-              {/* Div con relación de aspecto fija 9:16 */}
-              <div className="relative pb-[177.78%]"> {/* 16/9 = 1.7778 → 177.78% */}
-                <img alt="Iglesia de Sant Miquèu de Vielha" src="/lovable-uploads/98f5845c-985c-4b03-8d2c-2d1a1850f835.png" className="absolute inset-0 w-full h-full object-cover" />
-              </div>
-            </div>
+            <ImageReveal
+              originalImage="/lovable-uploads/98f5845c-985c-4b03-8d2c-2d1a1850f835.png"
+              overlayImage="/lovable-uploads/98f5845c-985c-4b03-8d2c-2d1a1850f835.png"
+              alt="Iglesia de Sant Miquèu de Vielha"
+              className="rounded-lg shadow-lg w-48 sm:w-56 md:max-w-xs"
+              aspectRatio="pb-[177.78%]"
+            />
           </div>
           
           <div className="space-y-4 md:space-y-6">
@@ -68,6 +71,8 @@ const ChurchSection = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default ChurchSection;

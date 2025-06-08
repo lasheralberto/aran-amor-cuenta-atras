@@ -1,17 +1,24 @@
 
 import { Calendar, Clock, Music, PartyPopper } from "lucide-react";
+import ImageReveal from "../ImageReveal";
 import { useIsMobile } from "@/hooks/use-mobile";
+
 const PartySection = () => {
   const isMobile = useIsMobile();
-  return <section id="party" className="py-10 md:py-16 lg:py-24 winter-section rounded">
+  return (
+    <section id="party" className="py-10 md:py-16 lg:py-24 winter-section rounded">
       <div className="section-container">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 md:mb-10 text-center">La Fiesta</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center rounded-none">
-          <div className="overflow-hidden shadow-lg mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md rounded-xl">
-            <div className="relative pb-[133.33%]"> {/* 4:3 aspect ratio for more vertical orientation */}
-              <img alt="Fiesta en el Parador de Vielha" src="/lovable-uploads/c11b865d-08eb-4cd2-adc9-a7d53797293a.png" className="absolute inset-0 w-full h-full rounded-2xl object-cover" />
-            </div>
+          <div className="mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md">
+            <ImageReveal
+              originalImage="/lovable-uploads/c11b865d-08eb-4cd2-adc9-a7d53797293a.png"
+              overlayImage="/lovable-uploads/c11b865d-08eb-4cd2-adc9-a7d53797293a.png"
+              alt="Fiesta en el Parador de Vielha"
+              className="rounded-xl shadow-lg"
+              aspectRatio="pb-[133.33%]"
+            />
           </div>
           
           <div className="space-y-4 md:space-y-6">
@@ -55,6 +62,8 @@ const PartySection = () => {
           </div>
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default PartySection;

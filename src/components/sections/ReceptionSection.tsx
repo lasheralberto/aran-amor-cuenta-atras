@@ -1,6 +1,5 @@
-
 import { Calendar, Clock, Utensils } from "lucide-react";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import ImageReveal from "../ImageReveal";
 import { useIsMobile } from "@/hooks/use-mobile";
 
 const ReceptionSection = () => {
@@ -54,20 +53,20 @@ const ReceptionSection = () => {
               >
                 Ver ubicación
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 md:h-4 md:w-4 ml-1 md:ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
             </div>
           </div>
           
-          <div className="order-1 md:order-2 rounded-lg overflow-hidden shadow-lg mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md">
-            <AspectRatio ratio={16/9} className="w-full">
-              <img 
-                src="/lovable-uploads/b51ddb01-b11b-45fe-86b0-70c2b084cf9f.png" 
-                alt="Parador de Vielha en invierno" 
-                className="w-full h-full object-cover"
-              />
-            </AspectRatio>
+          <div className="order-1 md:order-2 mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md">
+            <ImageReveal
+              originalImage="/lovable-uploads/b51ddb01-b11b-45fe-86b0-70c2b084cf9f.png"
+              overlayImage="/lovable-uploads/b51ddb01-b11b-45fe-86b0-70c2b084cf9f.png"
+              alt="Parador de Vielha en invierno"
+              className="rounded-lg shadow-lg"
+              aspectRatio="pb-[56.25%]"
+            />
           </div>
         </div>
       </div>
