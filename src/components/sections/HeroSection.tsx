@@ -7,20 +7,30 @@ import { ChevronDown, Heart } from "lucide-react";
 // Componente para texto con animación de neblina
 const FogText = ({ text, className, delay = 0, duration = 1.5 }) => {
   const letters = Array.from(text);
-  
+
+  // Identificar índices de la primera letra de cada palabra
+  const firstLetterIndexes = [];
+  letters.forEach((char, idx) => {
+    if (idx === 0 || letters[idx - 1] === " ") {
+      firstLetterIndexes.push(idx);
+    }
+  });
+
   return (
     <div className={`overflow-hidden ${className}`}>
       <div className="flex justify-center flex-wrap">
         {letters.map((letter, index) => (
           <span
             key={index}
-            className="inline-block transform transition-all duration-1000 opacity-0 blur-xl filter"
+            className={`inline-block transform transition-all duration-1000 opacity-0 blur-xl filter ${
+              firstLetterIndexes.includes(index) ? "text-red-600" : "text-white"
+            }`}
             style={{
               animationName: "fogReveal",
               animationDuration: `${duration}s`,
               animationDelay: `${delay + index * 0.05}s`,
               animationFillMode: "forwards",
-              animationTimingFunction: "ease-out"
+              animationTimingFunction: "ease-out",
             }}
           >
             {letter === " " ? "\u00A0" : letter.toString()}
@@ -30,6 +40,7 @@ const FogText = ({ text, className, delay = 0, duration = 1.5 }) => {
     </div>
   );
 };
+
 
 // Componente para copos de nieve
 const Snowflake = ({ index }) => {
