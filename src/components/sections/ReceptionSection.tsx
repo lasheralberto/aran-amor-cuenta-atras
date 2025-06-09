@@ -62,8 +62,8 @@ const ReceptionSection = () => {
           
           <div className="order-1 md:order-2 mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md">
             <ImageReveal
-              originalImage="/lovable-uploads/b51ddb01-b11b-45fe-86b0-70c2b084cf9f.png"
-              overlayImage="/img/parador-ori.jpg"
+              originalImage="/img/parador-ori.jpg"
+              overlayImage="/lovable-uploads/b51ddb01-b11b-45fe-86b0-70c2b084cf9f.png"
               alt="Parador de Vielha en invierno"
               className="rounded-lg shadow-lg"
               aspectRatio="pb-[56.25%]"
