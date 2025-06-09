@@ -1,10 +1,9 @@
-
 import { useState, useEffect, useRef } from "react";
 import CountdownTimer from "@/components/CountdownTimer";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ChevronDown, Heart } from "lucide-react";
 
-// Componente para texto con animación de neblina
+// Componente para texto con animación de neblina mejorada
 const FogText = ({ text, className, delay = 0, duration = 1.5, redIndices = [] }) => {
   const letters = Array.from(text);
 
@@ -15,12 +14,12 @@ const FogText = ({ text, className, delay = 0, duration = 1.5, redIndices = [] }
           <span
             key={index}
             className={`inline-block transform transition-all duration-1000 opacity-0 blur-xl filter ${
-              redIndices.includes(index) ? "text-love-red" : "text-white"
+              redIndices.includes(index) ? "text-red-500" : "text-white"
             }`}
             style={{
-              animationName: "fogReveal",
+              animationName: "snowstormReveal",
               animationDuration: `${duration}s`,
-              animationDelay: `${delay + index * 0.05}s`,
+              animationDelay: `${delay + index * 0.08}s`,
               animationFillMode: "forwards",
               animationTimingFunction: "ease-out",
             }}
@@ -32,8 +31,6 @@ const FogText = ({ text, className, delay = 0, duration = 1.5, redIndices = [] }
     </div>
   );
 };
-
-
 
 // Componente para copos de nieve
 const Snowflake = ({ index }) => {
@@ -71,54 +68,63 @@ const HeroSection = () => {
     // Inyectar keyframes para las animaciones
     const style = document.createElement('style');
     style.textContent = `
-      @keyframes fogReveal {
+      @keyframes snowstormReveal {
         0% { 
           opacity: 0;
+          filter: blur(25px);
+          transform: translateY(30px) translateX(-15px) scale(0.8) rotate(-5deg);
+        }
+        15% {
+          opacity: 0.1;
           filter: blur(20px);
-          transform: translateY(15px) scale(0.9);
+          transform: translateY(25px) translateX(-10px) scale(0.85) rotate(-3deg);
         }
-        20% {
-          opacity: 0.2;
+        30% {
+          opacity: 0.3;
+          filter: blur(18px);
+          transform: translateY(20px) translateX(-5px) scale(0.9) rotate(-2deg);
+        }
+        45% {
+          opacity: 0.5;
           filter: blur(15px);
-          transform: translateY(12px) scale(0.95);
+          transform: translateY(15px) translateX(5px) scale(0.95) rotate(1deg);
         }
-        40% {
-          opacity: 0.6;
+        60% {
+          opacity: 0.7;
           filter: blur(10px);
-          transform: translateY(8px) scale(0.98);
+          transform: translateY(10px) translateX(3px) scale(0.98) rotate(0.5deg);
         }
-        70% {
-          opacity: 0.8;
-          filter: blur(5px);
-          transform: translateY(3px) scale(1);
+        75% {
+          opacity: 0.85;
+          filter: blur(6px);
+          transform: translateY(5px) translateX(-2px) scale(1.02) rotate(-0.5deg);
         }
-        85% {
-          opacity: 0.9;
+        90% {
+          opacity: 0.95;
           filter: blur(2px);
-          transform: translateY(1px) scale(1);
+          transform: translateY(2px) translateX(1px) scale(1.01) rotate(0deg);
         }
         100% { 
           opacity: 1;
           filter: blur(0);
-          transform: translateY(0) scale(1);
+          transform: translateY(0) translateX(0) scale(1) rotate(0deg);
         }
       }
 
       @keyframes heartbeat {
-      0%, 100% {
-        transform: scale(1);
+        0%, 100% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.15);
+        }
+        50% {
+          transform: scale(0.95);
+        }
+        75% {
+          transform: scale(1.1);
+        }
       }
-      25% {
-        transform: scale(1.15);
-      }
-      50% {
-        transform: scale(0.95);
-      }
-      75% {
-        transform: scale(1.1);
-      }
-    }
-
       
       @keyframes snowfall {
         0% {
@@ -169,6 +175,47 @@ const HeroSection = () => {
         }
         60% {
           transform: translateY(-5px);
+        }
+      }
+
+      @keyframes winterFadeIn {
+        0% {
+          opacity: 0;
+          transform: translateX(-50%) translateY(20px) scale(0.9);
+          filter: blur(4px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(-50%) translateY(0) scale(1);
+          filter: blur(0px);
+        }
+      }
+      
+      @keyframes winterBounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0) scale(1);
+        }
+        40% {
+          transform: translateY(-8px) scale(1.1);
+          filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.8));
+        }
+        60% {
+          transform: translateY(-4px) scale(1.05);
+        }
+      }
+      
+      @keyframes snowFall {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px) translateX(0);
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(15px) translateX(2px);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(40px) translateX(-1px);
         }
       }
     `;
@@ -247,15 +294,14 @@ const HeroSection = () => {
                animation: loaded ? "fadeSlideUp 1s 0.3s forwards" : "none"
              }}>
           <Heart 
-          className="text-wedding-burgundy animate-heartbeat" 
-          size={isMobile ? 28 : 40} 
-          fill="#FFFFFF" 
-          strokeWidth={1} 
-          style={{
-            animation: loaded ? "heartbeat 1.5s infinite ease-in-out" : "none"
-          }}
-        />
-
+            className="text-wedding-burgundy animate-heartbeat" 
+            size={isMobile ? 28 : 40} 
+            fill="#FFFFFF" 
+            strokeWidth={1} 
+            style={{
+              animation: loaded ? "heartbeat 1.5s infinite ease-in-out" : "none"
+            }}
+          />
         </div>
         
         {/* Separador superior decorativo */}
@@ -266,17 +312,14 @@ const HeroSection = () => {
           <div className="h-px w-full bg-gradient-to-r from-transparent via-white/80 to-transparent"></div>
         </div>
         
-        {/* Título principal con efecto de neblina mejorado */}
-      <FogText
-        text="Alberto & Mariona"
-        redIndices={[0, 9]} 
-        className="text-2xl sm:text-3xl md:text-5xl font-bold mb-2 md:mb-4" // quito text-white aquí
-        delay={0.4}
-        duration={2.5}
-      />
-
-        
-        {/* Eliminado el texto "¡Nos casamos!" */}
+        {/* Título principal con efecto de ventisca mejorado */}
+        <FogText
+          text="Alberto & Mariona"
+          redIndices={[0, 10]} // A=0, M=10 (después del espacio y &)
+          className="text-2xl sm:text-3xl md:text-5xl font-bold mb-2 md:mb-4"
+          delay={0.4}
+          duration={3.0}
+        />
         
         <FogText
           text="17 de enero de 2026"
@@ -363,49 +406,6 @@ const HeroSection = () => {
             </div>
           </div>
         </div>
-        
-        <style jsx>{`
-          @keyframes winterFadeIn {
-            0% {
-              opacity: 0;
-              transform: translateX(-50%) translateY(20px) scale(0.9);
-              filter: blur(4px);
-            }
-            100% {
-              opacity: 1;
-              transform: translateX(-50%) translateY(0) scale(1);
-              filter: blur(0px);
-            }
-          }
-          
-          @keyframes winterBounce {
-            0%, 20%, 50%, 80%, 100% {
-              transform: translateY(0) scale(1);
-            }
-            40% {
-              transform: translateY(-8px) scale(1.1);
-              filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.8));
-            }
-            60% {
-              transform: translateY(-4px) scale(1.05);
-            }
-          }
-          
-          @keyframes snowFall {
-            0% {
-              opacity: 0;
-              transform: translateY(-10px) translateX(0);
-            }
-            50% {
-              opacity: 1;
-              transform: translateY(15px) translateX(2px);
-            }
-            100% {
-              opacity: 0;
-              transform: translateY(40px) translateX(-1px);
-            }
-          }
-        `}</style>
       </div>
     </section>
   );
