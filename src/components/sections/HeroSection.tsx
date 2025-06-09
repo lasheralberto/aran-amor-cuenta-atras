@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from "react";
 import CountdownTimer from "@/components/CountdownTimer";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -154,6 +155,18 @@ const HeroSection = () => {
           transform: translateY(0);
         }
       }
+
+      @keyframes bounceScroll {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
     `;
     document.head.appendChild(style);
     
@@ -288,37 +301,25 @@ const HeroSection = () => {
              }}>
           <CountdownTimer />
         </div>
-
-        {/* Botón con efectos avanzados - UPDATED for minimalist design */}
-        <div className="mt-4 md:mt-6 opacity-0"
-             style={{
-               animation: loaded ? "fadeSlideUp 1s 2.5s forwards" : "none"
-             }}>
-          <a 
-            href="#rsvp" 
-            className="inline-block px-6 py-2 sm:px-8 sm:py-2.5
-                      text-white text-sm sm:text-base tracking-wide
-                      border border-white/30 backdrop-blur-sm bg-white/10
-                      transition-all duration-300
-                      hover:bg-white/20 hover:border-white/50
-                      focus:outline-none focus:ring-1 focus:ring-white/50"
-          >
-            Confirmar Asistencia
-          </a>
-        </div>
       </div>
 
-      {/* Indicador de scroll con animación retrasada */}
+      {/* Indicador de scroll animado */}
       <div 
         className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 opacity-0" 
         style={{
-          animation: loaded ? "fadeSlideUp 1s 3s forwards" : "none"
+          animation: loaded ? "fadeSlideUp 1s 2.5s forwards" : "none"
         }}
       >
-        {/* <div className="flex flex-col items-center">
-          <p className="text-white text-xs md:text-sm mb-1 md:mb-2 tracking-wide font-light">Desliza para ver más</p>
-          <ChevronDown className="text-white animate-bounce" size={isMobile ? 18 : 24} />
-        </div> */}
+        <div className="flex flex-col items-center">
+          <p className="text-white/80 text-xs md:text-sm mb-2 tracking-wide font-light">Descubre más</p>
+          <ChevronDown 
+            className="text-white/90" 
+            size={isMobile ? 20 : 28}
+            style={{
+              animation: loaded ? "bounceScroll 2s infinite ease-in-out 3s" : "none"
+            }}
+          />
+        </div>
       </div>
     </section>
   );
