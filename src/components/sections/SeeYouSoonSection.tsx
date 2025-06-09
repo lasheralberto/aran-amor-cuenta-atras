@@ -1,4 +1,3 @@
-
 import { Snowflake } from "lucide-react";
 import ImageReveal from "../ImageReveal";
 
@@ -16,7 +15,6 @@ const SeeYouSoonSection = () => {
             className="rounded-lg shadow-lg w-48 sm:w-56 md:max-w-xs"
           />
         </div>
- 
 
         <div className="space-y-4 md:space-y-6 order-1 md:order-2">
           <div className="flex justify-center md:justify-start mb-4">
@@ -40,8 +38,7 @@ const SeeYouSoonSection = () => {
           </p>
         </div>
       </div>
-    </div>
-    </section >
+    </section>
   );
 };
 
