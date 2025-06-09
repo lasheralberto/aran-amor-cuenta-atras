@@ -304,22 +304,102 @@ const HeroSection = () => {
       </div>
 
       {/* Indicador de scroll animado */}
-      <div 
-        className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 opacity-0" 
+<div 
+        className="fixed bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 z-50 opacity-0" 
         style={{
-          animation: loaded ? "fadeSlideUp 1s 2.5s forwards" : "none"
+          animation: loaded ? "winterFadeIn 1.2s 2.5s forwards" : "none"
         }}
       >
-        <div className="flex flex-col items-center">
-          <p className="text-white/80 text-xs md:text-sm mb-2 tracking-wide font-light">Descubre más</p>
-          <ChevronDown 
-            className="text-white/90" 
-            size={isMobile ? 20 : 28}
-            style={{
-              animation: loaded ? "bounceScroll 2s infinite ease-in-out 3s" : "none"
-            }}
-          />
+        <div className="flex flex-col items-center relative">
+          {/* Efecto de nieve sutil alrededor del texto */}
+          <div className="absolute -inset-4 opacity-30">
+            <div className="absolute top-0 left-2 w-1 h-1 bg-white/60 rounded-full animate-pulse" 
+                 style={{ animationDelay: '0.5s' }}></div>
+            <div className="absolute top-1 right-3 w-0.5 h-0.5 bg-blue-100/80 rounded-full animate-pulse" 
+                 style={{ animationDelay: '1.2s' }}></div>
+            <div className="absolute bottom-2 left-1 w-0.5 h-0.5 bg-white/50 rounded-full animate-pulse" 
+                 style={{ animationDelay: '0.8s' }}></div>
+          </div>
+          
+          {/* Texto con efecto helado */}
+          <p className="text-white/90 text-xs md:text-sm mb-3 tracking-widest font-light relative
+                        drop-shadow-lg backdrop-blur-sm px-3 py-1 rounded-full
+                        bg-gradient-to-r from-blue-900/20 to-indigo-900/20 border border-white/10">
+            <span className="relative z-10">❄ Descubre más ❄</span>
+          </p>
+          
+          {/* Flecha con efectos invernales */}
+          <div className="relative">
+            {/* Aura brillante */}
+            <div className="absolute inset-0 blur-sm">
+              <ChevronDown 
+                className="text-blue-200/40" 
+                size={isMobile ? 24 : 32}
+              />
+            </div>
+            
+            {/* Flecha principal */}
+            <ChevronDown 
+              className="text-white relative z-10 drop-shadow-lg filter" 
+              size={isMobile ? 20 : 28}
+              style={{
+                animation: loaded ? "winterBounce 2.8s infinite ease-in-out 3.5s" : "none",
+                filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.5))'
+              }}
+            />
+            
+            {/* Partículas de nieve cayendo */}
+            <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+              <div className="w-1 h-1 bg-white/60 rounded-full" 
+                   style={{ 
+                     animation: loaded ? "snowFall 3s infinite linear 4s" : "none"
+                   }}></div>
+            </div>
+          </div>
         </div>
+        
+        <style jsx>{`
+          @keyframes winterFadeIn {
+            0% {
+              opacity: 0;
+              transform: translateX(-50%) translateY(20px) scale(0.9);
+              filter: blur(4px);
+            }
+            100% {
+              opacity: 1;
+              transform: translateX(-50%) translateY(0) scale(1);
+              filter: blur(0px);
+            }
+          }
+          
+          @keyframes winterBounce {
+            0%, 20%, 50%, 80%, 100% {
+              transform: translateY(0) scale(1);
+            }
+            40% {
+              transform: translateY(-8px) scale(1.1);
+              filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.8));
+            }
+            60% {
+              transform: translateY(-4px) scale(1.05);
+            }
+          }
+          
+          @keyframes snowFall {
+            0% {
+              opacity: 0;
+              transform: translateY(-10px) translateX(0);
+            }
+            50% {
+              opacity: 1;
+              transform: translateY(15px) translateX(2px);
+            }
+            100% {
+              opacity: 0;
+              transform: translateY(40px) translateX(-1px);
+            }
+          }
+        `}</style>
       </div>
     </section>
   );
