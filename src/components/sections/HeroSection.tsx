@@ -269,6 +269,7 @@ const HeroSection = () => {
         {/* Título principal con efecto de neblina mejorado */}
         <FogText
           text="Alberto & Mariona"
+          redIndices={[0, 9]} 
           className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-2 md:mb-4"
           delay={0.4}
           duration={2.5}
