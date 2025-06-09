@@ -304,8 +304,8 @@ const HeroSection = () => {
       </div>
 
       {/* Indicador de scroll animado */}
-<div 
-        className="fixed bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 z-50 opacity-0" 
+      <div 
+        className="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 opacity-0" 
         style={{
           animation: loaded ? "winterFadeIn 1.2s 2.5s forwards" : "none"
         }}
