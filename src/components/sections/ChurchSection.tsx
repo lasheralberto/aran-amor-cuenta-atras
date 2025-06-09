@@ -18,7 +18,7 @@ const ChurchSection = () => {
           <div className="flex justify-center">
             <ImageReveal
               originalImage="/lovable-uploads/98f5845c-985c-4b03-8d2c-2d1a1850f835.png"
-              overlayImage="/lovable-uploads/98f5845c-985c-4b03-8d2c-2d1a1850f835.png"
+              overlayImage="/img/iglesia-ori.jpg"
               alt="Iglesia de Sant Miquèu de Vielha"
               className="rounded-lg shadow-lg w-48 sm:w-56 md:max-w-xs"
               aspectRatio="pb-[177.78%]"
