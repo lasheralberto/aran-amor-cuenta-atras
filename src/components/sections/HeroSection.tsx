@@ -325,7 +325,7 @@ const HeroSection = () => {
           <p className="text-white/90 text-xs md:text-sm mb-3 tracking-widest font-light relative
                         drop-shadow-lg backdrop-blur-sm px-3 py-1 rounded-full
                         bg-gradient-to-r from-blue-900/20 to-indigo-900/20 border border-white/10">
-            <span className="relative z-10">❄ Descubre más ❄</span>
+            <span className="relative z-10">❄ Scroll pa' abajo, que arriba ya nos dimos el 'sí' ❄</span>
           </p>
           
           {/* Flecha con efectos invernales */}
