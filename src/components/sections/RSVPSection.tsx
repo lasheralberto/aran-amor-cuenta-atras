@@ -81,7 +81,7 @@ const RSVPSection = () => {
               <p className="text-sm md:text-base text-white font-light mb-4 md:mb-6">
                 Hemos recibido tu confirmación. ¡Estamos deseando celebrar este día tan especial contigo!
               </p>
-              <button 
+              <button
                 onClick={() => setIsSubmitted(false)}
                 className="text-sm md:text-base text-winter-icy hover:text-white transition-colors font-normal"
               >
@@ -196,12 +196,16 @@ const RSVPSection = () => {
                 <Button
                   type="submit"
                   variant="outline"
-                  className="w-full border-winter-accent text-white hover:bg-winter-accent/20 transition-colors duration-300 font-normal"
+                  className="w-full relative overflow-hidden border-winter-accent text-white font-bold text-lg rounded-xl bg-winter-accent hover:bg-winter-accent/90 transition-all duration-500 shadow-md hover:shadow-xl"
                 >
-                  <Mail className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-                  Confirmar asistencia
+                  <span className="relative z-10 flex items-center justify-center">
+                    <Mail className="h-4 w-4 md:h-5 md:w-5 mr-2" />
+                    Confirmar asistencia
+                  </span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-1000 animate-shimmer pointer-events-none" />
                 </Button>
               </div>
+
 
               <p className="text-xs text-white/70 text-center mt-2 md:mt-4 font-normal">
                 * Campos requeridos
