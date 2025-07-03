@@ -69,7 +69,7 @@ const RSVPSection = () => {
 
   try {
   const webhookResponse = await axios.post(
-    "https://hook.eu2.make.com/k2m4f8tqtg3ibmtij4w19wqfpfywj2hs",
+    "https://hook.eu2.make.com/gxbuwrawiogn2uji1o3d9zi224v5paer",
     payload,
     {
       headers: {
