@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import { Check, Mail } from "lucide-react";
+import { Check, Mail, Loader } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "../ui/button";
 
@@ -13,10 +12,12 @@ const RSVPSection = () => {
   const [message, setMessage] = useState("");
   const [messageSong, setMessageSong] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const isMobile = useIsMobile();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const payload = {
       records: [
@@ -64,25 +65,10 @@ const RSVPSection = () => {
     } catch (error) {
       console.error("Error de red:", error);
       alert("Error de red. Intenta de nuevo más tarde.");
+    } finally {
+      setIsLoading(false);
     }
   };
-
-  try {
-  const webhookResponse = await axios.post(
-    "https://hook.eu2.make.com/gxbuwrawiogn2uji1o3d9zi224v5paer",
-    payload,
-    {
-      headers: {
-        "Content-Type": "application/json",
-        "x-make-apikey": "wedding"
-      }
-    }
-  );
- 
-} catch (webhookError) {
- 
-}
-
 
   return (
     <section id="rsvp" className="py-10 md:py-16 lg:py-24 winter-section">
@@ -213,16 +199,20 @@ const RSVPSection = () => {
                 <Button
                   type="submit"
                   variant="outline"
-                  className="w-full relative overflow-hidden border-winter-accent text-white font-bold text-lg rounded-xl bg-winter-accent hover:bg-winter-accent/90 transition-all duration-500 shadow-md hover:shadow-xl"
+                  disabled={isLoading}
+                  className="w-full relative overflow-hidden border-winter-accent text-white font-bold text-lg rounded-xl bg-winter-accent hover:bg-winter-accent/90 transition-all duration-500 shadow-md hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span className="relative z-10 flex items-center justify-center">
-                    <Mail className="h-4 w-4 md:h-5 md:w-5 mr-2" />
-                    Confirmar asistencia
+                    {isLoading ? (
+                      <Loader className="h-4 w-4 md:h-5 md:w-5 mr-2 animate-spin" />
+                    ) : (
+                      <Mail className="h-4 w-4 md:h-5 md:w-5 mr-2" />
+                    )}
+                    {isLoading ? "Enviando..." : "Confirmar asistencia"}
                   </span>
                   <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-1000 animate-shimmer pointer-events-none" />
                 </Button>
               </div>
-
 
               <p className="text-xs text-white/70 text-center mt-2 md:mt-4 font-normal">
                 * Campos requeridos
