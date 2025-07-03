@@ -67,6 +67,13 @@ const RSVPSection = () => {
     }
   };
 
+  try {
+    const webhookResponse = await axios.post("https://hook.eu2.make.com/k2m4f8tqtg3ibmtij4w19wqfpfywj2hs", payload);
+    
+  } catch (webhookError) {
+    console.error("También falló el envío al webhook de Make:", webhookError);
+  }
+
   return (
     <section id="rsvp" className="py-10 md:py-16 lg:py-24 winter-section">
       <div className="section-container">
