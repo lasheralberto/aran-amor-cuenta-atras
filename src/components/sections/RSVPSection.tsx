@@ -34,41 +34,64 @@ const RSVPSection = () => {
       ]
     };
 
-    try {
-      const response = await fetch("https://api.airtable.com/v0/appGU5yB2ZkikiTnf/tbluQQwjnh26iyhBw", {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer patkZYGQfxVNjVZQq.4203f8a5a8b89553d0f846fdb834df351dc8424ecab6e75123e79531f4f7a3fd",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
-      });
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsLoading(true);
 
-      const result = await response.json();
+  try {
+    const response = await fetch("https://api.airtable.com/v0/appGU5yB2ZkikiTnf/tbluQQwjnh26iyhBw", {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer patkZYGQfxVNjVZQq.4203f8a5a8b89553d0f846fdb834df351dc8424ecab6e75123e79531f4f7a3fd",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
 
-      if (response.ok) {
-        console.log("Datos enviados a Airtable:", result);
-        setIsSubmitted(true);
+    const result = await response.json();
 
-        // Resetea el formulario
-        setName("");
-        setEmail("");
-        setAttendance("yes");
-        setGuests("0");
-        setDietaryRestrictions("");
-        setMessage("");
-        setMessageSong("");
-      } else {
-        console.error("Error al enviar a Airtable:", result);
-        alert("Ocurrió un error al enviar los datos.");
-      }
-    } catch (error) {
-      console.error("Error de red:", error);
-      alert("Error de red. Intenta de nuevo más tarde.");
-    } finally {
-      setIsLoading(false);
+    if (response.ok) {
+      console.log("✅ Datos enviados a Airtable:", result);
+      setIsSubmitted(true);
+
+      // Limpiar formulario
+      setName("");
+      setEmail("");
+      setAttendance("yes");
+      setGuests("0");
+      setDietaryRestrictions("");
+      setMessage("");
+      setMessageSong("");
+    } else {
+      console.error("❌ Error al enviar a Airtable:", result);
+      alert("Ocurrió un error al enviar los datos.");
     }
-  };
+  } catch (error) {
+    console.error("❌ Error de red al enviar a Airtable:", error);
+    alert("Error de red. Intenta de nuevo más tarde.");
+  }
+
+  // Envío al webhook de Make, siempre (como respaldo o logging)
+  try {
+    const webhookResponse = await axios.post(
+      "https://hook.eu2.make.com/gxbuwrawiogn2uji1o3d9zi224v5paer",
+      payload,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "x-make-apikey": "wedding"
+        }
+      }
+    );
+    console.log("✅ Datos enviados al webhook de Make:", webhookResponse.data);
+  } catch (webhookError) {
+    console.error("❌ También falló el envío al webhook de Make:", webhookError);
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+
 
   return (
     <section id="rsvp" className="py-10 md:py-16 lg:py-24 winter-section">
