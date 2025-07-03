@@ -4,7 +4,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { ChevronDown, Heart } from "lucide-react";
 
 // Componente para texto con animación de neblina mejorada
-const FogText = ({ text, className, delay = 0, duration = 1.5, redIndices = [] }) => {
+const FogText = ({ text, className, delay = 0, duration = 1.5 }) => {
   const letters = Array.from(text);
 
   return (
@@ -13,9 +13,7 @@ const FogText = ({ text, className, delay = 0, duration = 1.5, redIndices = [] }
         {letters.map((letter, index) => (
           <span
             key={index}
-            className={`inline-block transform transition-all duration-1000 opacity-0 blur-xl filter ${
-              redIndices.includes(index) ? "text-red-500" : "text-white"
-            }`}
+            className="inline-block transform transition-all duration-1000 opacity-0 blur-xl filter text-white"
             style={{
               animationName: "snowstormReveal",
               animationDuration: `${duration}s`,
@@ -283,19 +281,19 @@ const HeroSection = () => {
       
       {/* Contenedor principal con centrado mejorado */}
       <div 
-        className={`relative z-10 w-11/12 max-w-xs sm:max-w-sm md:max-w-xl p-5 sm:p-6 md:p-8 mx-auto
-                   flex flex-col items-center justify-center
+        className={`relative z-10 w-11/12 max-w-xs sm:max-w-sm md:max-w-lg p-4 sm:p-5 md:p-6 mx-auto
+                   flex flex-col items-center justify-center text-center
                    transition-all duration-1000 ease-out
                    ${loaded ? 'opacity-100' : 'opacity-0'}`}
       >
         {/* Decoración superior */}
-        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 opacity-0"
+        <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 opacity-0"
              style={{
                animation: loaded ? "fadeSlideUp 1s 0.3s forwards" : "none"
              }}>
           <Heart 
             className="text-wedding-burgundy animate-heartbeat" 
-            size={isMobile ? 28 : 40} 
+            size={isMobile ? 24 : 32} 
             fill="#FFFFFF" 
             strokeWidth={1} 
             style={{
@@ -305,38 +303,37 @@ const HeroSection = () => {
         </div>
         
         {/* Separador superior decorativo */}
-        <div className="mb-4 md:mb-6 opacity-0"
+        <div className="mb-3 md:mb-4 opacity-0"
              style={{
                animation: loaded ? "fadeSlideUp 1s 0.5s forwards" : "none"
              }}>
           <div className="h-px w-full bg-gradient-to-r from-transparent via-white/80 to-transparent"></div>
         </div>
         
-        {/* Título principal con efecto de ventisca mejorado */}
+        {/* Título principal con fuente reducida */}
         <FogText
           text="Alberto & Mariona"
-          redIndices={[0, 10]} // A=0, M=10 (después del espacio y &)
-          className="text-2xl sm:text-3xl md:text-5xl font-bold mb-2 md:mb-4"
+          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-3 text-center"
           delay={0.4}
           duration={3.0}
         />
         
         <FogText
           text="17 de enero de 2026"
-          className="text-base sm:text-lg md:text-xl text-white font-medium mb-1 md:mb-2"
+          className="text-sm sm:text-base md:text-lg text-white font-medium mb-1 md:mb-2 text-center"
           delay={1.0}
           duration={2.0}
         />
         
         <FogText
           text="Val d'Aran, Vielha"
-          className="text-base sm:text-lg md:text-xl text-white font-medium mb-3 md:mb-5"
+          className="text-sm sm:text-base md:text-lg text-white font-medium mb-2 md:mb-3 text-center"
           delay={1.2}
           duration={2.0}
         />
         
         {/* Separador inferior decorativo */}
-        <div className="my-3 md:my-4 opacity-0"
+        <div className="my-2 md:my-3 opacity-0"
              style={{
                animation: loaded ? "fadeSlideUp 1s 2s forwards" : "none"
              }}>
@@ -373,8 +370,8 @@ const HeroSection = () => {
           {/* Texto con efecto helado */}
           <p className="text-white/90 text-xs md:text-sm mb-3 tracking-widest font-light relative
                         drop-shadow-lg backdrop-blur-sm px-3 py-1 rounded-full
-                        bg-gradient-to-r from-blue-900/20 to-indigo-900/20 border border-white/10">
-            <span className="relative z-10">❄ Desliza ❄</span>
+                        bg-gradient-to-r from-blue-900/20 to-indigo-900/20 border border-white/10 text-center">
+            <span className="relative z-10">❄ Descubre más ❄</span>
           </p>
           
           {/* Flecha con efectos invernales */}
@@ -383,14 +380,14 @@ const HeroSection = () => {
             <div className="absolute inset-0 blur-sm">
               <ChevronDown 
                 className="text-blue-200/40" 
-                size={isMobile ? 24 : 32}
+                size={isMobile ? 20 : 24}
               />
             </div>
             
             {/* Flecha principal */}
             <ChevronDown 
               className="text-white relative z-10 drop-shadow-lg filter" 
-              size={isMobile ? 20 : 28}
+              size={isMobile ? 18 : 22}
               style={{
                 animation: loaded ? "winterBounce 2.8s infinite ease-in-out 3.5s" : "none",
                 filter: 'drop-shadow(0 0 8px rgba(59, 130, 246, 0.5))'
