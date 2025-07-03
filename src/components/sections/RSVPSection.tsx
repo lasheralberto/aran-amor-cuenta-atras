@@ -15,43 +15,43 @@ const RSVPSection = () => {
   const [isLoading, setIsLoading] = useState(false);
   const isMobile = useIsMobile();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    const payload = {
-      records: [
-        {
-          fields: {
-            Nombre: name,
-            Email: email,
-            Asistencia: attendance,
-            Restricciones: dietaryRestrictions,
-            Cancion: messageSong,
-            Mensaje: message,
-          }
-        }
-      ]
-    };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+ const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   setIsLoading(true);
 
+  const payload = {
+    records: [
+      {
+        fields: {
+          Nombre: name,
+          Email: email,
+          Asistencia: attendance,
+          Restricciones: dietaryRestrictions,
+          Cancion: messageSong,
+          Mensaje: message,
+        }
+      }
+    ]
+  };
+
   try {
-    const response = await fetch("https://api.airtable.com/v0/appGU5yB2ZkikiTnf/tbluQQwjnh26iyhBw", {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer patkZYGQfxVNjVZQq.4203f8a5a8b89553d0f846fdb834df351dc8424ecab6e75123e79531f4f7a3fd",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
+    // Envío a Airtable
+    const airtableResponse = await fetch(
+      "https://api.airtable.com/v0/appGU5yB2ZkikiTnf/tbluQQwjnh26iyhBw",
+      {
+        method: "POST",
+        headers: {
+          Authorization: "Bearer patkZYGQfxVNjVZQq.4203f8a5a8b89553d0f846fdb834df351dc8424ecab6e75123e79531f4f7a3fd",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      }
+    );
 
-    const result = await response.json();
+    const airtableResult = await airtableResponse.json();
 
-    if (response.ok) {
-      console.log("✅ Datos enviados a Airtable:", result);
+    if (airtableResponse.ok) {
+      console.log("✅ Datos enviados a Airtable:", airtableResult);
       setIsSubmitted(true);
 
       // Limpiar formulario
@@ -63,7 +63,7 @@ const RSVPSection = () => {
       setMessage("");
       setMessageSong("");
     } else {
-      console.error("❌ Error al enviar a Airtable:", result);
+      console.error("❌ Error al enviar a Airtable:", airtableResult);
       alert("Ocurrió un error al enviar los datos.");
     }
   } catch (error) {
@@ -71,19 +71,26 @@ const RSVPSection = () => {
     alert("Error de red. Intenta de nuevo más tarde.");
   }
 
-  // Envío al webhook de Make, siempre (como respaldo o logging)
+  // Enviar al webhook de Make (siempre)
   try {
-    const webhookResponse = await axios.post(
+    const webhookResponse = await fetch(
       "https://hook.eu2.make.com/gxbuwrawiogn2uji1o3d9zi224v5paer",
-      payload,
       {
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
           "x-make-apikey": "wedding"
-        }
+        },
+        body: JSON.stringify(payload)
       }
     );
-    console.log("✅ Datos enviados al webhook de Make:", webhookResponse.data);
+
+    const webhookResult = await webhookResponse.json();
+    if (webhookResponse.ok) {
+      console.log("✅ Datos enviados al webhook de Make:", webhookResult);
+    } else {
+      console.error("❌ Error en webhook de Make:", webhookResult);
+    }
   } catch (webhookError) {
     console.error("❌ También falló el envío al webhook de Make:", webhookError);
   } finally {
