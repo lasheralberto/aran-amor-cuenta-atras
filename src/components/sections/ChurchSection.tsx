@@ -1,13 +1,9 @@
-
 import { Calendar, Clock, Church } from "lucide-react";
 import ImageReveal from "../ImageReveal";
 import { useIsMobile } from "@/hooks/use-mobile";
-
 const ChurchSection = () => {
   const isMobile = useIsMobile();
-  
-  return (
-    <section id="church" className="py-10 md:py-16 lg:py-24 winter-section">
+  return <section id="church" className="py-10 md:py-16 lg:py-24 winter-section">
       <div className="container mx-auto px-4 max-w-6xl">
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-cursive text-center text-white font-bold mb-6 md:mb-12">
           La Ceremonia
@@ -16,20 +12,12 @@ const ChurchSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
           {/* Contenedor de imagen con ImageReveal */}
           <div className="flex justify-center">
-            <ImageReveal
-              originalImage="/img/iglesia-ori.jpg"
-              overlayImage="/lovable-uploads/98f5845c-985c-4b03-8d2c-2d1a1850f835.png"
-              alt="Iglesia de Sant Miquèu de Vielha"
-              className="rounded-lg shadow-lg w-48 sm:w-56 md:max-w-xs"
-              aspectRatio="pb-[177.78%]"
-            />
+            <ImageReveal originalImage="/img/iglesia-ori.jpg" overlayImage="/lovable-uploads/98f5845c-985c-4b03-8d2c-2d1a1850f835.png" alt="Iglesia de Sant Miquèu de Vielha" className="rounded-lg shadow-lg w-48 sm:w-56 md:max-w-xs" aspectRatio="pb-[177.78%]" />
           </div>
           
           <div className="space-y-4 md:space-y-6">
             <h3 className="text-xl md:text-2xl font-bold text-white">Iglesia de Sant Miquèu de Vielha</h3>
-            <p className="text-sm md:text-base text-white font-light">
-              Nos encantaría que nos acompañarais en este día tan especial. La ceremonia se celebrará en la histórica Iglesia de Sant Miquèu, uno de los monumentos más emblemáticos del Valle de Arán.
-            </p>
+            <p className="text-sm md:text-base text-white font-light">Nos encantaría que nos acompañarais en este día tan especial. La ceremonia se celebrará en la Iglesia de Sant Miquèu.</p>
             
             <div className="flex items-center justify-center py-2">
               <div className="w-10 h-0.5 bg-white/30 mr-3"></div>
@@ -71,8 +59,6 @@ const ChurchSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default ChurchSection;
