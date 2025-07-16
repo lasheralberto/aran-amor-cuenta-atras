@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import CountdownTimer from "@/components/CountdownTimer";
 
@@ -307,7 +306,7 @@ const HeroSection = () => {
         {/* Título principal con fuente reducida */}
         <FogText
           text="Alberto & Mariona"
-          className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 md:mb-3 text-center"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 md:mb-3 text-center"
           delay={0.3}
           duration={2.5}
         />

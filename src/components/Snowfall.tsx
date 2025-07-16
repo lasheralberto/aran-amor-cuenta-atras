@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Snowflake } from 'lucide-react';
 
@@ -20,8 +19,8 @@ const Snowfall = ({ count = 30 }: { count?: number }) => {
       x: randomBetween(0, 100), // Posición horizontal (%)
       size: randomBetween(10, 20), // Tamaño (px)
       opacity: randomBetween(0.5, 0.9), // Opacidad
-      speed: randomBetween(30, 80), // Velocidad reducida (segundos) - antes era 60-150
-      delay: randomBetween(0, 10) // Retraso reducido (segundos) - antes era 0-20
+      speed: randomBetween(30, 80), // Velocidad reducida (segundos)
+      delay: randomBetween(-80, 0) // Permite delays negativos para que algunos copos ya estén cayendo
     }));
 
     setSnowflakes(newSnowflakes);
