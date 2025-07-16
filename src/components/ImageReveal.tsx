@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 
 interface ImageRevealProps {
@@ -18,12 +17,10 @@ const ImageReveal: React.FC<ImageRevealProps> = ({
 }) => {
   const [revealPercentage, setRevealPercentage] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
-  const [showHint, setShowHint] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
-    setShowHint(false);
     updateRevealPercentage(e);
   };
 
@@ -39,7 +36,6 @@ const ImageReveal: React.FC<ImageRevealProps> = ({
 
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsDragging(true);
-    setShowHint(false);
     updateRevealPercentage(e.touches[0] as any);
   };
 
@@ -77,15 +73,6 @@ const ImageReveal: React.FC<ImageRevealProps> = ({
       };
     }
   }, [isDragging]);
-
-  // Auto-hide hint after 3 seconds
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowHint(false);
-    }, 3000);
-    
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <div className={`relative overflow-hidden cursor-col-resize select-none ${className}`}>
@@ -133,31 +120,32 @@ const ImageReveal: React.FC<ImageRevealProps> = ({
           </div>
         </div>
         
-        {/* Animated hint */}
-        {showHint && revealPercentage === 0 && (
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-1/2 left-4 transform -translate-y-1/2 animate-pulse">
-              <div className="flex items-center space-x-2 text-white bg-black/50 px-3 py-2 rounded-full backdrop-blur-sm">
-                <span className="text-sm">👆</span>
-                <div className="animate-bounce text-xs">Desliza</div>
-              </div>
-            </div>
-            
-            {/* Sliding animation hint */}
-            <div className="absolute top-1/2 left-8 transform -translate-y-1/2">
-              <div className="w-16 h-0.5 bg-white/50 relative overflow-hidden">
-                <div className="absolute inset-0 bg-white/80 animate-[slide-hint_2s_ease-in-out_infinite]"></div>
-              </div>
+        {/* Animated placeholder hint */}
+        {revealPercentage === 0 && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+            <div className="flex flex-col items-center space-y-1 animate-fade-in">
+              <span className="text-2xl animate-slide-x">👆</span>
+              <span className="text-xs text-white bg-black/60 px-2 py-1 rounded-full animate-pulse">Desliza para ver</span>
             </div>
           </div>
         )}
       </div>
       
       <style>{`
-        @keyframes slide-hint {
-          0% { transform: translateX(-100%); }
-          50% { transform: translateX(200%); }
-          100% { transform: translateX(-100%); }
+        @keyframes slide-x {
+          0% { transform: translateX(0); }
+          50% { transform: translateX(20px); }
+          100% { transform: translateX(0); }
+        }
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        .animate-slide-x {
+          animation: slide-x 1.2s ease-in-out infinite;
+        }
+        .animate-fade-in {
+          animation: fade-in 0.6s ease;
         }
       `}</style>
     </div>

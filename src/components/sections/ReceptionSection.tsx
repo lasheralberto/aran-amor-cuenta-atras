@@ -13,7 +13,7 @@ const ReceptionSection = () => {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
           <div className="order-2 md:order-1 space-y-4 md:space-y-6">
-            <h3 className="text-xl md:text-2xl font-bold text-white">Hotel Parador de Vielha</h3>
+            {/* <h3 className="text-xl md:text-2xl font-bold text-white">Hotel Parador de Vielha</h3> */}
             <p className="text-sm md:text-base text-white font-light">
               Después de la ceremonia, nos reuniremos en el espectacular Parador de Vielha para celebrar con una comida especial. El hotel se encuentra rodeado por las majestuosas montañas del Pirineo, creando un ambiente único para nuestro día.
             </p>
@@ -47,7 +47,7 @@ const ReceptionSection = () => {
             
             <div className="pt-2 md:pt-4">
               <a 
-                href="https://maps.app.goo.gl/TxpbU7njCwb5oZLr8" 
+                href="https://maps.app.goo.gl/rwWDg4HcX7vmrRvS9" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center text-white hover:text-winter-icy font-normal transition-colors text-sm md:text-base"

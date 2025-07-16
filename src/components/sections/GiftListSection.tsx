@@ -32,7 +32,7 @@ const GiftListSection = () => {
             </h3>
             <div className="bg-white/20 rounded-lg p-4">
               <p className="text-white font-mono text-sm md:text-base tracking-wider">
-                ES00 0000 0000 0000 0000 0000
+                ES14 1583 0001 1691 7522 4200
               </p>
             </div>
             <p className="text-white/80 text-sm mt-3 font-light">

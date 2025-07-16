@@ -16,8 +16,10 @@ const ChurchSection = () => {
           </div>
           
           <div className="space-y-4 md:space-y-6">
-            <h3 className="text-xl md:text-2xl font-bold text-white">Iglesia de Sant Miquèu de Vielha</h3>
-            <p className="text-sm md:text-base text-white font-light">Nos encantaría que nos acompañarais en este día tan especial. La ceremonia se celebrará en la Iglesia de Sant Miquèu.</p>
+            {/* <h3 className="text-xl md:text-2xl font-bold text-white">Iglesia de Sant Miquèu de Vielha</h3> */}
+            <p className="text-sm md:text-base text-white font-light">Nos haría muchísima ilusión que nos acompañarais en este día tan importante para nosotros.
+La ceremonia será un momento muy especial, lleno de emociones, alegría (y seguramente alguna que otra lágrima).
+Nos encantará compartirlo con quienes habéis formado parte de nuestra historia y a quienes queremos tener cerca en este nuevo comienzo.</p>
             
             <div className="flex items-center justify-center py-2">
               <div className="w-10 h-0.5 bg-white/30 mr-3"></div>
@@ -49,7 +51,7 @@ const ChurchSection = () => {
             </div>
             
             <div className="pt-2 md:pt-4">
-              <a href="https://maps.app.goo.gl/1JmQsGcmd8J8nF7Y8" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-white hover:text-winter-icy font-normal transition-colors text-sm md:text-base">
+              <a href="https://maps.app.goo.gl/ZYXjdBSXmHP4rXnz6" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-white hover:text-winter-icy font-normal transition-colors text-sm md:text-base">
                 Ver ubicación
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 md:h-4 md:w-4 ml-1 md:ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

@@ -1,5 +1,6 @@
 import { Snowflake } from "lucide-react";
 import ImageReveal from "../ImageReveal";
+import VintageImageFrame from "../VintageImageFrame";
 
 const SeeYouSoonSection = () => {
   return (
@@ -9,11 +10,13 @@ const SeeYouSoonSection = () => {
           ¡Os esperamos!
         </h2>
         <div className="flex justify-center">
-          <img
+          <VintageImageFrame src="/img/us-original.JPG" alt="Foto vintage" />
+
+          {/* <img
             src="/img/us-original.JPG"
             alt="Alberto y Mariona"
             className="rounded-lg shadow-lg w-48 sm:w-56 md:max-w-xs"
-          />
+          /> */}
         </div>
 
         <div className="space-y-4 md:space-y-6 order-1 md:order-2">

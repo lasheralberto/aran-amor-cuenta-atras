@@ -1,0 +1,25 @@
+.snowfall-container {
+  pointer-events: none;
+  position: absolute;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.snowflake-boho {
+  position: absolute;
+  top: -5%;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
+  transition: color 0.3s;
+}
+
+@keyframes fall-boho {
+  0% { top: -5%; }
+  100% { top: 105%; }
+}
+
+@keyframes sway-boho {
+  0% { transform: translateX(0) rotate(var(--rotate, 0deg)); }
+  100% { transform: translateX(var(--sway, 20px)) rotate(var(--rotate, 0deg)); }
+}
