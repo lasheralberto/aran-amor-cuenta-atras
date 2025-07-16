@@ -1,6 +1,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import CountdownTimer from "@/components/CountdownTimer";
+import FractalAnimation from "@/components/FractalAnimation";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ChevronDown, Heart } from "lucide-react";
 
@@ -262,14 +263,12 @@ const HeroSection = () => {
       ref={sectionRef}
       className="relative w-full h-screen overflow-hidden flex items-center justify-center winter-section"
     >
-      {/* Estrellas decorativas */}
-      <div className="absolute inset-0 z-0">
-        {renderStars()}
-      </div>
+      {/* Animación fractal de fondo */}
+      <FractalAnimation className="z-0" />
       
-      {/* Copos de nieve cayendo */}
-      <div className="absolute inset-0 overflow-hidden z-0">
-        {renderSnowflakes()}
+      {/* Estrellas decorativas sutiles */}
+      <div className="absolute inset-0 z-1 opacity-30">
+        {renderStars()}
       </div>
       
       {/* Contenedor principal con centrado mejorado */}

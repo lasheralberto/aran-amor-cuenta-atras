@@ -40,13 +40,13 @@ const ImageReveal: React.FC<ImageRevealProps> = ({
   const handleTouchStart = (e: React.TouchEvent) => {
     setIsDragging(true);
     setShowHint(false);
-    updateRevealPercentage(e.touches[0]);
+    updateRevealPercentage(e.touches[0] as any);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (isDragging) {
       e.preventDefault();
-      updateRevealPercentage(e.touches[0]);
+      updateRevealPercentage(e.touches[0] as any);
     }
   };
 
@@ -153,7 +153,7 @@ const ImageReveal: React.FC<ImageRevealProps> = ({
         )}
       </div>
       
-      <style jsx>{`
+      <style>{`
         @keyframes slide-hint {
           0% { transform: translateX(-100%); }
           50% { transform: translateX(200%); }
