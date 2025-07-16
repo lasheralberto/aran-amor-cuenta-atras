@@ -1,7 +1,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import CountdownTimer from "@/components/CountdownTimer";
-import WinterTextAnimation from "@/components/WinterTextAnimation";
+
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ChevronDown, Heart } from "lucide-react";
 
@@ -263,8 +263,10 @@ const HeroSection = () => {
       ref={sectionRef}
       className="relative w-full h-screen overflow-hidden flex items-center justify-center winter-section"
     >
-      {/* Animación de texto invernal optimizada */}
-      <WinterTextAnimation className="z-0" />
+      {/* Copos de nieve */}
+      <div className="absolute inset-0 z-1 overflow-hidden">
+        {renderSnowflakes()}
+      </div>
       
       {/* Estrellas decorativas sutiles */}
       <div className="absolute inset-0 z-1 opacity-20">
