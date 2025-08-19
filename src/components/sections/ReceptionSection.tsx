@@ -15,7 +15,7 @@ const ReceptionSection = () => {
           <div className="order-2 md:order-1 space-y-4 md:space-y-6">
             {/* <h3 className="text-xl md:text-2xl font-bold text-white">Hotel Parador de Vielha</h3> */}
             <p className="text-sm md:text-base text-white font-light">
-              Después de la ceremonia, nos reuniremos en el espectacular Parador de Vielha para celebrar con una comida especial. El hotel se encuentra rodeado por las majestuosas montañas del Pirineo, creando un ambiente único para nuestro día.
+             Tras la ceremonia, nos encontraremos en el Parador de Vielha para compartir una comida muy especial. El hotel será el lugar perfecto para celebrar juntos un día inolvidable.
             </p>
             
             <div className="divider">

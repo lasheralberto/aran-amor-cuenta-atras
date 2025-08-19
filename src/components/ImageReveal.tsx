@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 
 interface ImageRevealProps {
   originalImage: string;
@@ -15,137 +15,105 @@ const ImageReveal: React.FC<ImageRevealProps> = ({
   className = "",
   aspectRatio = "pb-[133.33%]" // Default 4:3 aspect ratio
 }) => {
-  const [revealPercentage, setRevealPercentage] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [revealed, setRevealed] = useState(false);
 
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    updateRevealPercentage(e);
+  // Alterna entre reveal y unreveal
+  const handleToggleReveal = () => {
+    setRevealed((prev) => !prev);
   };
 
-  const handleMouseMove = (e: React.MouseEvent | MouseEvent) => {
-    if (isDragging) {
-      updateRevealPercentage(e);
-    }
-  };
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setIsDragging(true);
-    updateRevealPercentage(e.touches[0] as any);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (isDragging) {
-      e.preventDefault();
-      updateRevealPercentage(e.touches[0] as any);
-    }
-  };
-
-  const handleTouchEnd = () => {
-    setIsDragging(false);
-  };
-
-  const updateRevealPercentage = (e: React.MouseEvent | MouseEvent | Touch) => {
-    if (!containerRef.current) return;
-    
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
-    setRevealPercentage(percentage);
-  };
-
-  useEffect(() => {
-    if (isDragging) {
-      const handleGlobalMouseMove = (e: MouseEvent) => handleMouseMove(e);
-      const handleGlobalMouseUp = () => handleMouseUp();
-      
-      document.addEventListener('mousemove', handleGlobalMouseMove);
-      document.addEventListener('mouseup', handleGlobalMouseUp);
-      
-      return () => {
-        document.removeEventListener('mousemove', handleGlobalMouseMove);
-        document.removeEventListener('mouseup', handleGlobalMouseUp);
-      };
-    }
-  }, [isDragging]);
 
   return (
-    <div className={`relative overflow-hidden cursor-col-resize select-none ${className}`}>
-      <div 
-        ref={containerRef}
-        className={`relative ${aspectRatio}`}
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
-        {/* Original image (bottom layer) */}
-        <img 
-          src={originalImage}
-          alt={alt}
-          className="absolute inset-0 w-full h-full object-cover"
-          draggable={false}
-        />
-        
-        {/* Overlay image (top layer) with clip-path reveal */}
+    <div
+      className={`relative overflow-hidden cursor-pointer select-none ${className}`}
+      onClick={handleToggleReveal}
+      role="button"
+      tabIndex={0}
+      aria-label="Revelar imagen"
+      onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') handleToggleReveal(); }}
+    >
+      <div className={`relative ${aspectRatio}`}>
+        {/* Imagen overlay (ahora es la que se ve primero) */}
         {overlayImage && (
-          <img 
+          <img
             src={overlayImage}
-            alt={`${alt} - processed`}
-            className="absolute inset-0 w-full h-full object-cover"
+            alt={`${alt} - overlay`}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-out pointer-events-none ${revealed ? 'opacity-0' : 'opacity-100'}`}
             style={{
-              clipPath: `polygon(${revealPercentage}% 0%, 100% 0%, 100% 100%, ${revealPercentage}% 100%)`
+              maskImage: !revealed
+                ? 'radial-gradient(circle at 50% 50%, white 100%, transparent 100%)'
+                : 'radial-gradient(circle at 50% 50%, transparent 100%, transparent 100%)',
+              WebkitMaskImage: !revealed
+                ? 'radial-gradient(circle at 50% 50%, white 100%, transparent 100%)'
+                : 'radial-gradient(circle at 50% 50%, transparent 100%, transparent 100%)',
+              transition: 'opacity 1s cubic-bezier(0.4,0,0.2,1)'
             }}
             draggable={false}
           />
         )}
-        
-        {/* Drag indicator line */}
-        <div 
-          className="absolute top-0 bottom-0 w-0.5 bg-white shadow-lg pointer-events-none transition-opacity duration-200"
-          style={{ 
-            left: `${revealPercentage}%`,
-            opacity: isDragging ? 1 : 0.6
+        {/* Imagen original (ahora se revela al hacer clic) */}
+        <img
+          src={originalImage}
+          alt={alt}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-out ${revealed ? 'opacity-100' : 'opacity-0'}`}
+          style={{
+            maskImage: revealed
+              ? 'radial-gradient(circle at 50% 50%, white 100%, transparent 100%)'
+              : 'radial-gradient(circle at 50% 50%, transparent 100%, transparent 100%)',
+            WebkitMaskImage: revealed
+              ? 'radial-gradient(circle at 50% 50%, white 100%, transparent 100%)'
+              : 'radial-gradient(circle at 50% 50%, transparent 100%, transparent 100%)',
+            transition: 'opacity 1s cubic-bezier(0.4,0,0.2,1)'
           }}
-        >
-          {/* Drag handle */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-lg flex items-center justify-center">
-            <div className="w-1 h-4 bg-gray-400 rounded"></div>
-            <div className="w-1 h-4 bg-gray-400 rounded ml-1"></div>
+          draggable={false}
+        />
+        {/* Overlay de nieve animada opcional */}
+        {!revealed && (
+          <div className="absolute inset-0 pointer-events-none z-10 animate-fade-in bg-gradient-to-b from-white/60 to-transparent" />
+        )}
+        
+        {/* Indicador animado para hacer clic */}
+        <div className="absolute top-4 right-4 pointer-events-none z-20">
+          <div className="flex items-center space-x-2 animate-bounce-gentle">
+            <div className="w-8 h-8 bg-white/80 rounded-full shadow-lg flex items-center justify-center animate-pulse-ring">
+              <span className="text-lg">👆</span>
+            </div>
+     
           </div>
         </div>
-        
-        {/* Animated placeholder hint */}
-        {revealPercentage === 0 && (
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-            <div className="flex flex-col items-center space-y-1 animate-fade-in">
-              <span className="text-2xl animate-slide-x">👆</span>
-              <span className="text-xs text-white bg-black/60 px-2 py-1 rounded-full animate-pulse">Desliza para ver</span>
-            </div>
-          </div>
-        )}
       </div>
-      
       <style>{`
-        @keyframes slide-x {
-          0% { transform: translateX(0); }
-          50% { transform: translateX(20px); }
-          100% { transform: translateX(0); }
-        }
         @keyframes fade-in {
           from { opacity: 0; }
           to { opacity: 1; }
         }
-        .animate-slide-x {
-          animation: slide-x 1.2s ease-in-out infinite;
+        @keyframes bounce-gentle {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-8px); }
+        }
+        @keyframes pulse-ring {
+          0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+          70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+        @keyframes fade-in-out {
+          0% { opacity: 0; }
+          20% { opacity: 1; }
+          80% { opacity: 1; }
+          100% { opacity: 0.7; }
         }
         .animate-fade-in {
-          animation: fade-in 0.6s ease;
+          animation: fade-in 0.8s ease;
+        }
+        .animate-bounce-gentle {
+          animation: bounce-gentle 2s ease-in-out infinite;
+        }
+        .animate-pulse-ring {
+          animation: pulse-ring 2s infinite;
+        }
+        .animate-fade-in-out {
+          animation: fade-in-out 3s ease-in-out infinite;
         }
       `}</style>
     </div>

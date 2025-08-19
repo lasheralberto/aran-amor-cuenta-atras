@@ -14,7 +14,6 @@ const ROOM_OPTIONS = [
 const RSVPSection = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [attendance, setAttendance] = useState("yes");
   const [guests, setGuests] = useState("0");
   const [dietaryRestrictions, setDietaryRestrictions] = useState("");
   const [message, setMessage] = useState("");
@@ -40,7 +39,6 @@ const RSVPSection = () => {
           fields: {
             Nombre: name,
             Email: email,
-            Asistencia: attendance,
             Restricciones: dietaryRestrictions,
             Cancion: messageSong,
             Mensaje: message,
@@ -81,7 +79,6 @@ const RSVPSection = () => {
         // Limpiar formulario
         setName("");
         setEmail("");
-        setAttendance("yes");
         setGuests("0");
         setDietaryRestrictions("");
         setMessage("");
@@ -189,37 +186,6 @@ const RSVPSection = () => {
               </div>
 
               <div>
-                <label className="block text-sm md:text-base text-white font-normal mb-1">
-                  ¿Asistirás a nuestra boda? *
-                </label>
-                <div className="space-y-1 md:space-y-2">
-                  <label className="flex items-center text-sm md:text-base text-white font-normal">
-                    <input
-                      type="radio"
-                      name="attendance"
-                      value="yes"
-                      checked={attendance === "yes"}
-                      onChange={() => setAttendance("yes")}
-                      className="mr-2 h-3 w-3 md:h-4 md:w-4 text-winter-accent"
-                    />
-                    Sí, asistiré
-                  </label>
-                  <label className="flex items-center text-sm md:text-base text-white font-normal">
-                    <input
-                      type="radio"
-                      name="attendance"
-                      value="no"
-                      checked={attendance === "no"}
-                      onChange={() => setAttendance("no")}
-                      className="mr-2 h-3 w-3 md:h-4 md:w-4 text-winter-accent"
-                    />
-                    No podré asistir
-                  </label>
-                </div>
-              </div>
-
-              {attendance === "yes" && (
-                <div>
                   <label
                     htmlFor="dietary"
                     className="block text-sm md:text-base text-white font-normal mb-1"
@@ -235,7 +201,6 @@ const RSVPSection = () => {
                     placeholder="Alergias, intolerancias, u otras restricciones alimentarias"
                   ></textarea>
                 </div>
-              )}
 
               <div>
                 <label

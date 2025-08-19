@@ -22,7 +22,7 @@ const NavBar = () => {
     { name: "Inicio", href: "#home" },
     { name: "Iglesia", href: "#church" },
     { name: "Convite", href: "#reception" },
-    { name: "Fiesta", href: "#party" },
+    { name: "Lista de Bodas", href: "#gift-list" },
     { name: "Confirmación", href: "#rsvp" },
   ];
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import ImageReveal from './ImageReveal';
 
 const snowflakeKeyframes = `
   @keyframes snowfall {
@@ -34,20 +35,20 @@ const snowflakeKeyframes = `
   }
 `;
 
-const polaroidStyle = {
+const polaroidStyle: React.CSSProperties = {
   display: 'inline-block',
   background: '#f8fafc',
   padding: '16px 16px 60px 16px', // Más espacio abajo como polaroid
   boxShadow: '0 4px 15px rgba(100, 116, 139, 0.15)',
   borderRadius: '2px',
   maxWidth: '280px',
-  position: 'relative',
+  position: 'relative' as const,
   animation: 'gentleFloat 8s ease-in-out infinite, shimmer 6s ease-in-out infinite',
   transform: 'rotate(-1deg)',
   border: '1px solid #e2e8f0',
 };
 
-const imageStyle = {
+const imageStyle: React.CSSProperties = {
   display: 'block',
   width: '100%',
   height: 'auto',
@@ -55,40 +56,50 @@ const imageStyle = {
   borderRadius: '1px',
 };
 
-const captionStyle = {
-  position: 'absolute',
+const captionStyle: React.CSSProperties = {
+  position: 'absolute' as const,
   bottom: '16px',
   left: '16px',
   right: '16px',
-  textAlign: 'center',
+  textAlign: 'center' as const,
   fontFamily: 'serif',
   fontSize: '14px',
   color: '#64748b',
-  fontStyle: 'italic',
+  fontStyle: 'italic' as const,
   letterSpacing: '0.5px',
 };
 
-const snowflakeStyle = {
-  position: 'absolute',
+const snowflakeStyle: React.CSSProperties = {
+  position: 'absolute' as const,
   color: '#cbd5e1',
   fontSize: '10px',
-  userSelect: 'none',
-  pointerEvents: 'none',
+  userSelect: 'none' as const,
+  pointerEvents: 'none' as const,
   animation: 'snowfall 4s linear infinite',
 };
 
-const vintageCorner = {
-  position: 'absolute',
+const vintageCorner: React.CSSProperties = {
+  position: 'absolute' as const,
   width: '0',
   height: '0',
-  borderStyle: 'solid',
+  borderStyle: 'solid' as const,
 };
 
+interface VintageImageFrameProps {
+  src: string;
+  overlayImage?: string;
+  alt?: string;
+  caption?: string;
+}
+
 export default function VintageWinterFrame({ 
-  src = "https://via.placeholder.com/250x180/e2e8f0/64748b?text=Foto+Vintage", 
+  src,
+  overlayImage,
   alt = "Imagen vintage invernal",
   caption = "08-08-24. No sabía lo que le esperaba.."
-}) {
+}: VintageImageFrameProps) {
+  console.log('VintageWinterFrame props:', { src, overlayImage, alt, caption });
+  
   return (
     <>
       <style>{snowflakeKeyframes}</style>

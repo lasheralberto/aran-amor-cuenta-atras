@@ -16,11 +16,11 @@ const FogText = ({ text, className, delay = 0, duration = 1.5 }) => {
             key={index}
             className="inline-block transform transition-all duration-1000 opacity-0 blur-sm filter text-white"
             style={{
-              animationName: "snowstormReveal",
+              animationName: "smoothSnowReveal",
               animationDuration: `${duration}s`,
-              animationDelay: `${delay + index * 0.06}s`,
+              animationDelay: `${delay + index * 0.04}s`,
               animationFillMode: "forwards",
-              animationTimingFunction: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+              animationTimingFunction: "cubic-bezier(0.23, 1, 0.32, 1)",
             }}
           >
             {letter === " " ? "\u00A0" : letter.toString()}
@@ -67,35 +67,45 @@ const HeroSection = () => {
     // Inyectar keyframes para las animaciones
     const style = document.createElement('style');
     style.textContent = `
-      @keyframes snowstormReveal {
+      @keyframes smoothSnowReveal {
         0% { 
           opacity: 0;
-          filter: blur(8px);
-          transform: translateY(20px) translateX(-8px) scale(0.95) rotate(-2deg);
+          filter: blur(12px) brightness(0.7);
+          transform: translateY(30px) translateX(-12px) scale(0.85) rotate(-3deg);
         }
-        20% {
-          opacity: 0.2;
-          filter: blur(6px);
-          transform: translateY(15px) translateX(-5px) scale(0.97) rotate(-1deg);
+        15% {
+          opacity: 0.1;
+          filter: blur(10px) brightness(0.8);
+          transform: translateY(25px) translateX(-8px) scale(0.88) rotate(-2deg);
         }
-        40% {
+        30% {
+          opacity: 0.3;
+          filter: blur(8px) brightness(0.9);
+          transform: translateY(18px) translateX(-5px) scale(0.92) rotate(-1deg);
+        }
+        45% {
           opacity: 0.5;
-          filter: blur(4px);
-          transform: translateY(10px) translateX(-2px) scale(0.99) rotate(-0.5deg);
+          filter: blur(6px) brightness(0.95);
+          transform: translateY(12px) translateX(-2px) scale(0.96) rotate(-0.5deg);
         }
         60% {
           opacity: 0.7;
-          filter: blur(2px);
-          transform: translateY(5px) translateX(1px) scale(1.01) rotate(0.2deg);
+          filter: blur(4px) brightness(0.98);
+          transform: translateY(8px) translateX(1px) scale(0.98) rotate(0.2deg);
         }
-        80% {
-          opacity: 0.9;
-          filter: blur(1px);
-          transform: translateY(2px) translateX(0px) scale(1.005) rotate(0deg);
+        75% {
+          opacity: 0.85;
+          filter: blur(2px) brightness(1);
+          transform: translateY(4px) translateX(0px) scale(1.01) rotate(0.1deg);
+        }
+        90% {
+          opacity: 0.95;
+          filter: blur(1px) brightness(1.02);
+          transform: translateY(1px) translateX(0px) scale(1.005) rotate(0deg);
         }
         100% { 
           opacity: 1;
-          filter: blur(0);
+          filter: blur(0) brightness(1);
           transform: translateY(0) translateX(0) scale(1) rotate(0deg);
         }
       }
