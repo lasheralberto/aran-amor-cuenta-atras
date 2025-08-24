@@ -17,7 +17,7 @@ const GiftListSection = () => {
           </div>
           
           <p className="text-lg md:text-xl text-white font-light leading-relaxed">
-            El mejor regalo es que formes parte de nuestra historia. Si aún así quieres sumar un granito de amor, te lo agradecemos de corazón.
+            Gracias por estar aquí, por recorrer tantos kilómetros y por todo el cariño que traéis con vosotros. Que estéis con nosotros es lo más importante, y si queréis sumarle un poquito más de amor, ¡os lo agradeceremos de todo corazón!
           </p>
           
           <div className="flex items-center justify-center py-4">
