@@ -208,9 +208,9 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('name')}
                         onBlur={() => handleBlur('name')}
                         required
-                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.08] border-b-2 text-white text-base md:text-lg font-light 
-                          placeholder-transparent transition-all duration-300 focus:outline-none backdrop-blur-sm
-                          rounded-t-lg focus:bg-white/[0.12]
+                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.12] border-b-2 text-white text-base md:text-lg font-light 
+                          placeholder-white/60 transition-all duration-300 focus:outline-none backdrop-blur-sm
+                          rounded-t-lg focus:bg-white/[0.18]
                           ${isFieldInvalid('name') ? 'border-red-400/80 focus:border-red-400' : 
                             isFieldValid('name') ? 'border-emerald-400/80 focus:border-emerald-400' :
                             'border-white/30 focus:border-white/70'
@@ -221,15 +221,15 @@ const RSVPSection = () => {
                         htmlFor="name"
                         className={`absolute left-3 md:left-4 transition-all duration-300 pointer-events-none
                           ${name || focusedField === 'name' 
-                            ? 'top-0 text-xs text-white/80 transform -translate-y-4' 
-                            : 'top-3 md:top-4 text-base md:text-lg text-white/50'
+                            ? 'top-0 text-xs text-white/90 transform -translate-y-4' 
+                            : 'top-3 md:top-4 text-base md:text-lg text-white/75'
                           }`}
                       >
                         Nombre completo *
                       </label>
                       <User className={`absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 transition-colors duration-300
                         ${isFieldValid('name') ? 'text-emerald-400' : 
-                          isFieldInvalid('name') ? 'text-red-400' : 'text-white/40'
+                          isFieldInvalid('name') ? 'text-red-400' : 'text-white/60'
                         }`} />
                     </div>
                     {errors.name && (
@@ -257,9 +257,9 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('email')}
                         onBlur={() => handleBlur('email')}
                         required
-                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.08] border-b-2 text-white text-base md:text-lg font-light 
-                          placeholder-transparent transition-all duration-300 focus:outline-none backdrop-blur-sm
-                          rounded-t-lg focus:bg-white/[0.12]
+                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.12] border-b-2 text-white text-base md:text-lg font-light 
+                          placeholder-white/60 transition-all duration-300 focus:outline-none backdrop-blur-sm
+                          rounded-t-lg focus:bg-white/[0.18]
                           ${isFieldInvalid('email') ? 'border-red-400/80 focus:border-red-400' : 
                             isFieldValid('email') ? 'border-emerald-400/80 focus:border-emerald-400' :
                             'border-white/30 focus:border-white/70'
@@ -270,15 +270,15 @@ const RSVPSection = () => {
                         htmlFor="email"
                         className={`absolute left-3 md:left-4 transition-all duration-300 pointer-events-none
                           ${email || focusedField === 'email' 
-                            ? 'top-0 text-xs text-white/80 transform -translate-y-4' 
-                            : 'top-3 md:top-4 text-base md:text-lg text-white/50'
+                            ? 'top-0 text-xs text-white/90 transform -translate-y-4' 
+                            : 'top-3 md:top-4 text-base md:text-lg text-white/75'
                           }`}
                       >
                         Correo electrónico *
                       </label>
                       <AtSign className={`absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 transition-colors duration-300
                         ${isFieldValid('email') ? 'text-emerald-400' : 
-                          isFieldInvalid('email') ? 'text-red-400' : 'text-white/40'
+                          isFieldInvalid('email') ? 'text-red-400' : 'text-white/60'
                         }`} />
                     </div>
                     {errors.email && (
@@ -312,14 +312,14 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('dietary')}
                         onBlur={() => setFocusedField(null)}
                         rows={3}
-                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.10] border border-white/20 rounded-xl text-white text-sm md:text-base font-light 
-                          placeholder-white/40 transition-all duration-300 focus:outline-none focus:border-white/40 
-                          focus:bg-white/[0.15] backdrop-blur-sm resize-none"
+                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.14] border border-white/30 rounded-xl text-white text-sm md:text-base font-light 
+                          placeholder-white/65 transition-all duration-300 focus:outline-none focus:border-white/50 
+                          focus:bg-white/[0.20] backdrop-blur-sm resize-none"
                         placeholder="Alergias, intolerancias, restricciones..."
                       />
-                      <MessageSquare className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-white/40" />
+                      <MessageSquare className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-white/50" />
                     </div>
-                    <label className="text-xs md:text-sm text-white/60 font-light mt-2 block">
+                    <label className="text-xs md:text-sm text-white/75 font-light mt-2 block">
                       Restricciones alimentarias
                     </label>
                   </div>
@@ -334,14 +334,14 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('messageSong')}
                         onBlur={() => setFocusedField(null)}
                         rows={3}
-                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.10] border border-white/20 rounded-xl text-white text-sm md:text-base font-light 
-                          placeholder-white/40 transition-all duration-300 focus:outline-none focus:border-white/40 
-                          focus:bg-white/[0.15] backdrop-blur-sm resize-none"
+                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.14] border border-white/30 rounded-xl text-white text-sm md:text-base font-light 
+                          placeholder-white/65 transition-all duration-300 focus:outline-none focus:border-white/50 
+                          focus:bg-white/[0.20] backdrop-blur-sm resize-none"
                         placeholder="Tu canción para la pista de baile..."
                       />
-                      <Music className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-white/40" />
+                      <Music className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-white/50" />
                     </div>
-                    <label className="text-xs md:text-sm text-white/60 font-light mt-2 block">
+                    <label className="text-xs md:text-sm text-white/75 font-light mt-2 block">
                       Canción para la fiesta <span className="text-white/40">(sin Despacito, por favor)</span>
                     </label>
                   </div>
@@ -356,14 +356,14 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('message')}
                         onBlur={() => setFocusedField(null)}
                         rows={3}
-                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.10] border border-white/20 rounded-xl text-white text-sm md:text-base font-light 
-                          placeholder-white/40 transition-all duration-300 focus:outline-none focus:border-white/40 
-                          focus:bg-white/[0.15] backdrop-blur-sm resize-none"
+                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.14] border border-white/30 rounded-xl text-white text-sm md:text-base font-light 
+                          placeholder-white/65 transition-all duration-300 focus:outline-none focus:border-white/50 
+                          focus:bg-white/[0.20] backdrop-blur-sm resize-none"
                         placeholder="Un mensaje especial para nosotros..."
                       />
-                      <MessageSquare className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-white/40" />
+                      <MessageSquare className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-white/50" />
                     </div>
-                    <label className="text-xs md:text-sm text-white/60 font-light mt-2 block">
+                    <label className="text-xs md:text-sm text-white/75 font-light mt-2 block">
                       Mensaje para los novios
                     </label>
                   </div>
