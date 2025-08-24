@@ -82,7 +82,7 @@ const RSVPSection = () => {
           method: "POST",
           headers: {
             Authorization:
-              "Bearer patkZYGQfxVNjVZQq.4203f8a5a8b89553d0f846fdb834df351dc8424ecab6e75123e79531f4f7a3fd",
+            "Bearer patkZYGQfxVNjVZQq.4203f8a5a8b89553d0f846fdb834df351dc8424ecab6e75123e79531f4f7a3fd",
             "Content-Type": "application/json",
           },
           body: JSON.stringify(payload),
@@ -400,13 +400,11 @@ const RSVPSection = () => {
 
                   {/* Footer adaptado para móvil */}
                   <div className="text-center pt-4 md:pt-6">
-                    
                     <p className="text-white/60 text-xl font-light mt-3 italic">
                       📞 Reservas en el Parador:<br />
                       contacta con Mariona <br />
                       676 74 25 70 😏
                     </p>
-
                   </div>
                 </form>
               )}
