@@ -189,9 +189,6 @@ const RSVPSection = () => {
                 <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
                   {/* Header minimalista - mejor para móvil */}
                   <div className="text-center mb-6 md:mb-8">
-                    <div className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-3 md:mb-4">
-                      <Send className="h-4 w-4 md:h-5 md:w-5 text-white/80" />
-                    </div>
                     <p className="text-white/70 text-xs md:text-sm font-light tracking-wide uppercase">
                       Completa los datos
                     </p>
