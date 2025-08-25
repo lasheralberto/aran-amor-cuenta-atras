@@ -205,9 +205,9 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('name')}
                         onBlur={() => handleBlur('name')}
                         required
-                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.15] border border-white/30 rounded-xl text-white text-sm md:text-base font-light 
-                          placeholder-white/70 transition-all duration-300 focus:outline-none focus:border-white/50 
-                          focus:bg-white/[0.25] backdrop-blur-sm text-shadow-sm
+                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white border border-white/30 rounded-xl text-black text-sm md:text-base font-light 
+                          placeholder-gray-500 transition-all duration-300 focus:outline-none focus:border-white/50 
+                          focus:bg-white backdrop-blur-sm shadow-sm
                           ${isFieldInvalid('name') ? 'border-red-400/80 focus:border-red-400' : 
                             isFieldValid('name') ? 'border-emerald-400/80 focus:border-emerald-400' :
                             'border-white/30 focus:border-white/70'
@@ -247,9 +247,9 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('email')}
                         onBlur={() => handleBlur('email')}
                         required
-                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.15] border border-white/30 rounded-xl text-white text-sm md:text-base font-light 
-                          placeholder-white/70 transition-all duration-300 focus:outline-none focus:border-white/50 
-                          focus:bg-white/[0.25] backdrop-blur-sm text-shadow-sm
+                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white border border-white/30 rounded-xl text-black text-sm md:text-base font-light 
+                          placeholder-gray-500 transition-all duration-300 focus:outline-none focus:border-white/50 
+                          focus:bg-white backdrop-blur-sm shadow-sm
                           ${isFieldInvalid('email') ? 'border-red-400/80 focus:border-red-400' : 
                             isFieldValid('email') ? 'border-emerald-400/80 focus:border-emerald-400' :
                             'border-white/30 focus:border-white/70'
@@ -295,9 +295,9 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('dietary')}
                         onBlur={() => setFocusedField(null)}
                         rows={3}
-                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.20] border border-white/30 rounded-xl text-white text-sm md:text-base font-light 
-                          placeholder-white/80 transition-all duration-300 focus:outline-none focus:border-white/50 
-                          focus:bg-white/[0.30] backdrop-blur-sm resize-none"
+                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-white border border-white/30 rounded-xl text-black text-sm md:text-base font-light 
+                          placeholder-gray-500 transition-all duration-300 focus:outline-none focus:border-white/50 
+                          focus:bg-white backdrop-blur-sm resize-none shadow-sm"
                         placeholder="Alergias, intolerancias, restricciones..."
                       />
                       <MessageSquare className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-white/50" />
@@ -317,9 +317,9 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('messageSong')}
                         onBlur={() => setFocusedField(null)}
                         rows={3}
-                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.20] border border-white/30 rounded-xl text-white text-sm md:text-base font-light 
-                          placeholder-white/80 transition-all duration-300 focus:outline-none focus:border-white/50 
-                          focus:bg-white/[0.30] backdrop-blur-sm resize-none"
+                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-white border border-white/30 rounded-xl text-black text-sm md:text-base font-light 
+                          placeholder-gray-500 transition-all duration-300 focus:outline-none focus:border-white/50 
+                          focus:bg-white backdrop-blur-sm resize-none shadow-sm"
                         placeholder="Tu canción para la pista de baile..."
                       />
                       <Music className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-white/50" />
@@ -339,9 +339,9 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('message')}
                         onBlur={() => setFocusedField(null)}
                         rows={3}
-                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.20] border border-white/30 rounded-xl text-white text-sm md:text-base font-light 
-                          placeholder-white/80 transition-all duration-300 focus:outline-none focus:border-white/50 
-                          focus:bg-white/[0.30] backdrop-blur-sm resize-none"
+                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-white border border-white/30 rounded-xl text-black text-sm md:text-base font-light 
+                          placeholder-gray-500 transition-all duration-300 focus:outline-none focus:border-white/50 
+                          focus:bg-white backdrop-blur-sm resize-none shadow-sm"
                         placeholder="Un mensaje especial para nosotros..."
                       />
                       <MessageSquare className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-white/50" />
