@@ -356,10 +356,10 @@ const RSVPSection = () => {
                     <button
                       type="submit"
                       disabled={isLoading || Object.keys(errors).length > 0 || !name.trim() || !email.trim()}
-                      className="group relative w-full bg-white/[0.12] hover:bg-white/[0.18] border border-white/30 
-                        hover:border-white/50 text-white font-light text-base md:text-lg rounded-xl md:rounded-2xl 
+                      className="group relative w-full bg-white/90 hover:bg-white border border-white/50 
+                        hover:border-white text-gray-900 font-light text-base md:text-lg rounded-xl md:rounded-2xl 
                         py-3 md:py-4 px-6 md:px-8 transition-all duration-500 backdrop-blur-sm overflow-hidden
-                        disabled:bg-white/[0.08] disabled:border-white/20 disabled:text-white/70 disabled:cursor-not-allowed shadow-lg"
+                        disabled:bg-white/60 disabled:border-white/40 disabled:text-gray-500 disabled:cursor-not-allowed shadow-lg"
                     >
                       <span className="relative z-10 flex items-center justify-center gap-2 md:gap-3">
                         {isLoading ? (
@@ -375,7 +375,7 @@ const RSVPSection = () => {
                         )}
                       </span>
                       {/* Efecto de hover mejorado */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-100 to-transparent 
                         opacity-0 group-hover:opacity-100 transition-opacity duration-700 -skew-x-12"></div>
                     </button>
                   </div>
