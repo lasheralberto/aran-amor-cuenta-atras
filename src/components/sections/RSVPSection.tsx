@@ -205,30 +205,23 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('name')}
                         onBlur={() => handleBlur('name')}
                         required
-                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.25] border-b-2 text-white text-base md:text-lg font-light 
-                          placeholder-white/80 transition-all duration-300 focus:outline-none backdrop-blur-sm
-                          rounded-t-lg focus:bg-white/[0.35]
+                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.15] border border-white/30 rounded-xl text-white text-sm md:text-base font-light 
+                          placeholder-white/70 transition-all duration-300 focus:outline-none focus:border-white/50 
+                          focus:bg-white/[0.25] backdrop-blur-sm text-shadow-sm
                           ${isFieldInvalid('name') ? 'border-red-400/80 focus:border-red-400' : 
                             isFieldValid('name') ? 'border-emerald-400/80 focus:border-emerald-400' :
                             'border-white/30 focus:border-white/70'
                           }`}
                         placeholder="Nombre completo"
                       />
-                      <label
-                        htmlFor="name"
-                        className={`absolute left-3 md:left-4 transition-all duration-300 pointer-events-none
-                          ${name || focusedField === 'name' 
-                            ? 'top-0 text-xs text-white transform -translate-y-4' 
-                            : 'top-3 md:top-4 text-base md:text-lg text-white/90'
-                          }`}
-                      >
-                        Nombre completo *
-                      </label>
                       <User className={`absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 transition-colors duration-300
                         ${isFieldValid('name') ? 'text-emerald-400' : 
                           isFieldInvalid('name') ? 'text-red-400' : 'text-white/60'
                         }`} />
                     </div>
+                    <label className="text-xs md:text-sm text-white/85 font-light mt-2 block">
+                      Nombre completo *
+                    </label>
                     {errors.name && (
                       <p className="mt-2 text-xs md:text-sm text-red-400 flex items-center gap-2 font-light">
                         <AlertCircle className="h-3 w-3 md:h-4 md:w-4" />
@@ -254,30 +247,23 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('email')}
                         onBlur={() => handleBlur('email')}
                         required
-                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.25] border-b-2 text-white text-base md:text-lg font-light 
-                          placeholder-white/80 transition-all duration-300 focus:outline-none backdrop-blur-sm
-                          rounded-t-lg focus:bg-white/[0.35]
+                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.15] border border-white/30 rounded-xl text-white text-sm md:text-base font-light 
+                          placeholder-white/70 transition-all duration-300 focus:outline-none focus:border-white/50 
+                          focus:bg-white/[0.25] backdrop-blur-sm text-shadow-sm
                           ${isFieldInvalid('email') ? 'border-red-400/80 focus:border-red-400' : 
                             isFieldValid('email') ? 'border-emerald-400/80 focus:border-emerald-400' :
                             'border-white/30 focus:border-white/70'
                           }`}
                         placeholder="Correo electrónico"
                       />
-                      <label
-                        htmlFor="email"
-                        className={`absolute left-3 md:left-4 transition-all duration-300 pointer-events-none
-                          ${email || focusedField === 'email' 
-                            ? 'top-0 text-xs text-white transform -translate-y-4' 
-                            : 'top-3 md:top-4 text-base md:text-lg text-white/90'
-                          }`}
-                      >
-                        Correo electrónico *
-                      </label>
                       <AtSign className={`absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 transition-colors duration-300
                         ${isFieldValid('email') ? 'text-emerald-400' : 
                           isFieldInvalid('email') ? 'text-red-400' : 'text-white/60'
                         }`} />
                     </div>
+                    <label className="text-xs md:text-sm text-white/85 font-light mt-2 block">
+                      Correo electrónico *
+                    </label>
                     {errors.email && (
                       <p className="mt-2 text-xs md:text-sm text-red-400 flex items-center gap-2 font-light">
                         <AlertCircle className="h-3 w-3 md:h-4 md:w-4" />
