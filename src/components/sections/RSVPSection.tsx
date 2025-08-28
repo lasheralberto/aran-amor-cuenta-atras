@@ -12,6 +12,7 @@ const RSVPSection = () => {
   const [messageSong, setMessageSong] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [showFallbackForm, setShowFallbackForm] = useState(false);
 
   // Estados para validación y UX
   const [errors, setErrors] = useState<{[key: string]: string}>({});
@@ -107,11 +108,11 @@ const RSVPSection = () => {
         setFocusedField(null);
       } else {
         console.error("❌ Error al enviar a Airtable:", airtableResult);
-        alert("Ocurrió un error al enviar los datos.");
+        setShowFallbackForm(true);
       }
     } catch (error) {
       console.error("❌ Error de red al enviar a Airtable:", error);
-      alert("Error de red. Intenta de nuevo más tarde.");
+      setShowFallbackForm(true);
     }
 
     // Enviar al webhook de Make (siempre)
@@ -185,11 +186,59 @@ const RSVPSection = () => {
                     Enviar otra confirmación
                   </button>
                 </div>
+              ) : showFallbackForm ? (
+                <div className="text-center py-8 md:py-12">
+                  <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-orange-400 to-red-500 mb-6 md:mb-8 shadow-lg shadow-orange-500/25">
+                    <svg className="h-8 w-8 md:h-10 md:w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-100 mb-4 md:mb-6 tracking-wide">
+                    ¡No te preocupes!
+                  </h3>
+                  <p className="text-base md:text-lg text-gray-200 md:text-white/90 font-light mb-6 md:mb-8 leading-relaxed max-w-sm md:max-w-md mx-auto px-4">
+                    Hubo un problema técnico, pero puedes confirmar tu asistencia usando nuestro formulario alternativo.
+                  </p>
+                  
+                  {/* Botón principal para ir al formulario */}
+                  <a
+                    href="https://forms.gle/p1TgzUqMYeQCvQs39"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center justify-center w-full max-w-sm mx-auto bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-medium text-base md:text-lg rounded-2xl py-4 px-6 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-6"
+                  >
+                    <svg className="h-5 w-5 md:h-6 md:w-6 mr-3 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                    Confirmar en formulario alternativo
+                    <svg className="h-4 w-4 md:h-5 md:w-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                  
+                  {/* Información adicional */}
+                  <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 md:p-6 border border-white/10 mb-6">
+                    <p className="text-sm md:text-base text-white/80 font-light leading-relaxed">
+                      💡 <strong className="text-white">Tip:</strong> El formulario se abrirá en una nueva pestaña. 
+                      Una vez completado, puedes volver aquí.
+                    </p>
+                  </div>
+                  
+                  {/* Botón para intentar de nuevo */}
+                  <button
+                    onClick={() => {
+                      setShowFallbackForm(false);
+                      setIsLoading(false);
+                    }}
+                    className="text-gray-300 md:text-white/70 hover:text-white transition-colors duration-300 text-sm md:text-base font-light underline decoration-gray-400 md:decoration-white/40 hover:decoration-white underline-offset-4"
+                  >
+                    ← Volver a intentar aquí
+                  </button>
+                </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
                   {/* Header minimalista - mejor contraste para móvil */}
                   <div className="text-center mb-6 md:mb-8">
-                    <p className="text-white/70 text-xs md:text-sm font-light tracking-wide uppercase">
                     <div className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-600/70 md:bg-white/10 backdrop-blur-sm border border-slate-500/50 md:border-white/20 mb-3 md:mb-4">
                       <Send className="h-4 w-4 md:h-5 md:w-5 text-gray-200 md:text-white/80" />
                     </div>
@@ -212,29 +261,15 @@ const RSVPSection = () => {
                         className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white border border-white/30 rounded-xl text-black text-sm md:text-base font-light 
                           placeholder-gray-500 transition-all duration-300 focus:outline-none focus:border-white/50 
                           focus:bg-white backdrop-blur-sm shadow-sm
-                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-slate-700/80 md:bg-white/[0.08] border-b-2 text-gray-100 md:text-white text-base md:text-lg font-light 
-                          placeholder-transparent transition-all duration-300 focus:outline-none backdrop-blur-sm
-                          rounded-t-lg focus:bg-slate-600/80 md:focus:bg-white/[0.12]
                           ${isFieldInvalid('name') ? 'border-red-400/80 focus:border-red-400' : 
                             isFieldValid('name') ? 'border-emerald-400/80 focus:border-emerald-400' :
                             'border-slate-500/50 md:border-white/30 focus:border-slate-400 md:focus:border-white/70'
                           }`}
                         placeholder="Nombre completo"
                       />
-                      <label
-                        htmlFor="name"
-                        className={`absolute left-3 md:left-4 transition-all duration-300 pointer-events-none
-                          ${name || focusedField === 'name' 
-                            ? 'top-0 text-xs text-gray-200 md:text-white/80 transform -translate-y-4' 
-                            : 'top-3 md:top-4 text-base md:text-lg text-gray-300 md:text-white/50'
-                          }`}
-                      >
-                        Nombre completo *
-                      </label>
                       <User className={`absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 transition-colors duration-300
                         ${isFieldValid('name') ? 'text-emerald-400' : 
                           isFieldInvalid('name') ? 'text-red-400' : 'text-white/60'
-                          isFieldInvalid('name') ? 'text-red-400' : 'text-gray-400 md:text-white/40'
                         }`} />
                     </div>
                     <label className="text-xs md:text-sm text-white/85 font-light mt-2 block">
@@ -268,29 +303,15 @@ const RSVPSection = () => {
                         className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white border border-white/30 rounded-xl text-black text-sm md:text-base font-light 
                           placeholder-gray-500 transition-all duration-300 focus:outline-none focus:border-white/50 
                           focus:bg-white backdrop-blur-sm shadow-sm
-                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-slate-700/80 md:bg-white/[0.08] border-b-2 text-gray-100 md:text-white text-base md:text-lg font-light 
-                          placeholder-transparent transition-all duration-300 focus:outline-none backdrop-blur-sm
-                          rounded-t-lg focus:bg-slate-600/80 md:focus:bg-white/[0.12]
                           ${isFieldInvalid('email') ? 'border-red-400/80 focus:border-red-400' : 
                             isFieldValid('email') ? 'border-emerald-400/80 focus:border-emerald-400' :
                             'border-slate-500/50 md:border-white/30 focus:border-slate-400 md:focus:border-white/70'
                           }`}
                         placeholder="Correo electrónico"
                       />
-                      <label
-                        htmlFor="email"
-                        className={`absolute left-3 md:left-4 transition-all duration-300 pointer-events-none
-                          ${email || focusedField === 'email' 
-                            ? 'top-0 text-xs text-gray-200 md:text-white/80 transform -translate-y-4' 
-                            : 'top-3 md:top-4 text-base md:text-lg text-gray-300 md:text-white/50'
-                          }`}
-                      >
-                        Correo electrónico *
-                      </label>
                       <AtSign className={`absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 transition-colors duration-300
                         ${isFieldValid('email') ? 'text-emerald-400' : 
                           isFieldInvalid('email') ? 'text-red-400' : 'text-white/60'
-                          isFieldInvalid('email') ? 'text-red-400' : 'text-gray-400 md:text-white/40'
                         }`} />
                     </div>
                     <label className="text-xs md:text-sm text-white/85 font-light mt-2 block">
@@ -330,16 +351,11 @@ const RSVPSection = () => {
                         className="w-full px-3 md:px-4 py-3 md:py-4 bg-white border border-white/30 rounded-xl text-black text-sm md:text-base font-light 
                           placeholder-gray-500 transition-all duration-300 focus:outline-none focus:border-white/50 
                           focus:bg-white backdrop-blur-sm resize-none shadow-sm"
-                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-slate-700/70 md:bg-white/[0.10] border border-slate-500/50 md:border-white/20 rounded-xl text-gray-100 md:text-white text-sm md:text-base font-light 
-                          placeholder-gray-300 md:placeholder-white/40 transition-all duration-300 focus:outline-none focus:border-slate-400 md:focus:border-white/40 
-                          focus:bg-slate-600/70 md:focus:bg-white/[0.15] backdrop-blur-sm resize-none"
                         placeholder="Alergias, intolerancias, restricciones..."
                       />
                       <MessageSquare className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-white/50" />
-                      <MessageSquare className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-gray-400 md:text-white/40" />
                     </div>
                     <label className="text-xs md:text-sm text-white/85 font-light mt-2 block">
-                    <label className="text-xs md:text-sm text-gray-300 md:text-white/60 font-light mt-2 block">
                       Restricciones alimentarias
                     </label>
                   </div>
@@ -357,18 +373,12 @@ const RSVPSection = () => {
                         className="w-full px-3 md:px-4 py-3 md:py-4 bg-white border border-white/30 rounded-xl text-black text-sm md:text-base font-light 
                           placeholder-gray-500 transition-all duration-300 focus:outline-none focus:border-white/50 
                           focus:bg-white backdrop-blur-sm resize-none shadow-sm"
-                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-slate-700/70 md:bg-white/[0.10] border border-slate-500/50 md:border-white/20 rounded-xl text-gray-100 md:text-white text-sm md:text-base font-light 
-                          placeholder-gray-300 md:placeholder-white/40 transition-all duration-300 focus:outline-none focus:border-slate-400 md:focus:border-white/40 
-                          focus:bg-slate-600/70 md:focus:bg-white/[0.15] backdrop-blur-sm resize-none"
                         placeholder="Tu canción para la pista de baile..."
                       />
                       <Music className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-white/50" />
-                      <Music className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-gray-400 md:text-white/40" />
                     </div>
                     <label className="text-xs md:text-sm text-white/85 font-light mt-2 block">
                       Canción para la fiesta <span className="text-white/50">(sin Despacito, por favor)</span>
-                    <label className="text-xs md:text-sm text-gray-300 md:text-white/60 font-light mt-2 block">
-                      Canción para la fiesta <span className="text-gray-400 md:text-white/40">(sin Despacito, por favor)</span>
                     </label>
                   </div>
 
@@ -385,16 +395,11 @@ const RSVPSection = () => {
                         className="w-full px-3 md:px-4 py-3 md:py-4 bg-white border border-white/30 rounded-xl text-black text-sm md:text-base font-light 
                           placeholder-gray-500 transition-all duration-300 focus:outline-none focus:border-white/50 
                           focus:bg-white backdrop-blur-sm resize-none shadow-sm"
-                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-slate-700/70 md:bg-white/[0.10] border border-slate-500/50 md:border-white/20 rounded-xl text-gray-100 md:text-white text-sm md:text-base font-light 
-                          placeholder-gray-300 md:placeholder-white/40 transition-all duration-300 focus:outline-none focus:border-slate-400 md:focus:border-white/40 
-                          focus:bg-slate-600/70 md:focus:bg-white/[0.15] backdrop-blur-sm resize-none"
                         placeholder="Un mensaje especial para nosotros..."
                       />
                       <MessageSquare className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-white/50" />
-                      <MessageSquare className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-gray-400 md:text-white/40" />
                     </div>
                     <label className="text-xs md:text-sm text-white/85 font-light mt-2 block">
-                    <label className="text-xs md:text-sm text-gray-300 md:text-white/60 font-light mt-2 block">
                       Mensaje para los novios
                     </label>
                   </div>
@@ -432,7 +437,7 @@ const RSVPSection = () => {
                   <div className="text-center pt-4 md:pt-6">
                     <p className="text-white/60 text-xl font-light mt-3 italic">
                       📞 Reservas en el Parador:<br />
-                      contacta con Mariona <br />
+                      contactar con Mariona <br />
                       676 74 25 70 😏
                     </p>
                   </div>
