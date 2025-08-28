@@ -160,10 +160,10 @@ const RSVPSection = () => {
         </div>
         
         <div className="max-w-lg md:max-w-2xl mx-auto">
-          {/* Card con mejor contraste y adaptación móvil */}
-          <div className="relative overflow-hidden rounded-2xl md:rounded-3xl backdrop-blur-xl bg-white/[0.08] md:bg-white/[0.06] border border-white/20 shadow-2xl">
-            {/* Overlay más claro para mejor legibilidad */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/[0.12] via-white/[0.08] to-white/[0.04]"></div>
+          {/* Card con mucho mejor contraste para móviles */}
+          <div className="relative overflow-hidden rounded-2xl md:rounded-3xl backdrop-blur-xl bg-slate-800/90 md:bg-white/[0.08] border border-slate-600/50 md:border-white/20 shadow-2xl">
+            {/* Overlay más oscuro para móviles, más claro para desktop */}
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-700/60 via-slate-800/40 to-slate-900/60 md:from-white/[0.12] md:via-white/[0.08] md:to-white/[0.04]"></div>
             
             {/* Content con mejor padding para móvil */}
             <div className="relative z-10 p-6 md:p-10 lg:p-12">
@@ -172,32 +172,32 @@ const RSVPSection = () => {
                   <div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 mb-6 md:mb-8 shadow-lg shadow-emerald-500/25">
                     <Check className="h-8 w-8 md:h-10 md:w-10 text-white" />
                   </div>
-                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-light text-white mb-4 md:mb-6 tracking-wide">
+                  <h3 className="text-2xl md:text-3xl lg:text-4xl font-light text-gray-100 mb-4 md:mb-6 tracking-wide">
                     ¡Perfecto!
                   </h3>
-                  <p className="text-base md:text-lg text-white/90 font-light mb-6 md:mb-8 leading-relaxed max-w-sm md:max-w-md mx-auto px-4">
+                  <p className="text-base md:text-lg text-gray-200 md:text-white/90 font-light mb-6 md:mb-8 leading-relaxed max-w-sm md:max-w-md mx-auto px-4">
                     Hemos recibido tu confirmación. Estamos emocionados de celebrar contigo.
                   </p>
                   <button
                     onClick={() => setIsSubmitted(false)}
-                    className="text-white/70 hover:text-white transition-colors duration-300 text-sm md:text-base font-light underline decoration-white/40 hover:decoration-white underline-offset-4"
+                    className="text-gray-300 md:text-white/70 hover:text-white transition-colors duration-300 text-sm md:text-base font-light underline decoration-gray-400 md:decoration-white/40 hover:decoration-white underline-offset-4"
                   >
                     Enviar otra confirmación
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
-                  {/* Header minimalista - mejor para móvil */}
+                  {/* Header minimalista - mejor contraste para móvil */}
                   <div className="text-center mb-6 md:mb-8">
-                    <div className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-3 md:mb-4">
-                      <Send className="h-4 w-4 md:h-5 md:w-5 text-white/80" />
+                    <div className="inline-flex items-center justify-center w-10 h-10 md:w-12 md:h-12 rounded-full bg-slate-600/70 md:bg-white/10 backdrop-blur-sm border border-slate-500/50 md:border-white/20 mb-3 md:mb-4">
+                      <Send className="h-4 w-4 md:h-5 md:w-5 text-gray-200 md:text-white/80" />
                     </div>
-                    <p className="text-white/70 text-xs md:text-sm font-light tracking-wide uppercase">
+                    <p className="text-gray-300 md:text-white/70 text-xs md:text-sm font-light tracking-wide uppercase">
                       Completa los datos
                     </p>
                   </div>
 
-                  {/* Nombre - mejor contraste y responsive */}
+                  {/* Nombre - mucho mejor contraste para móviles */}
                   <div className="relative group">
                     <div className="relative">
                       <input
@@ -208,12 +208,12 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('name')}
                         onBlur={() => handleBlur('name')}
                         required
-                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.08] border-b-2 text-white text-base md:text-lg font-light 
+                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-slate-700/80 md:bg-white/[0.08] border-b-2 text-gray-100 md:text-white text-base md:text-lg font-light 
                           placeholder-transparent transition-all duration-300 focus:outline-none backdrop-blur-sm
-                          rounded-t-lg focus:bg-white/[0.12]
+                          rounded-t-lg focus:bg-slate-600/80 md:focus:bg-white/[0.12]
                           ${isFieldInvalid('name') ? 'border-red-400/80 focus:border-red-400' : 
                             isFieldValid('name') ? 'border-emerald-400/80 focus:border-emerald-400' :
-                            'border-white/30 focus:border-white/70'
+                            'border-slate-500/50 md:border-white/30 focus:border-slate-400 md:focus:border-white/70'
                           }`}
                         placeholder="Nombre completo"
                       />
@@ -221,15 +221,15 @@ const RSVPSection = () => {
                         htmlFor="name"
                         className={`absolute left-3 md:left-4 transition-all duration-300 pointer-events-none
                           ${name || focusedField === 'name' 
-                            ? 'top-0 text-xs text-white/80 transform -translate-y-4' 
-                            : 'top-3 md:top-4 text-base md:text-lg text-white/50'
+                            ? 'top-0 text-xs text-gray-200 md:text-white/80 transform -translate-y-4' 
+                            : 'top-3 md:top-4 text-base md:text-lg text-gray-300 md:text-white/50'
                           }`}
                       >
                         Nombre completo *
                       </label>
                       <User className={`absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 transition-colors duration-300
                         ${isFieldValid('name') ? 'text-emerald-400' : 
-                          isFieldInvalid('name') ? 'text-red-400' : 'text-white/40'
+                          isFieldInvalid('name') ? 'text-red-400' : 'text-gray-400 md:text-white/40'
                         }`} />
                     </div>
                     {errors.name && (
@@ -246,7 +246,7 @@ const RSVPSection = () => {
                     )}
                   </div>
 
-                  {/* Email - mejor contraste y responsive */}
+                  {/* Email - mucho mejor contraste para móviles */}
                   <div className="relative group">
                     <div className="relative">
                       <input
@@ -257,12 +257,12 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('email')}
                         onBlur={() => handleBlur('email')}
                         required
-                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.08] border-b-2 text-white text-base md:text-lg font-light 
+                        className={`w-full px-3 md:px-4 py-3 md:py-4 bg-slate-700/80 md:bg-white/[0.08] border-b-2 text-gray-100 md:text-white text-base md:text-lg font-light 
                           placeholder-transparent transition-all duration-300 focus:outline-none backdrop-blur-sm
-                          rounded-t-lg focus:bg-white/[0.12]
+                          rounded-t-lg focus:bg-slate-600/80 md:focus:bg-white/[0.12]
                           ${isFieldInvalid('email') ? 'border-red-400/80 focus:border-red-400' : 
                             isFieldValid('email') ? 'border-emerald-400/80 focus:border-emerald-400' :
-                            'border-white/30 focus:border-white/70'
+                            'border-slate-500/50 md:border-white/30 focus:border-slate-400 md:focus:border-white/70'
                           }`}
                         placeholder="Correo electrónico"
                       />
@@ -270,15 +270,15 @@ const RSVPSection = () => {
                         htmlFor="email"
                         className={`absolute left-3 md:left-4 transition-all duration-300 pointer-events-none
                           ${email || focusedField === 'email' 
-                            ? 'top-0 text-xs text-white/80 transform -translate-y-4' 
-                            : 'top-3 md:top-4 text-base md:text-lg text-white/50'
+                            ? 'top-0 text-xs text-gray-200 md:text-white/80 transform -translate-y-4' 
+                            : 'top-3 md:top-4 text-base md:text-lg text-gray-300 md:text-white/50'
                           }`}
                       >
                         Correo electrónico *
                       </label>
                       <AtSign className={`absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 transition-colors duration-300
                         ${isFieldValid('email') ? 'text-emerald-400' : 
-                          isFieldInvalid('email') ? 'text-red-400' : 'text-white/40'
+                          isFieldInvalid('email') ? 'text-red-400' : 'text-gray-400 md:text-white/40'
                         }`} />
                     </div>
                     {errors.email && (
@@ -295,14 +295,14 @@ const RSVPSection = () => {
                     )}
                   </div>
 
-                  {/* Separador visual - ajustado para móvil */}
+                  {/* Separador visual - mejor contraste */}
                   <div className="flex items-center gap-3 md:gap-4 py-3 md:py-4">
-                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
-                    <span className="text-white/50 text-xs font-light uppercase tracking-wider">Opcional</span>
-                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"></div>
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-400/50 md:via-white/30 to-transparent"></div>
+                    <span className="text-gray-300 md:text-white/50 text-xs font-light uppercase tracking-wider">Opcional</span>
+                    <div className="flex-1 h-px bg-gradient-to-r from-transparent via-slate-400/50 md:via-white/30 to-transparent"></div>
                   </div>
 
-                  {/* Restricciones alimentarias - mejorado para móvil */}
+                  {/* Restricciones alimentarias - mejor contraste para móviles */}
                   <div className="relative group">
                     <div className="relative">
                       <textarea
@@ -312,19 +312,19 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('dietary')}
                         onBlur={() => setFocusedField(null)}
                         rows={3}
-                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.10] border border-white/20 rounded-xl text-white text-sm md:text-base font-light 
-                          placeholder-white/40 transition-all duration-300 focus:outline-none focus:border-white/40 
-                          focus:bg-white/[0.15] backdrop-blur-sm resize-none"
+                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-slate-700/70 md:bg-white/[0.10] border border-slate-500/50 md:border-white/20 rounded-xl text-gray-100 md:text-white text-sm md:text-base font-light 
+                          placeholder-gray-300 md:placeholder-white/40 transition-all duration-300 focus:outline-none focus:border-slate-400 md:focus:border-white/40 
+                          focus:bg-slate-600/70 md:focus:bg-white/[0.15] backdrop-blur-sm resize-none"
                         placeholder="Alergias, intolerancias, restricciones..."
                       />
-                      <MessageSquare className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-white/40" />
+                      <MessageSquare className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-gray-400 md:text-white/40" />
                     </div>
-                    <label className="text-xs md:text-sm text-white/60 font-light mt-2 block">
+                    <label className="text-xs md:text-sm text-gray-300 md:text-white/60 font-light mt-2 block">
                       Restricciones alimentarias
                     </label>
                   </div>
 
-                  {/* Canción - mejorado para móvil */}
+                  {/* Canción - mejor contraste para móviles */}
                   <div className="relative group">
                     <div className="relative">
                       <textarea
@@ -334,19 +334,19 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('messageSong')}
                         onBlur={() => setFocusedField(null)}
                         rows={3}
-                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.10] border border-white/20 rounded-xl text-white text-sm md:text-base font-light 
-                          placeholder-white/40 transition-all duration-300 focus:outline-none focus:border-white/40 
-                          focus:bg-white/[0.15] backdrop-blur-sm resize-none"
+                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-slate-700/70 md:bg-white/[0.10] border border-slate-500/50 md:border-white/20 rounded-xl text-gray-100 md:text-white text-sm md:text-base font-light 
+                          placeholder-gray-300 md:placeholder-white/40 transition-all duration-300 focus:outline-none focus:border-slate-400 md:focus:border-white/40 
+                          focus:bg-slate-600/70 md:focus:bg-white/[0.15] backdrop-blur-sm resize-none"
                         placeholder="Tu canción para la pista de baile..."
                       />
-                      <Music className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-white/40" />
+                      <Music className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-gray-400 md:text-white/40" />
                     </div>
-                    <label className="text-xs md:text-sm text-white/60 font-light mt-2 block">
-                      Canción para la fiesta <span className="text-white/40">(sin Despacito, por favor)</span>
+                    <label className="text-xs md:text-sm text-gray-300 md:text-white/60 font-light mt-2 block">
+                      Canción para la fiesta <span className="text-gray-400 md:text-white/40">(sin Despacito, por favor)</span>
                     </label>
                   </div>
 
-                  {/* Mensaje - mejorado para móvil */}
+                  {/* Mensaje - mejor contraste para móviles */}
                   <div className="relative group">
                     <div className="relative">
                       <textarea
@@ -356,14 +356,14 @@ const RSVPSection = () => {
                         onFocus={() => handleFocus('message')}
                         onBlur={() => setFocusedField(null)}
                         rows={3}
-                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-white/[0.10] border border-white/20 rounded-xl text-white text-sm md:text-base font-light 
-                          placeholder-white/40 transition-all duration-300 focus:outline-none focus:border-white/40 
-                          focus:bg-white/[0.15] backdrop-blur-sm resize-none"
+                        className="w-full px-3 md:px-4 py-3 md:py-4 bg-slate-700/70 md:bg-white/[0.10] border border-slate-500/50 md:border-white/20 rounded-xl text-gray-100 md:text-white text-sm md:text-base font-light 
+                          placeholder-gray-300 md:placeholder-white/40 transition-all duration-300 focus:outline-none focus:border-slate-400 md:focus:border-white/40 
+                          focus:bg-slate-600/70 md:focus:bg-white/[0.15] backdrop-blur-sm resize-none"
                         placeholder="Un mensaje especial para nosotros..."
                       />
-                      <MessageSquare className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-white/40" />
+                      <MessageSquare className="absolute right-3 md:right-4 top-3 md:top-4 h-4 w-4 md:h-5 md:w-5 text-gray-400 md:text-white/40" />
                     </div>
-                    <label className="text-xs md:text-sm text-white/60 font-light mt-2 block">
+                    <label className="text-xs md:text-sm text-gray-300 md:text-white/60 font-light mt-2 block">
                       Mensaje para los novios
                     </label>
                   </div>

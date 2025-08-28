@@ -49,15 +49,40 @@ Nos encantará compartirlo con quienes habéis formado parte de nuestra historia
                 <span className="text-sm md:text-base text-white font-normal">Iglesia de Sant Miquèu, Plaça dera Glèisa, Vielha</span>
               </div>
             </div>
-            
+
             <div className="pt-2 md:pt-4">
               <a href="https://maps.app.goo.gl/ZYXjdBSXmHP4rXnz6" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-white hover:text-winter-icy font-normal transition-colors text-sm md:text-base">
-                Ver ubicación
+                Ver ubicación Iglesia
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 md:h-4 md:w-4 ml-1 md:ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
             </div>
+            
+            {/* Información del parking */}
+            <div className="bg-white/5 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-white/10">
+              <div className="flex items-start space-x-3">
+                
+                <div className="flex-1">
+                  <p className="text-sm md:text-base text-white font-light leading-relaxed">
+                    Hay un parking al lado de la iglesia, a solo 3 minutos a pie. Desde allí, podréis subir al parador sin problemas.
+                  </p>
+                  <a 
+                    href="https://maps.app.goo.gl/HmB6v5QN34XCVz7J7" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="inline-flex items-center text-white/80 hover:text-white font-normal transition-colors text-xs md:text-sm mt-2"
+                  >
+                    Ver parking en Google Maps
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+            
+            
           </div>
         </div>
       </div>
