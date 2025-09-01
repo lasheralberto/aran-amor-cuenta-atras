@@ -12,7 +12,7 @@ const ChurchSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-center">
           {/* Contenedor de imagen con ImageReveal */}
           <div className="flex justify-center">
-            <ImageReveal originalImage="/img/iglesia-ori.jpg" overlayImage="/lovable-uploads/98f5845c-985c-4b03-8d2c-2d1a1850f835.png" alt="Iglesia de Sant Miquèu de Vielha" className="rounded-lg shadow-lg w-48 sm:w-56 md:max-w-xs" aspectRatio="pb-[177.78%]" />
+            <ImageReveal originalImage="/img/iglesia-ori.jpg" overlayImage="/lovable-uploads/iglesia-acu.png" alt="Iglesia de Sant Miquèu de Vielha" className="rounded-lg shadow-lg w-56 sm:w-64 md:max-w-sm" aspectRatio="pb-[177.78%]" />
           </div>
           
           <div className="space-y-4 md:space-y-6">
