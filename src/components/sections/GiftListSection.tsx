@@ -36,7 +36,7 @@ const GiftListSection = () => {
               </p>
             </div>
             <p className="text-white/80 text-sm mt-3 font-light">
-              A nombre de: Alberto & Mariona
+              A nombre de: Alberto Martinez Lasheras
             </p>
           </div>
         </div>
