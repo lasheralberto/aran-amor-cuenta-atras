@@ -1,73 +1,144 @@
-# Welcome to your Lovable project
+![Banner](.github/images/banner.png)
 
-## Project info
+# Arán Amor - Cuenta Atrás 🏔️❤️
 
-**URL**: https://lovable.dev/projects/bfa22ad2-399b-4510-b874-b6dee4cf5e8a
+A beautiful, interactive wedding invitation and countdown application designed for a special celebration in the Arán Valley. This project features a responsive design, elegant animations, and essential event information.
 
-## How can I edit this code?
+## 📖 Overview
 
-There are several ways of editing your application.
+**Arán Amor** is a dedicated landing page for a wedding or event, likely set in the scenic Val d'Arán. It serves as a digital hub for guests to track the time remaining until the big day, explore event locations (the Church and the Reception), RSVP, and view the gift registry.
 
-**Use Lovable**
+The application features a "winter/mountain" aesthetic, complete with a snowfall effect, vintage image frames, and smooth scroll reveals.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/bfa22ad2-399b-4510-b874-b6dee4cf5e8a) and start prompting.
+## ✨ Features
 
-Changes made via Lovable will be committed automatically to this repo.
+-   **Interactive Countdown:** Real-time countdown timer to the event date.
+-   **Atmospheric Snowfall:** A custom React-based snowfall animation to set the mountain mood.
+-   **RSVP System:** Integrated form for guests to confirm attendance.
+-   **Location Details:** Dedicated sections for the ceremony (Church) and the celebration (Parador), featuring maps and imagery.
+-   **Gift List:** A structured section for registry information.
+-   **Responsive Design:** Fully optimized for mobile, tablet, and desktop views.
+-   **Vintage Aesthetics:** Custom image frames and "Reveal" animations for a premium feel.
 
-**Use your preferred IDE**
+## 🛠️ Tech Stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+-   **Framework:** [React 18](https://reactjs.org/)
+-   **Build Tool:** [Vite](https://vitejs.dev/)
+-   **Language:** [TypeScript](https://www.typescriptlang.org/)
+-   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+-   **UI Components:** [shadcn/ui](https://ui.shadcn.com/) (based on Radix UI)
+-   **Animations:** CSS Transitions & custom components
+-   **Icons:** [Lucide React](https://lucide.dev/)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🚀 Getting Started
 
-Follow these steps:
+### Prerequisites
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+-   Node.js (v18.0.0 or higher)
+-   npm or bun
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Installation
 
-# Step 3: Install the necessary dependencies.
-npm i
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/aran-amor-cuenta-atras.git
+    cd aran-amor-cuenta-atras
+    ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    bun install
+    ```
+
+3.  **Start the development server:**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Build for production:**
+    ```bash
+    npm run build
+    ```
+
+## 📂 Project Structure
+
+```text
+src/
+├── components/
+│   ├── ui/                # Reusable shadcn components (buttons, cards, etc.)
+│   ├── sections/          # Major page sections (Hero, RSVP, Church, etc.)
+│   ├── CountdownTimer.tsx # The countdown logic
+│   ├── Snowfall.tsx       # Visual snow effect
+│   └── ImageReveal.tsx    # Scroll-triggered image animations
+├── pages/
+│   ├── Index.tsx          # Main landing page
+│   └── NotFound.tsx       # 404 Error page
+├── App.tsx                # Main application routing and providers
+└── main.tsx               # Entry point
 ```
 
-**Edit a file directly in GitHub**
+## 💻 Code Examples
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Countdown Component Usage
+The `CountdownTimer` is a core feature that calculates the time remaining until the event.
 
-**Use GitHub Codespaces**
+```tsx
+// Example usage in a section
+import { CountdownTimer } from "@/components/CountdownTimer";
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+const HeroSection = () => {
+  const targetDate = new Date("2025-09-20T12:00:00");
 
-## What technologies are used for this project?
+  return (
+    <section>
+      <h1>¡Nos casamos!</h1>
+      <CountdownTimer targetDate={targetDate} />
+    </section>
+  );
+};
+```
 
-This project is built with:
+### Snowfall Effect
+The mountain atmosphere is enhanced by a snowfall overlay that can be toggled or customized.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```tsx
+import { Snowfall } from "./components/Snowfall";
 
-## How can I deploy this project?
+function App() {
+  return (
+    <div className="relative">
+      <Snowfall />
+      <main>{/* Content */}</main>
+    </div>
+  );
+}
+```
 
-Simply open [Lovable](https://lovable.dev/projects/bfa22ad2-399b-4510-b874-b6dee4cf5e8a) and click on Share -> Publish.
+## 🎨 Customization
 
-## Can I connect a custom domain to my Lovable project?
+### Changing Images
+Place your event images in `public/img/`. Update the source paths in the respective section components:
+- `ChurchSection.tsx`
+- `ReceptionSection.tsx`
+- `HeroSection.tsx`
 
-Yes, you can!
+### Updating Event Details
+Most text content and dates can be found in `src/pages/Index.tsx` and the components inside `src/components/sections/`.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🌐 Deployment
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+The project is configured for easy deployment via platforms like **Vercel**, **Netlify**, or **Cloudflare Pages**. 
+
+If using the Lovable platform:
+1. Open your project in [Lovable](https://lovable.dev/).
+2. Click **Share** -> **Publish**.
+
+## 📄 License
+
+This project is private and intended for personal use for the Arán Amor event celebration.
+
+---
+
+*Made with ❤️ for a special day in the Arán Valley.*
